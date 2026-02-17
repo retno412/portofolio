@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar JavaScript ES6+ · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+        .card { max-width:1100px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; }
+        .logo h1 { font-size:2.5rem; color:#1E2F4F; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; font-weight:500; box-shadow:0 5px 0 #0f1e2f; transition:0.1s; display:inline-flex; align-items:center; gap:10px; }
+        .back-link a:active { transform:translateY(3px); box-shadow:0 2px 0 #0f1e2f; }
+        .page-title { font-size:2.2rem; font-weight:700; color:#1E2F4F; margin:1rem 0 1.5rem; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; }
+        .content { background:white; border-radius:40px; padding:2rem; border:1px solid #2F8F9D; line-height:1.6; }
+        .content h2 { color:#1E2F4F; margin:1.5rem 0 0.5rem; }
+        .content p { color:#2d3e5c; margin-bottom:1rem; }
+        .code { background:#1E2F4F; color:#f7d44b; padding:1rem; border-radius:30px; font-family:'Fira Code',monospace; font-size:0.9rem; overflow-x:auto; margin:1rem 0; white-space:pre-wrap; }
+        .demo-box { background:#e3eef5; border-radius:30px; padding:1rem; margin:1rem 0; display:flex; gap:1rem; flex-wrap:wrap; align-items:center; justify-content:center; }
+        .btn { background:#f7d44b; color:#1E2F4F; font-weight:600; padding:0.5rem 1.2rem; border:none; border-radius:30px; cursor:pointer; box-shadow:0 4px 0 #b58f2b; transition:0.1s; margin:0.5rem 0.5rem 0 0; }
+        .btn:active { transform:translateY(4px); box-shadow:0 1px 0 #b58f2b; }
+        .btn-link { background:#2F8F9D; color:white; padding:0.6rem 1.5rem; border-radius:40px; text-decoration:none; font-weight:600; display:inline-block; box-shadow:0 4px 0 #195e68; transition:0.1s; margin:1rem 0.5rem 0 0; }
+        .btn-link:active { transform:translateY(4px); box-shadow:0 1px 0 #195e68; }
+        .nav-buttons { display:flex; justify-content:space-between; margin-top:2rem; }
+        .nav-btn { background:#2F8F9D; color:white; padding:0.8rem 2rem; border-radius:40px; text-decoration:none; font-weight:600; box-shadow:0 5px 0 #195e68; transition:0.1s; }
+        .nav-btn:active { transform:translateY(4px); box-shadow:0 1px 0 #195e68; }
+        .footer-note { margin-top:2rem; text-align:center; color:#1E2F4F; }
+        .tag-list { display:flex; flex-wrap:wrap; gap:0.5rem; margin:0.5rem 0; }
+        .tag { background:#2F8F9D; color:white; padding:0.2rem 0.8rem; border-radius:30px; font-size:0.8rem; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="webdesign.html"><i class="fas fa-arrow-left"></i> Kembali</a></div>
+        </div>
+        <div class="page-title"><i class="fab fa-js" style="color:#f7df1e;"></i> JavaScript ES6+ Lengkap</div>
+        <div class="content">
+            <p><strong>JavaScript</strong> adalah bahasa pemrograman yang membuat halaman web interaktif. ES6 (ECMAScript 2015) memperkenalkan banyak fitur modern yang sekarang menjadi standar.</p>
+
+            <h2>🔹 Cara Menyisipkan JavaScript</h2>
+            <ul style="margin-left:1.5rem; color:#2d3e5c;">
+                <li><strong>Inline:</strong> menggunakan atribut <code>onclick</code>, dll.</li>
+                <li><strong>Internal:</strong> dalam tag <code>&lt;script&gt;</code> di HTML.</li>
+                <li><strong>Eksternal:</strong> file .js terpisah yang di-link dengan <code>&lt;script src="..."&gt;</code>.</li>
+            </ul>
+            <div class="code">
+&lt;script&gt;
+    console.log('Hello World');
+&lt;/script&gt;
+&lt;script src="script.js"&gt;&lt;/script&gt;
+            </div>
+
+            <h2>🔹 Variabel: var, let, const</h2>
+            <div class="tag-list">
+                <span class="tag">var</span>
+                <span class="tag">let</span>
+                <span class="tag">const</span>
+            </div>
+            <div class="code">
+let nama = 'Budi';    // bisa diubah
+const umur = 20;      // tidak bisa diubah
+var lama = 'hindari'; // function-scoped
+            </div>
+
+            <h2>🔹 Tipe Data</h2>
+            <p>String, Number, Boolean, Object, Array, Null, Undefined.</p>
+            <div class="code">
+let teks = "Hello";
+let angka = 100;
+let benar = true;
+let siswa = { nama: 'Ani', umur: 17 };
+let daftar = [1,2,3];
+let kosong = null;
+let tidakAda = undefined;
+            </div>
+
+            <h2>🔹 Operator dan Percabangan</h2>
+            <div class="code">
+// Operator: + - * / % === !== &lt; &gt; || &amp;&amp; !
+if (angka > 50) {
+    console.log('besar');
+} else {
+    console.log('kecil');
+}
+
+// Switch
+switch (nilai) {
+    case 1: break;
+    default: break;
+}
+            </div>
+
+            <h2>🔹 Looping</h2>
+            <div class="code">
+for (let i=0; i&lt;5; i++) { }
+while (kondisi) { }
+array.forEach(item => { });
+for (let item of array) { }
+            </div>
+
+            <h2>🔹 Fungsi (Function)</h2>
+            <div class="code">
+// Deklarasi fungsi
+function tambah(a,b) {
+    return a + b;
+}
+
+// Fungsi anonim (expression)
+const kali = function(a,b) { return a*b; };
+
+// Arrow function (ES6)
+const kurang = (a,b) => a - b;
+
+// Parameter default
+const sapa = (nama = 'Tamu') => `Halo ${nama}`;
+
+// Rest parameter
+const jumlah = (...angka) => angka.reduce((a,b) => a+b);
+            </div>
+
+            <h2>🔹 Object dan Array (ES6+)</h2>
+            <div class="code">
+// Destructuring object
+const siswa = { nama: 'Budi', umur: 20 };
+const { nama, umur } = siswa;
+
+// Destructuring array
+const warna = ['merah', 'hijau'];
+const [pertama, kedua] = warna;
+
+// Spread operator
+const arr1 = [1,2];
+const arr2 = [...arr1, 3,4];
+const obj1 = { a:1, b:2 };
+const obj2 = { ...obj1, c:3 };
+
+// Template literals
+console.log(`Nama: ${nama}, umur: ${umur}`);
+            </div>
+
+            <h2>🔹 DOM Manipulation</h2>
+            <p>Mengakses dan memanipulasi elemen HTML.</p>
+            <div class="code">
+// Memilih elemen
+const judul = document.getElementById('judul');
+const divs = document.querySelectorAll('.card');
+
+// Mengubah konten
+judul.textContent = 'Judul Baru';
+judul.innerHTML = '&lt;span&gt;Hello&lt;/span&gt;';
+
+// Event listener
+button.addEventListener('click', function() {
+    alert('Diklik!');
+});
+            </div>
+            <div class="demo-box">
+                <p id="demoText">Klik tombol untuk mengubah teks ini.</p>
+                <button class="btn" onclick="document.getElementById('demoText').textContent = 'Teks berhasil diubah!'">Ubah Teks</button>
+            </div>
+
+            <h2>🔹 Promise dan Async/Await</h2>
+            <p>Menangani operasi asinkron seperti fetch API.</p>
+            <div class="code">
+// Promise
+fetch('https://api.example.com')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+
+// Async/Await (ES8)
+async function ambilData() {
+    try {
+        const res = await fetch('https://api.example.com');
+        const data = await res.json();
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+            </div>
+
+            <h2>🔹 Module (import/export)</h2>
+            <div class="code">
+// file math.js
+export const PI = 3.14;
+export function tambah(a,b) { return a+b; }
+
+// file main.js
+import { PI, tambah } from './math.js';
+            </div>
+
+            <h2>🔹 Fitur ES6+ Lainnya</h2>
+            <ul style="margin-left:1.5rem;">
+                <li><strong>Class</strong> (sintaks gula untuk OOP)</li>
+                <li><strong>Map dan Set</strong> (struktur data baru)</li>
+                <li><strong>Symbol</strong> (tipe data unik)</li>
+                <li><strong>Optional chaining</strong> (<code>obj?.prop</code>)</li>
+                <li><strong>Nullish coalescing</strong> (<code>??</code>)</li>
+            </ul>
+
+            <a href="https://www.w3schools.com/js/default.asp" target="_blank" class="btn-link"><i class="fas fa-external-link-alt"></i> Tutorial JS di W3Schools</a>
+            <a href="https://developer.mozilla.org/id/docs/Web/JavaScript" target="_blank" class="btn-link"><i class="fab fa-firefox"></i> MDN JavaScript</a>
+            <a href="https://javascript.info/" target="_blank" class="btn-link">JavaScript.info</a>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="css.html" class="nav-btn"><i class="fas fa-arrow-left"></i> CSS</a>
+            <a href="react.html" class="nav-btn">React <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        // Tidak perlu script tambahan karena demo sudah menggunakan inline.
+    </script>
+</body>
+</html>

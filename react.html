@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar React · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+        .card { max-width:1100px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; }
+        .logo h1 { font-size:2.5rem; color:#1E2F4F; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; font-weight:500; box-shadow:0 5px 0 #0f1e2f; transition:0.1s; display:inline-flex; align-items:center; gap:10px; }
+        .back-link a:active { transform:translateY(3px); box-shadow:0 2px 0 #0f1e2f; }
+        .page-title { font-size:2.2rem; font-weight:700; color:#1E2F4F; margin:1rem 0 1.5rem; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; }
+        .content { background:white; border-radius:40px; padding:2rem; border:1px solid #2F8F9D; line-height:1.6; }
+        .content h2 { color:#1E2F4F; margin:1.5rem 0 0.5rem; }
+        .content p { color:#2d3e5c; margin-bottom:1rem; }
+        .code { background:#1E2F4F; color:#f7d44b; padding:1rem; border-radius:30px; font-family:'Fira Code',monospace; font-size:0.9rem; overflow-x:auto; margin:1rem 0; white-space:pre-wrap; }
+        .demo-box { background:#e3eef5; border-radius:30px; padding:1rem; margin:1rem 0; display:flex; gap:1rem; flex-wrap:wrap; align-items:center; justify-content:center; }
+        .btn { background:#f7d44b; color:#1E2F4F; font-weight:600; padding:0.5rem 1.2rem; border:none; border-radius:30px; cursor:pointer; box-shadow:0 4px 0 #b58f2b; transition:0.1s; margin:0.5rem 0.5rem 0 0; }
+        .btn:active { transform:translateY(4px); box-shadow:0 1px 0 #b58f2b; }
+        .btn-link { background:#2F8F9D; color:white; padding:0.6rem 1.5rem; border-radius:40px; text-decoration:none; font-weight:600; display:inline-block; box-shadow:0 4px 0 #195e68; transition:0.1s; margin:1rem 0.5rem 0 0; }
+        .btn-link:active { transform:translateY(4px); box-shadow:0 1px 0 #195e68; }
+        .nav-buttons { display:flex; justify-content:space-between; margin-top:2rem; }
+        .nav-btn { background:#2F8F9D; color:white; padding:0.8rem 2rem; border-radius:40px; text-decoration:none; font-weight:600; box-shadow:0 5px 0 #195e68; transition:0.1s; }
+        .nav-btn:active { transform:translateY(4px); box-shadow:0 1px 0 #195e68; }
+        .footer-note { margin-top:2rem; text-align:center; color:#1E2F4F; }
+        .tag-list { display:flex; flex-wrap:wrap; gap:0.5rem; margin:0.5rem 0; }
+        .tag { background:#2F8F9D; color:white; padding:0.2rem 0.8rem; border-radius:30px; font-size:0.8rem; }
+        .counter { display:flex; align-items:center; gap:1rem; background:#1E2F4F; color:white; padding:1rem; border-radius:30px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="webdesign.html"><i class="fas fa-arrow-left"></i> Kembali</a></div>
+        </div>
+        <div class="page-title"><i class="fab fa-react" style="color:#61dafb;"></i> React Lengkap</div>
+        <div class="content">
+            <p><strong>React</strong> adalah library JavaScript untuk membangun antarmuka pengguna (UI). Dikembangkan oleh Facebook. React berbasis komponen, menggunakan JSX, dan virtual DOM untuk performa tinggi.</p>
+
+            <h2>🔹 Konsep Dasar React</h2>
+            <ul style="margin-left:1.5rem; color:#2d3e5c;">
+                <li><strong>Komponen</strong> – blok penyusun UI (function atau class).</li>
+                <li><strong>JSX</strong> – sintaks seperti HTML di dalam JavaScript.</li>
+                <li><strong>Props</strong> – data yang dikirim dari parent ke child (read-only).</li>
+                <li><strong>State</strong> – data internal komponen yang bisa berubah.</li>
+                <li><strong>Virtual DOM</strong> – representasi ringan DOM untuk update efisien.</li>
+            </ul>
+
+            <h2>🔹 Komponen Fungsional dan JSX</h2>
+            <div class="code">
+function Welcome(props) {
+    return &lt;h1&gt;Halo, {props.nama}&lt;/h1&gt;;
+}
+
+// Penggunaan
+&lt;Welcome nama="Budi" /&gt;
+            </div>
+
+            <h2>🔹 Props (Properties)</h2>
+            <p>Props adalah argumen yang diteruskan ke komponen. Bersifat read-only.</p>
+            <div class="code">
+function Card({ judul, children }) {
+    return (
+        &lt;div className="card"&gt;
+            &lt;h3&gt;{judul}&lt;/h3&gt;
+            &lt;div&gt;{children}&lt;/div&gt;
+        &lt;/div&gt;
+    );
+}
+            </div>
+
+            <h2>🔹 State dan useState</h2>
+            <p><strong>State</strong> digunakan untuk data yang berubah. Hook <code>useState</code> mengelola state dalam komponen fungsional.</p>
+            <div class="code">
+import React, { useState } from 'react';
+
+function Counter() {
+    const [count, setCount] = useState(0);
+    return (
+        &lt;div&gt;
+            &lt;p&gt;Klik: {count} kali&lt;/p&gt;
+            &lt;button onClick={() => setCount(count + 1)}&gt;
+                Tambah
+            &lt;/button&gt;
+        &lt;/div&gt;
+    );
+}
+            </div>
+            <div class="demo-box">
+                <div class="counter" id="demoCounter">
+                    <span>Klik: <span id="countDisplay">0</span> kali</span>
+                    <button class="btn" id="incrementBtn">Tambah</button>
+                </div>
+                <script>
+                    // Simulasi React state sederhana dengan JavaScript biasa
+                    let count = 0;
+                    document.getElementById('incrementBtn').addEventListener('click', function() {
+                        count++;
+                        document.getElementById('countDisplay').textContent = count;
+                    });
+                </script>
+            </div>
+
+            <h2>🔹 useEffect (Side Effects)</h2>
+            <p>Menangani efek samping seperti fetch data, subscription, atau manipulasi DOM.</p>
+            <div class="code">
+import React, { useState, useEffect } from 'react';
+
+function DataFetcher() {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        fetch('https://api.example.com/data')
+            .then(res => res.json())
+            .then(setData);
+    }, []); // array kosong = hanya sekali saat mount
+
+    return &lt;div&gt;{JSON.stringify(data)}&lt;/div&gt;;
+}
+            </div>
+
+            <h2>🔹 Event Handling</h2>
+            <div class="code">
+function Form() {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Form submitted');
+    };
+    return (
+        &lt;form onSubmit={handleSubmit}&gt;
+            &lt;input type="text" /&gt;
+            &lt;button type="submit"&gt;Kirim&lt;/button&gt;
+        &lt;/form&gt;
+    );
+}
+            </div>
+
+            <h2>🔹 Conditional Rendering</h2>
+            <div class="code">
+function Greeting({ isLoggedIn }) {
+    return (
+        &lt;div&gt;
+            {isLoggedIn ? &lt;h1&gt;Selamat datang kembali&lt;/h1&gt; : &lt;h1&gt;Silakan login&lt;/h1&gt;}
+        &lt;/div&gt;
+    );
+}
+            </div>
+
+            <h2>🔹 Rendering List (map)</h2>
+            <div class="code">
+function TodoList({ items }) {
+    return (
+        &lt;ul&gt;
+            {items.map((item, index) => (
+                &lt;li key={index}&gt;{item}&lt;/li&gt;
+            ))}
+        &lt;/ul&gt;
+    );
+}
+            </div>
+
+            <h2>🔹 Hooks Lainnya (useContext, useReducer, dll)</h2>
+            <ul style="margin-left:1.5rem;">
+                <li><strong>useContext</strong> – untuk state global tanpa prop drilling.</li>
+                <li><strong>useReducer</strong> – alternatif useState untuk logika kompleks.</li>
+                <li><strong>useRef</strong> – referensi ke elemen DOM atau nilai mutable.</li>
+                <li><strong>useMemo / useCallback</strong> – optimasi performa.</li>
+            </ul>
+
+            <h2>🔹 React Router (Navigasi)</h2>
+            <p>Library untuk routing di aplikasi React.</p>
+            <div class="code">
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+
+function App() {
+    return (
+        &lt;BrowserRouter&gt;
+            &lt;Link to="/"&gt;Home&lt;/Link&gt;
+            &lt;Route path="/" exact component={Home} /&gt;
+        &lt;/BrowserRouter&gt;
+    );
+}
+            </div>
+
+            <h2>🔹 Struktur Proyek React</h2>
+            <p>Biasanya dibuat dengan <code>create-react-app</code> atau <code>vite</code>.</p>
+            <div class="code">
+my-app/
+  public/
+    index.html
+  src/
+    components/
+      Counter.js
+    App.js
+    index.js
+  package.json
+            </div>
+
+            <a href="https://react.dev/learn" target="_blank" class="btn-link"><i class="fab fa-react"></i> Dokumentasi React</a>
+            <a href="https://www.w3schools.com/react/" target="_blank" class="btn-link">Tutorial React di W3Schools</a>
+            <a href="https://github.com/facebook/react" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub React</a>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="js.html" class="nav-btn"><i class="fas fa-arrow-left"></i> JavaScript</a>
+            <a href="vue.html" class="nav-btn">Vue <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+</body>
+</html>

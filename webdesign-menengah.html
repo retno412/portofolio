@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design Menengah · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+        .card { max-width:1300px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; }
+        .logo h1 { font-size:2.5rem; color:#1E2F4F; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; box-shadow:0 5px 0 #0f1e2f; transition:0.1s; display:inline-flex; align-items:center; gap:10px; }
+        .back-link a:active { transform:translateY(3px); box-shadow:0 2px 0 #0f1e2f; }
+        .page-title { font-size:2rem; color:#1E2F4F; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; margin-bottom:1rem; }
+        .subtitle { color:#2F8F9D; font-size:1.3rem; margin-bottom:2rem; }
+
+        /* Materi grid */
+        .materi-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .materi-card {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            flex: 1 1 280px;
+            border: 1px solid #2F8F9D;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+            transition: 0.2s;
+        }
+        .materi-card:hover {
+            transform: translateY(-5px);
+            border-color: #f7d44b;
+        }
+        .materi-card h3 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .materi-card p {
+            color: #2d3e5c;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .diagram {
+            background: #e3eef5;
+            border-radius: 30px;
+            padding: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 120px;
+        }
+        .flex-demo {
+            display: flex;
+            gap: 8px;
+            background: #2F8F9D20;
+            padding: 10px;
+            border-radius: 20px;
+        }
+        .flex-demo div {
+            background: #2F8F9D;
+            color: white;
+            padding: 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            flex: 1;
+            text-align: center;
+        }
+        .grid-demo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            background: #1E2F4F20;
+            padding: 10px;
+            border-radius: 20px;
+        }
+        .grid-demo div {
+            background: #1E2F4F;
+            color: white;
+            padding: 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        .media-demo {
+            background: #f7d44b30;
+            padding: 10px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .dom-demo {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        .dom-demo button {
+            background: #2F8F9D;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .form-demo input {
+            padding: 5px;
+            border-radius: 20px;
+            border: 1px solid #2F8F9D;
+        }
+        .materi-card a {
+            background: #2F8F9D;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+            border: 1px solid white;
+            box-shadow: 0 3px 0 #195e68;
+        }
+        .materi-card a:active { transform:translateY(3px); box-shadow:none; }
+
+        /* Demo proyek */
+        .demo-section {
+            background: #e3eef5;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .demo-header h3 { color:#1E2F4F; font-size:1.6rem; }
+        .demo-area {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: inset 0 0 10px #cbd6e8;
+        }
+        .demo-code {
+            background: #1E2F4F;
+            color: #f7d44b;
+            padding: 1rem;
+            border-radius: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+        .demo-preview {
+            background: #f9f9f9;
+            border-radius: 20px;
+            padding: 1rem;
+            border: 2px solid #2F8F9D;
+        }
+        .preview-frame {
+            width: 100%;
+            min-height: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+        }
+        /* demo interaktif sederhana */
+        .demo-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .demo-layout > div {
+            background: #2F8F9D;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            flex: 1 1 120px;
+            text-align: center;
+        }
+        .demo-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 300px;
+        }
+        .demo-form input {
+            padding: 8px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+        }
+        .demo-form button {
+            background: #f7d44b;
+            border: none;
+            padding: 10px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .error { color: red; font-size: 0.8rem; }
+
+        .video-section { background:#e3eef5; border-radius:40px; padding:1.5rem; margin:2rem 0; }
+        .video-grid { display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; }
+        .video-card { background:white; border-radius:30px; padding:1rem; max-width:320px; }
+        .video-card iframe { width:100%; height:180px; border-radius:20px; }
+
+        .course-section { background:#f7d44b20; border-radius:40px; padding:1.5rem; margin:2rem 0; }
+        .course-grid { display:flex; flex-wrap:wrap; gap:1rem; }
+        .course-item { background:#1E2F4F; color:white; border-radius:30px; padding:1rem 1.5rem; flex:1 1 200px; text-align:center; }
+        .course-item a { color:#f7d44b; text-decoration:none; font-weight:bold; }
+
+        .nav-buttons { display:flex; justify-content:space-between; margin-top:2rem; }
+        .nav-btn { background:#2F8F9D; color:white; padding:0.8rem 2rem; border-radius:40px; text-decoration:none; font-weight:600; box-shadow:0 5px 0 #195e68; transition:0.1s; }
+        .nav-btn:active { transform:translateY(4px); box-shadow:0 1px 0 #195e68; }
+        .footer-note { margin-top:2rem; text-align:center; color:#1E2F4F; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="webdesign.html"><i class="fas fa-arrow-left"></i> Kembali ke Web Design</a></div>
+        </div>
+        <div class="page-title"><i class="fas fa-chart-line"></i> Level Menengah</div>
+        <div class="subtitle">Layout, Responsive, JavaScript, Form</div>
+
+        <!-- Materi dengan penjelasan dan bagan -->
+        <h2 style="color:#1E2F4F; margin: 2rem 0 1rem;">📚 Materi Inti</h2>
+        <div class="materi-grid">
+            <!-- Flexbox & Grid -->
+            <div class="materi-card">
+                <h3>Flexbox & Grid</h3>
+                <p><strong>Flexbox:</strong> Untuk layout satu dimensi (baris/kolom). Cocok untuk komponen dinamis.<br>
+                <strong>Grid:</strong> Untuk layout dua dimensi (baris dan kolom sekaligus).</p>
+                <div class="diagram">
+                    <div style="width:100%;">
+                        <div class="flex-demo">
+                            <div>Item 1</div><div>Item 2</div><div>Item 3</div>
+                        </div>
+                        <p style="margin:5px 0;">⬆️ Flexbox (baris)</p>
+                        <div class="grid-demo">
+                            <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+                        </div>
+                        <p>⬆️ Grid (3 kolom)</p>
+                    </div>
+                </div>
+                <a href="https://www.w3schools.com/css/css3_flexbox.asp" target="_blank">Flexbox di W3Schools</a>
+                <a href="https://www.w3schools.com/css/css_grid.asp" target="_blank">Grid di W3Schools</a>
+            </div>
+            <!-- Responsive Design -->
+            <div class="materi-card">
+                <h3>Responsive Design</h3>
+                <p>Membuat halaman menyesuaikan berbagai ukuran layar menggunakan <strong>media queries</strong>, viewport, dan unit relatif.</p>
+                <div class="diagram">
+                    <div style="width:100%;">
+                        <div style="background:#1E2F4F; color:white; padding:5px; border-radius:10px;">Desktop</div>
+                        <div style="display:flex; gap:2px; margin:5px 0;">
+                            <div style="background:#2F8F9D; width:30%; height:30px;"></div>
+                            <div style="background:#2F8F9D; width:70%; height:30px;"></div>
+                        </div>
+                        <div style="background:#f7d44b; padding:5px; border-radius:10px;">Mobile</div>
+                        <div style="display:flex; flex-direction:column; gap:2px; margin:5px 0;">
+                            <div style="background:#2F8F9D; height:30px;"></div>
+                            <div style="background:#2F8F9D; height:30px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://www.w3schools.com/css/css_rwd_intro.asp" target="_blank">Responsive Design</a>
+            </div>
+            <!-- Dasar JavaScript (DOM) -->
+            <div class="materi-card">
+                <h3>Dasar JavaScript (DOM)</h3>
+                <p>DOM (Document Object Model) memungkinkan JavaScript mengakses dan mengubah elemen HTML, merespons event.</p>
+                <div class="diagram">
+                    <div style="width:100%;">
+                        <div id="dom-demo" class="dom-demo">
+                            <button onclick="document.getElementById('demo-text').innerHTML = 'Teks diubah!'">Klik</button>
+                            <span id="demo-text">Teks asli</span>
+                        </div>
+                        <p style="font-size:0.8rem;">Contoh: klik tombol mengubah teks</p>
+                    </div>
+                </div>
+                <a href="https://www.w3schools.com/js/js_htmldom.asp" target="_blank">DOM di W3Schools</a>
+            </div>
+            <!-- Form & Validasi -->
+            <div class="materi-card">
+                <h3>Form & Validasi</h3>
+                <p>Form digunakan untuk input pengguna. Validasi bisa di sisi client (HTML5/JavaScript) untuk memastikan data benar sebelum dikirim.</p>
+                <div class="diagram">
+                    <div style="width:100%;">
+                        <div class="form-demo">
+                            <input type="text" placeholder="Nama" required pattern="[A-Za-z]+" title="Hanya huruf">
+                            <button onclick="alert('Validasi sederhana')">Kirim</button>
+                        </div>
+                        <p style="font-size:0.8rem;">Contoh input dengan required</p>
+                    </div>
+                </div>
+                <a href="https://www.w3schools.com/html/html_forms.asp" target="_blank">Form</a>
+                <a href="https://www.w3schools.com/js/js_validation.asp" target="_blank">Validasi</a>
+            </div>
+        </div>
+
+        <!-- Demo Proyek: Halaman responsif dengan flexbox, grid, form, dan interaksi DOM -->
+        <div class="demo-section">
+            <div class="demo-header">
+                <i class="fas fa-laptop-code" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Demo: Halaman Portfolio Mini (Responsif + Interaktif)</h3>
+            </div>
+            <div class="demo-area">
+                <div class="demo-code">
+                    &lt;!-- Kode sederhana menggabungkan konsep --&gt;<br>
+                    &lt;style&gt;<br>
+                    .container { display: flex; flex-wrap: wrap; }<br>
+                    .card { flex: 1 1 200px; margin: 10px; }<br>
+                    @media (max-width: 600px) { .container { flex-direction: column; } }<br>
+                    &lt;/style&gt;<br>
+                    &lt;div id="app"&gt;<br>
+                    &lt;form onsubmit="event.preventDefault(); validasiForm()"&gt;<br>
+                    &lt;input id="nama" required&gt; &lt;button&gt;Submit&lt;/button&gt;<br>
+                    &lt;/form&gt;<br>
+                    &lt;div id="output"&gt;&lt;/div&gt;<br>
+                    &lt;/div&gt;
+                </div>
+                <div class="demo-preview">
+                    <div class="preview-frame" id="liveDemo">
+                        <!-- Demo interaktif sederhana -->
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+                            <div style="background:#2F8F9D; color:white; padding:10px; border-radius:10px; flex:1 1 150px;">Kartu 1</div>
+                            <div style="background:#2F8F9D; color:white; padding:10px; border-radius:10px; flex:1 1 150px;">Kartu 2</div>
+                            <div style="background:#2F8F9D; color:white; padding:10px; border-radius:10px; flex:1 1 150px;">Kartu 3</div>
+                        </div>
+                        <form id="demoForm" onsubmit="event.preventDefault(); validasiDemo();">
+                            <input type="text" id="namaInput" placeholder="Nama (min 3 huruf)" style="padding:8px; border-radius:20px; border:1px solid #2F8F9D; width:100%; margin-bottom:10px;">
+                            <button type="submit" style="background:#f7d44b; border:none; padding:8px 20px; border-radius:30px; font-weight:bold;">Kirim</button>
+                        </form>
+                        <p id="demoMessage" style="margin-top:10px; color:#1E2F4F;"></p>
+                        <script>
+                            function validasiDemo() {
+                                const nama = document.getElementById('namaInput').value;
+                                if (nama.length < 3) {
+                                    document.getElementById('demoMessage').innerText = 'Nama minimal 3 huruf!';
+                                } else {
+                                    document.getElementById('demoMessage').innerHTML = 'Halo, ' + nama + '! Selamat datang.';
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Rekomendasi -->
+        <div class="video-section">
+            <h3><i class="fab fa-youtube" style="color:#c4302b;"></i> Rekomendasi Video YouTube (Indonesia)</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/z0zWvRq6gR4" title="Flexbox CSS" frameborder="0" allowfullscreen></iframe>
+                    <h4>Flexbox (UNPAS)</h4>
+                </div>
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/5yT6H0I6xZk" title="CSS Grid" frameborder="0" allowfullscreen></iframe>
+                    <h4>CSS Grid (Dea Afrizal)</h4>
+                </div>
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/RwsB1cEqEIE" title="JavaScript DOM" frameborder="0" allowfullscreen></iframe>
+                    <h4>JavaScript DOM (IdStack)</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kursus Relevan -->
+        <div class="course-section">
+            <h3><i class="fas fa-graduation-cap"></i> Kursus yang Relevan</h3>
+            <div class="course-grid">
+                <div class="course-item">
+                    <p><strong>Dicoding</strong> Belajar JavaScript Dasar</p>
+                    <a href="https://www.dicoding.com/academies/256" target="_blank">Lihat Kursus</a>
+                </div>
+                <div class="course-item">
+                    <p><strong>W3Schools</strong> Flexbox & Grid</p>
+                    <a href="https://www.w3schools.com/css/css3_flexbox.asp" target="_blank">Kunjungi</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigasi antar level -->
+        <div class="nav-buttons">
+            <a href="webdesign-pemula.html" class="nav-btn"><i class="fas fa-arrow-left"></i>ke Pemula</a>
+            <a href="webdesign-lanjut.html" class="nav-btn">ke Lanjut <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="footer-note"><i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias</div>
+    </div>
+
+    <script>
+        // Untuk demo interaktif di preview (sudah ada inline)
+    </script>
+</body>
+</html>

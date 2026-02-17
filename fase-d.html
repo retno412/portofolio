@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase D · Informatika SMP · Retno Ariyanti</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f3fa 0%, #e6ecf7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .fase-card {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 3.5rem 3.5rem 2.5rem 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,20,40,0.3), 0 0 0 1px rgba(156, 180, 215, 0.3) inset;
+            padding: 2.2rem 2.5rem 3rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .header-fase {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px dashed #2F8F9D;
+            padding-bottom: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1E2F4F;
+            text-shadow: 2px 2px 0 rgba(47,143,157,0.2);
+        }
+
+        .back-home a {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            border: 1px solid white;
+        }
+        .back-home a:hover {
+            background: #2F8F9D;
+            transform: scale(1.02);
+        }
+
+        .judul-fase {
+            font-size: 2.5rem;
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+        }
+        .judul-fase small {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #2F8F9D;
+            display: block;
+        }
+
+        .pengertian {
+            background: rgba(47,143,157,0.1);
+            border-radius: 40px;
+            padding: 1.8rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #2F8F9D;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .tp-section {
+            margin: 2.5rem 0;
+        }
+        .tp-section h3 {
+            font-size: 1.8rem;
+            color: #1E2F4F;
+            margin-bottom: 1.5rem;
+        }
+        .tp-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .tp-item {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 10px rgba(30,47,79,0.05);
+            border: 1px solid rgba(47,143,157,0.3);
+            display: flex;
+            gap: 1rem;
+        }
+        .tp-icon {
+            background: #2F8F9D;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .tp-text {
+            font-size: 1rem;
+            color: #1a2b41;
+        }
+
+        .kelengkapan {
+            background: #ffffffb0;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .kelengkapan h3 {
+            font-size: 1.8rem;
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+        }
+        .kelengkapan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .kelengkapan-item {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #2F8F9D;
+        }
+        .kelengkapan-item i {
+            font-size: 3rem;
+            color: #2F8F9D;
+            margin-bottom: 0.8rem;
+        }
+        .kelengkapan-item h4 {
+            color: #1E2F4F;
+            margin-bottom: 0.5rem;
+        }
+        .btn-download {
+            background: #f7d44b;
+            color: #1E2F4F;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 0.5rem;
+            border: 1px solid white;
+            box-shadow: 0 3px 0 #b58f2b;
+            transition: 0.1s;
+        }
+        .btn-download:active {
+            transform: translateY(3px);
+            box-shadow: none;
+        }
+
+        .proyek {
+            background: linear-gradient(145deg, #d4e2f0, #c2d6e8);
+            border-radius: 50px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .proyek h3 {
+            font-size: 2rem;
+            color: #1E2F4F;
+        }
+        .proyek-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        .proyek-text {
+            flex: 2;
+            font-size: 1.2rem;
+        }
+        .proyek-text i {
+            color: #f7d44b;
+            background: #1E2F4F;
+            padding: 0.5rem;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        .proyek-cta {
+            flex: 1;
+            background: #1E2F4F;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 40px;
+            text-align: center;
+        }
+        .proyek-cta a {
+            color: #f7d44b;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .interaktif {
+            background: #1E2F4F;
+            border-radius: 50px;
+            padding: 2rem;
+            margin-top: 2.5rem;
+            color: white;
+        }
+        .interaktif h3 {
+            font-size: 2rem;
+            color: #f7d44b;
+            margin-bottom: 1.5rem;
+        }
+
+        .hoax-simulator {
+            background: #2a3f5a;
+            border-radius: 40px;
+            padding: 2rem;
+        }
+
+        .berita-card {
+            background: white;
+            color: #1E2F4F;
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 10px 0 #0f1e2f;
+        }
+
+        .berita-judul {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #2F8F9D;
+        }
+
+        .berita-isi {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .berita-sumber {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-pilihan {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .btn-hoax, .btn-fakta {
+            padding: 1rem 3rem;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.1s;
+            box-shadow: 0 5px 0 #b58f2b;
+        }
+
+        .btn-hoax {
+            background: #ff6b6b;
+            color: white;
+        }
+        .btn-fakta {
+            background: #51cf66;
+            color: white;
+        }
+        .btn-hoax:active, .btn-fakta:active {
+            transform: translateY(5px);
+            box-shadow: none;
+        }
+
+        .feedback-hoax {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 1.5rem 0;
+            min-height: 4rem;
+        }
+
+        .btn-next-berita {
+            background: #f7d44b;
+            color: #1E2F4F;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #b58f2b;
+            transition: 0.1s;
+            margin: 1rem 0;
+        }
+        .btn-next-berita:active {
+            transform: translateY(5px);
+            box-shadow: none;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            color: #1E2F4F;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="fase-card">
+        <div class="header-fase">
+            <div class="logo">
+                <h1>RETNO</h1>
+            </div>
+            <div class="back-home">
+                <a href="kelas.html"><i class="fas fa-arrow-left"></i> Kembali ke Kelas</a>
+            </div>
+        </div>
+
+        <h1 class="judul-fase">Fase D <small>Kelas 7–9 SMP · Literasi Digital dan Analisis Data</small></h1>
+
+        <!-- Pengertian singkat -->
+        <div class="pengertian">
+            <i class="fas fa-newspaper" style="color:#2F8F9D; margin-right:10px;"></i> 
+            Di fase D, siswa SMP diajak menjadi <strong>warga digital yang cerdas dan kritis</strong>. Mereka belajar membedakan fakta dan hoaks, memahami bagaimana algoritma media sosial bekerja, serta dampaknya pada kesehatan mental dan privasi. Tak hanya itu, mereka juga mulai <strong>mengolah data</strong> dengan spreadsheet, membuat visualisasi, dan menarik kesimpulan dari data — keterampilan yang sangat dibutuhkan di abad 21. Semua dikaitkan dengan kehidupan remaja: medsos, belanja online, dan isu-isu viral.
+        </div>
+
+        <!-- Tujuan Pembelajaran (dua modul utama) -->
+        <div class="tp-section">
+            <h3><i class="fas fa-bullseye" style="color:#2F8F9D;"></i> Tujuan Pembelajaran</h3>
+            <div class="tp-list">
+                <div class="tp-item">
+                    <div class="tp-icon">🔍</div>
+                    <div class="tp-text"><strong>Literasi Digital:</strong> Menganalisis kredibilitas informasi di internet, memahami algoritma media sosial, dan menciptakan konten positif.</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">📊</div>
+                    <div class="tp-text"><strong>Analisis Data:</strong> Menggunakan spreadsheet (Excel/Google Sheets) untuk mengolah data, membuat grafik, dan menginterpretasi hasil.</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">🛡️</div>
+                    <div class="tp-text"><strong>Etika Digital:</strong> Memahami dampak cyberbullying, menjaga privasi, dan mengelola jejak digital.</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">📈</div>
+                    <div class="tp-text"><strong>Visualisasi Data:</strong> Menyajikan data dalam bentuk grafik yang informatif dan mudah dipahami.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kelengkapan Modul -->
+        <div class="kelengkapan">
+            <h3><i class="fas fa-box-open"></i> Kelengkapan Modul</h3>
+            <div class="kelengkapan-grid">
+                <div class="kelengkapan-item">
+                    <i class="fas fa-check-double"></i>
+                    <h4>Panduan Cek Fakta</h4>
+                    <p>Modul "Lateral Reading" dan teknik verifikasi gambar/video</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh PDF</a>
+                </div>
+                <div class="kelengkapan-item">
+                    <i class="fas fa-table"></i>
+                    <h4>Workbook Spreadsheet</h4>
+                    <p>Lembar kerja Google Sheets dengan data sampel (nilai, penjualan)</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Salin Sheet</a>
+                </div>
+                <div class="kelengkapan-item">
+                    <i class="fas fa-draw-polygon"></i>
+                    <h4>Template Infografis</h4>
+                    <p>Canva template untuk menyajikan data secara visual</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Gunakan</a>
+                </div>
+                <div class="kelengkapan-item">
+                    <i class="fas fa-video"></i>
+                    <h4>Video "Algoritma Medsos"</h4>
+                    <p>Animasi 6 menit tentang cara kerja algoritma TikTok/IG</p>
+                    <a href="#" class="btn-download"><i class="fas fa-play"></i> Tonton</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ide Proyek 1: Kampanye Digital -->
+        <div class="proyek">
+            <h3><i class="fas fa-lightbulb"></i> Proyek 1: Saya Pahlawan Digital</h3>
+            <div class="proyek-content">
+                <div class="proyek-text">
+                    <p><i class="fas fa-campaign"></i> Siswa membuat kampanye digital dalam bentuk <strong>poster atau video pendek (reel)</strong> tentang cara mengenali hoaks atau pentingnya etika di media sosial. Hasilnya bisa ditayangkan di mading digital sekolah atau akun media sosial kelas.</p>
+                    <p style="margin-top: 1rem;"><strong>Bahan:</strong> Canva (gratis), CapCut, atau kertas gambar. Panduan lengkap disertakan.</p>
+                </div>
+                <div class="proyek-cta">
+                    <i class="fas fa-download" style="font-size: 2rem;"></i>
+                    <p style="margin: 1rem 0;">Template poster + rubrik penilaian</p>
+                    <a href="#" class="btn-download" style="background: #f7d44b;">Ambil Panduan</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ide Proyek 2: Analisis Data -->
+        <div class="proyek" style="background: linear-gradient(145deg, #c2d6e8, #b0c8e0);">
+            <h3><i class="fas fa-lightbulb"></i> Proyek 2: Menyelidiki Kebiasaan Digital Kelas</h3>
+            <div class="proyek-content">
+                <div class="proyek-text">
+                    <p><i class="fas fa-poll"></i> Siswa melakukan survei kecil tentang kebiasaan digital (durasi medsos, aplikasi favorit, pernah terkena hoaks?) di kelas. Data diolah dengan spreadsheet, dibuat grafik, dan dipresentasikan sebagai laporan infografis.</p>
+                    <p style="margin-top: 1rem;"><strong>Bahan:</strong> Google Forms untuk survei, Google Sheets untuk analisis, Canva untuk infografis.</p>
+                </div>
+                <div class="proyek-cta">
+                    <i class="fas fa-download" style="font-size: 2rem;"></i>
+                    <p style="margin: 1rem 0;">Template kuesioner + lembar kerja analisis</p>
+                    <a href="#" class="btn-download" style="background: #f7d44b;">Ambil Panduan</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aktivitas Interaktif: Deteksi Hoaks -->
+        <div class="interaktif">
+            <h3><i class="fas fa-shield-alt"></i> Uji Kemampuan: Deteksi Hoaks</h3>
+            <p style="margin-bottom: 1.5rem;">Baca berita berikut, lalu tebak apakah ini hoaks atau fakta. Di dunia nyata, kita perlu cek sumber, cek fakta, dan tidak langsung percaya!</p>
+            
+            <div class="hoax-simulator" id="hoaxSimulator">
+                <div class="berita-card" id="beritaCard">
+                    <div class="berita-judul" id="beritaJudul">Minum Air Hangat Sembuhkan COVID-19</div>
+                    <div class="berita-isi" id="beritaIsi">Sebuah pesan berantai di WhatsApp mengklaim bahwa minum air hangat setiap 15 menit dapat membunuh virus corona yang masuk ke tenggorokan. Pesan ini juga menyertakan logo Kementerian Kesehatan.</div>
+                    <div class="berita-sumber" id="beritaSumber">Sumber: Pesan berantai WhatsApp (tanpa tanggal)</div>
+                </div>
+
+                <div class="btn-pilihan">
+                    <button class="btn-hoax" id="btnHoax">🚫 HOAKS</button>
+                    <button class="btn-fakta" id="btnFakta">✅ FAKTA</button>
+                </div>
+
+                <div class="feedback-hoax" id="feedbackHoax"></div>
+                <div style="text-align: center;">
+                    <button class="btn-next-berita" id="nextBerita"><i class="fas fa-redo-alt"></i> Berikutnya</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-heart" style="color:#2F8F9D;"></i> Rancangan sesuai Kurikulum Merdeka Fase D – Retno Ariyanti
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Database berita hoaks/fakta
+            const beritaData = [
+                {
+                    judul: "Minum Air Hangat Sembuhkan COVID-19",
+                    isi: "Sebuah pesan berantai di WhatsApp mengklaim bahwa minum air hangat setiap 15 menit dapat membunuh virus corona yang masuk ke tenggorokan. Pesan ini juga menyertakan logo Kementerian Kesehatan.",
+                    sumber: "Sumber: Pesan berantai WhatsApp (tanpa tanggal)",
+                    jawaban: "hoaks",
+                    penjelasan: "Hoaks! Kemenkes telah membantah klaim ini. Tidak ada bukti ilmiah bahwa air hangat dapat membunuh virus COVID-19. Cara terbaik adalah vaksin, masker, dan protokol kesehatan."
+                },
+                {
+                    judul: "Kebiasaan Begadang Picu Diabetes pada Remaja",
+                    isi: "Studi dari Universitas Stanford menemukan bahwa remaja yang tidur kurang dari 6 jam per malam memiliki risiko 30% lebih tinggi terkena diabetes tipe 2 karena gangguan metabolisme gula.",
+                    sumber: "Sumber: Journal of Clinical Endocrinology & Metabolism, 2023",
+                    jawaban: "fakta",
+                    penjelasan: "Fakta! Kurang tidur memang mengganggu sensitivitas insulin dan dapat meningkatkan risiko diabetes. Sumbernya kredibel (jurnal ilmiah terindeks)."
+                },
+                {
+                    judul: "Facebook Akan Berbayar Mulai Bulan Depan",
+                    isi: "Beredar tangkapan layar yang mengklaim bahwa Facebook (Meta) akan memberlakukan biaya berlangganan Rp 10.000/bulan untuk semua pengguna di Indonesia. Pengguna diminta transfer ke rekening tertentu.",
+                    sumber: "Sumber: Postingan Facebook tidak resmi",
+                    jawaban: "hoaks",
+                    penjelasan: "Hoaks! Meta tidak pernah mengumumkan biaya berlangganan untuk pengguna biasa di Indonesia. Ini adalah modus penipuan phishing."
+                },
+                {
+                    judul: "Pengguna TikTok di Indonesia Capai 120 Juta",
+                    isi: "Berdasarkan laporan We Are Social 2024, jumlah pengguna TikTok di Indonesia mencapai 120 juta, menjadikannya salah satu pasar terbesar TikTok di dunia.",
+                    sumber: "Sumber: We Are Social Digital Report 2024",
+                    jawaban: "fakta",
+                    penjelasan: "Fakta! Laporan We Are Social dan Hootsuite memang merilis data tersebut. Bisa dicek di situs resmi mereka."
+                }
+            ];
+
+            let index = 0;
+            const judulEl = document.getElementById('beritaJudul');
+            const isiEl = document.getElementById('beritaIsi');
+            const sumberEl = document.getElementById('beritaSumber');
+            const feedbackEl = document.getElementById('feedbackHoax');
+            const btnHoax = document.getElementById('btnHoax');
+            const btnFakta = document.getElementById('btnFakta');
+            const nextBtn = document.getElementById('nextBerita');
+
+            function loadBerita(i) {
+                const berita = beritaData[i % beritaData.length];
+                judulEl.innerText = berita.judul;
+                isiEl.innerText = berita.isi;
+                sumberEl.innerText = berita.sumber;
+                feedbackEl.innerHTML = ''; // kosongkan feedback
+                // Aktifkan tombol lagi
+                btnHoax.disabled = false;
+                btnFakta.disabled = false;
+            }
+
+            function cekJawaban(pilihan) {
+                const berita = beritaData[index % beritaData.length];
+                const isCorrect = (pilihan === berita.jawaban);
+                
+                if (isCorrect) {
+                    feedbackEl.innerHTML = `✅ <strong>Benar!</strong> Ini adalah ${berita.jawaban === 'hoaks' ? 'HOAKS' : 'FAKTA'}. ${berita.penjelasan}`;
+                    feedbackEl.style.color = '#a0ffa0';
+                } else {
+                    feedbackEl.innerHTML = `❌ <strong>Kurang tepat.</strong> Sebenarnya ini adalah ${berita.jawaban === 'hoaks' ? 'HOAKS' : 'FAKTA'}. ${berita.penjelasan}`;
+                    feedbackEl.style.color = '#ffaaaa';
+                }
+
+                // Nonaktifkan tombol setelah memilih
+                btnHoax.disabled = true;
+                btnFakta.disabled = true;
+            }
+
+            btnHoax.addEventListener('click', () => cekJawaban('hoaks'));
+            btnFakta.addEventListener('click', () => cekJawaban('fakta'));
+
+            nextBtn.addEventListener('click', () => {
+                index++;
+                loadBerita(index);
+            });
+
+            // Load berita pertama
+            loadBerita(0);
+        })();
+    </script>
+</body>
+</html>

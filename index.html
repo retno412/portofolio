@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retno Ariyanti · Portofolio Interaktif</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f3fa 0%, #e6ecf7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        /* card utama — nuansa putih bersih, bayangan lembut */
+        .portfolio-card {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 3.5rem 3.5rem 2.5rem 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,20,40,0.3), 0 0 0 1px rgba(156, 180, 215, 0.3) inset;
+            overflow: hidden;
+            padding: 2.2rem 2.5rem 3rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        /* warna aksen diambil dari gambar: biru tua (#1E2F4F), toska (#2F8F9D), krem lembut */
+        .header-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px dashed #2F8F9D;
+            padding-bottom: 1.5rem;
+        }
+
+        .logo h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #1E2F4F;
+            text-shadow: 2px 2px 0 rgba(47,143,157,0.2);
+            transition: 0.2s;
+        }
+        .logo h1:hover {
+            text-shadow: 4px 4px 0 rgba(47,143,157,0.3);
+        }
+
+        .welcome-tag {
+            background: #1E2F4F;
+            padding: 0.6rem 2rem 0.6rem 2rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 0 #0f1e2f;
+            transform: rotate(0.5deg);
+            transition: 0.2s;
+        }
+        .welcome-tag i {
+            color: #f7d44b;
+            margin-right: 8px;
+        }
+        .welcome-tag:hover {
+            transform: rotate(-0.5deg) scale(1.02);
+            box-shadow: 0 8px 0 #0f1e2f;
+        }
+
+        .subhead {
+            margin: 0.5rem 0 1.5rem 0;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #1E2F4F;
+            border-left: 8px solid #2F8F9D;
+            padding-left: 1.5rem;
+            background: linear-gradient(to right, transparent, rgba(47,143,157,0.05));
+            border-radius: 0 60px 60px 0;
+        }
+
+        .know-me-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0.8rem 0 1.8rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .know-me-container .know-me {
+            margin: 0; /* override margin asli */
+        }
+        .kelas-informatika a {
+            display: inline-block;
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 600;
+            padding: 0.5rem 2rem;
+            border-radius: 30px;
+            border: 1px solid white;
+            box-shadow: 0 4px 0 #b58f2b;
+            font-size: 1rem;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .kelas-informatika a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #b58f2b;
+        }
+        .kelas-informatika a:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+
+        /* ========== AVATAR SECTION (ditambahkan) ========== */
+        .avatar-section {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0 2rem 0;
+        }
+        
+        .avatar-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1E2F4F, #2F8F9D);
+            padding: 5px;
+            box-shadow: 0 20px 30px -10px rgba(30,47,79,0.5);
+            animation: floatAvatar 3s ease-in-out infinite;
+        }
+        
+        @keyframes floatAvatar {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .avatar-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 3px solid white;
+        }
+        
+        .avatar-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .avatar-image:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Default avatar jika gambar tidak tersedia (placeholder) */
+        .avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #2F8F9D, #1E2F4F);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .avatar-decoration {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: #f7d44b;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1E2F4F;
+            font-size: 1.2rem;
+            border: 3px solid white;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        /* ========== END AVATAR SECTION ========== */
+
+        /* timeline / pengalaman */
+        .experience-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin: 2rem 0 1.5rem;
+        }
+        .exp-item {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(2px);
+            border-radius: 30px;
+            padding: 1rem 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            border: 1px solid rgba(47,143,157,0.3);
+            box-shadow: 0 5px 10px -5px rgba(30,47,79,0.1);
+            transition: 0.2s;
+        }
+        .exp-item:hover {
+            background: white;
+            border-color: #2F8F9D;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 20px -10px #1E2F4F40;
+        }
+        .exp-year {
+            font-weight: 700;
+            color: #1E2F4F;
+            background: #e3eef5;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            margin-right: 1.8rem;
+            min-width: 110px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        .exp-desc {
+            flex: 1;
+            color: #1a2b41;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .exp-desc i {
+            color: #2F8F9D;
+            font-size: 1.1rem;
+        }
+        .exp-desc strong {
+            font-weight: 700;
+            color: #1E2F4F;
+        }
+        .univ-badge {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.2rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-left: auto;
+        }
+
+        /* section judul game & kontak */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 3rem 0 1.5rem;
+        }
+        .section-divider hr {
+            flex: 1;
+            border: 1px solid #2F8F9D;
+            opacity: 0.4;
+        }
+        .section-divider span {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.5rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            font-size: 1.1rem;
+        }
+        /* Tombol navigasi ke webdesign */
+        .nav-button {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0 1rem;
+        }
+        .btn-webdesign {
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 700;
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            box-shadow: 0 8px 0 #b58f2b;
+            transition: 0.1s;
+            border: 2px solid white;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-webdesign:active {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #b58f2b;
+        }
+        /* arena game */
+        .game-arena {
+            background: #fafcff;
+            border-radius: 50px;
+            padding: 2rem 2rem 2.5rem;
+            border: 2px solid white;
+            box-shadow: inset 0 0 20px #d9e2f0, 0 15px 20px -10px #1E2F4F;
+            margin: 2rem 0 1rem;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .game-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1E2F4F;
+            background: rgba(47,143,157,0.1);
+            padding: 0.2rem 1.8rem;
+            border-radius: 60px;
+        }
+        .mode-hard {
+            background: #b83b3b;
+            color: white;
+            padding: 0.4rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 0 #752525;
+            transform: rotate(-1deg);
+        }
+
+        .catch-box {
+            background: linear-gradient(145deg, #cbd6e8, #dee6f2);
+            border-radius: 40px;
+            padding: 2.8rem 1.5rem;
+            position: relative;
+            min-height: 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px dashed #1E2F4F;
+            transition: background 0.1s ease;
+            box-shadow: 0 0 0 5px rgba(47,143,157,0.2);
+        }
+
+        /* BUTTON YANG HARUS DITANGKAP (mode hard: kecil, super mobile) */
+        #targetBtn {
+            background: #d83848;
+            border: none;
+            color: white;
+            font-weight: 800;
+            font-size: 1.1rem;
+            padding: 12px 28px;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 10px 0 #791f2b, 0 0 0 3px white;
+            letter-spacing: 1px;
+            transition: all 0.05s linear;
+            position: absolute;
+            white-space: nowrap;
+            border: 2px solid white;
+            /* nilai awal (akan ditimpa JS) */
+            top: 30%;
+            left: 30%;
+        }
+
+        /* mode hard: ukuran lebih kecil, gerak cepat */
+        .hard-mode #targetBtn {
+            font-size: 0.9rem;
+            padding: 8px 18px;
+            box-shadow: 0 6px 0 #791f2b;
+        }
+
+        .game-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            background: #ffffffb0;
+            border-radius: 50px;
+            padding: 0.8rem 2rem;
+            backdrop-filter: blur(2px);
+        }
+
+        .score-box {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.4rem 1.8rem;
+            border-radius: 40px;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .score-box small {
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            background: #2F8F9D;
+            padding: 0.5rem 2rem;
+            border-radius: 40px;
+            color: white;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-weight: 600;
+            box-shadow: 0 5px 0 #195e68;
+            transition: 0.2s;
+        }
+        .contact-info i {
+            margin-right: 6px;
+            color: #f7e05e;
+        }
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+        }
+        .contact-info a:hover {
+            border-bottom-color: #f7e05e;
+        }
+
+        /* tombol reset */
+        .reset-game {
+            background: #f7d44b;
+            border: none;
+            color: #1E2F4F;
+            font-weight: 700;
+            padding: 0.4rem 1.5rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            box-shadow: 0 5px 0 #b58f2b;
+            cursor: pointer;
+            transition: 0.1s;
+            border: 1px solid white;
+        }
+        .reset-game:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+
+        /* medali / pesan sukses */
+        .success-message {
+            background: #1E2F4F;
+            color: #f7d44b;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-align: center;
+            animation: pop 0.4s ease;
+            margin-top: 1rem;
+            border: 2px solid #f7d44b;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* footer kecil */
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #1E2F4F;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="portfolio-card">
+        <!-- Header sesuai gambar: RETNO & WELCOME! -->
+        <div class="header-section">
+            <div class="logo">
+                <h1>RETNO</h1>
+            </div>
+            <div class="welcome-tag">
+                <i class="fas fa-hand-peace"></i> WELCOME! to Retno Ariyanti Nurningtias’ Blog
+            </div>
+        </div>
+
+        <!-- sub dan know about me -->
+        <div class="subhead">
+            Professional faculty with expertise in logic and programming pedagogy
+        </div>
+
+        <div class="know-me-container" style="display: flex; justify-content: space-between; align-items: center; margin: 0.8rem 0 1.8rem 0;">
+    <div class="know-me" style="margin: 0;"> <!-- hilangkan margin asli -->
+        <i class="fas fa-address-card"></i> KNOW ABOUT ME
+    </div>
+    <div class="kelas-informatika">
+        <a href="kelas.html" style="text-decoration: none; display: inline-block; background: #f7d44b; color: #1E2F4F; font-weight: 600; padding: 0.5rem 2rem; border-radius: 30px; border: 1px solid white; box-shadow: 0 4px 0 #b58f2b; font-size: 1rem; transition: 0.2s;">
+            <i class="fas fa-link"></i> Kelas Informatika
+        </a>
+    </div>
+</div>
+
+        <!-- ========== AVATAR SECTION (DI TENGAH) ========== -->
+        <div class="avatar-section">
+            <div class="avatar-container">
+                <div class="avatar-image">
+                    <!-- GANTI 'avatar.jpg' DENGAN FILE GAMBAR AVATAR ANDA -->
+                    <img src="avatar.png" alt="Retno Avatar">
+                    <!-- Jika gambar tidak muncul, placeholder otomatis dari DiceBear (inisial R) -->
+                </div>
+                <div class="avatar-decoration">
+                    <i class="fas fa-code"></i>
+                </div>
+            </div>
+        </div>
+        <!-- ========== END AVATAR SECTION ========== -->
+        
+        <!-- pengalaman dari CV (ringkasan) -->
+        <div class="experience-grid">
+            <div class="exp-item">
+                <span class="exp-year">2025 - Present</span>
+                <div class="exp-desc"><i class="fas fa-chalkboard-teacher"></i> <strong>Guru Produktif TKJT</strong> – SMK Ananda Mitra Industri Deltamas</div>
+                <span class="univ-badge">Bekasi</span>
+            </div>
+            <div class="exp-item">
+                <span class="exp-year">2024 - 2025</span>
+                <div class="exp-desc"><i class="fas fa-chalkboard-teacher"></i> <strong>Guru Produktif RPL</strong> – SMKN 13 Bandung </div>
+                <span class="univ-badge">Kuliah PPG Prajabatan</span>
+            </div>
+            <div class="exp-item">
+                <span class="exp-year">2024 - 2024</span>
+                <div class="exp-desc"><i class="fas fa-chalkboard-teacher"></i> <strong>Guru Produktif TKJT</strong> – SMK Tri Mitra </div>
+                <span class="univ-badge">Karawang</span>
+            </div>
+            <div class="exp-item">
+                <span class="exp-year">2023 - 2023</span>
+                <div class="exp-desc"><i class="fas fa-laptop-code"></i> <strong>Asisten Dosen</strong> – Database & Pemrograman Internet </div>
+                <span class="univ-badge">Universitas Pendidikan Indonesia - Purwakarta</span>
+            </div>
+            <div class="exp-item">
+                <span class="exp-year">2023 - 2023</span>
+                <div class="exp-desc"><i class="fas fa-school"></i> <strong>Educational Agent</strong> – PT Ruang Raya Indonesia </div>
+                <span class="univ-badge">Karawang</span>
+            </div>
+            <div class="exp-item">
+                <span class="exp-year">2022 - 2025</span>
+                <div class="exp-desc"><i class="fas fa-edit"></i> <strong>Manuscript Selectors & Editors</strong> – Integrated Journal</div>
+                <span class="univ-badge">Universitas Pendidikan Indonesia - Purwakarta</span>
+            </div>
+            <div class="exp-item">
+                <span class="exp-year">2022 - 2023</span>
+                <div class="exp-desc"><i class="fas fa-chalkboard-teacher"></i> <strong>Guru Wali Kelas 3 </strong> – SDN Cikampek Timur II </div>
+                <span class="univ-badge">Karawang</span>
+            </div>
+            <div class="exp-item">
+                <span class="exp-year">2022 - 2022</span>
+                <div class="exp-desc"><i class="fas fa-laptop-code"></i> <strong>The Educational Revolution </strong> AI4IMPACT Program – Terra Weather Pte. Ltd </div>
+                <span class="univ-badge">Studi Independen - Online</span>
+            </div>
+        </div>
+        <!-- Tombol ke halaman algoritma -->
+            <div class="nav-button">
+                <a href="algoritma.html" class="btn-webdesign"><i class="fas fa-heart"></i> Belajar Algoritma <i class="fas fa-arrow-right"></i></a>
+            </div>
+        
+        <!-- Tombol ke halaman database -->
+            <div class="nav-button">
+                <a href="database.html" class="btn-webdesign"><i class="fas fa-edit"></i> Belajar Database <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+        <!-- Tombol ke halaman figma -->
+            <div class="nav-button">
+                <a href="figma.html" class="btn-webdesign"><i class="fas fa-edit"></i> Belajar UI / UX <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+        <!-- Tombol ke halaman web design -->
+            <div class="nav-button">
+                <a href="webdesign.html" class="btn-webdesign"><i class="fas fa-laptop-code"></i> Belajar Web Design <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+        <!-- Tombol ke halaman github -->
+            <div class="nav-button">
+                <a href="github.html" class="btn-webdesign"><i class="fas fa-laptop-code"></i> Belajar Github <i class="fas fa-arrow-right"></i></a>
+            </div>
+        
+        <!-- Tombol ke halaman mobile -->
+            <div class="nav-button">
+                <a href="mobile.html" class="btn-webdesign"><i class="fas fa-laptop-code"></i> Belajar Mobile Program <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+        <!-- Tombol ke halaman devops -->
+            <div class="nav-button">
+                <a href="devops.html" class="btn-webdesign"><i class="fas fa-laptop-code"></i> Belajar DevOps <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+        <!-- Tombol ke halaman game -->
+            <div class="nav-button">
+                <a href="belajar-game.html" class="btn-webdesign"><i class="fas fa-school"></i> Belajar Game Develop <i class="fas fa-arrow-right"></i></a>
+            </div>
+        
+        <!-- Tombol ke halaman oop -->
+            <div class="nav-button">
+                <a href="oop.html" class="btn-webdesign"><i class="fas fa-sitemap"></i> Belajar OOP <i class="fas fa-arrow-right"></i></a>
+            </div>
+        
+        <!-- Tombol ke halaman apl -->
+            <div class="nav-button">
+                <a href="apl.html" class="btn-webdesign"><i class="fas fa-sitemap"></i> Belajar APL <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+        <!-- Tombol ke halaman api -->
+            <div class="nav-button">
+                <a href="api.html" class="btn-webdesign"><i class="fas fa-lightbulb"></i> Belajar API <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+        <!-- Tombol ke halaman security -->
+            <div class="nav-button">
+                <a href="security.html" class="btn-webdesign"><i class="fas fa-shield-alt"></i> Belajar Security <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+        <!-- Tombol ke halaman cloud -->
+            <div class="nav-button">
+                <a href="cloud.html" class="btn-webdesign"><i class="fas fa-cloud-upload-alt"></i> Belajar Cloud Computing <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+        <!-- Tombol ke halaman Project -->
+            <div class="nav-button">
+                <a href="project.html" class="btn-webdesign"><i class="fas fa-rocket"></i> Belajar Project Manage <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+        <!-- Tombol ke halaman Testing -->
+            <div class="nav-button">
+                <a href="testing.html" class="btn-webdesign"><i class="fas fa-tasks"></i> Belajar Quality Assurance <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+        <!-- Tombol ke halaman sistem-operasi -->
+            <div class="nav-button">
+                <a href="sistem-operasi.html" class="btn-webdesign"><i class="fas fa-route"></i> Belajar Sistem Operasi <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+        <!-- Tombol ke halaman Functional -->
+            <div class="nav-button">
+                <a href="functional.html" class="btn-webdesign"><i class="fas fa-server"></i> Belajar Lanjutan <i class="fas fa-arrow-right"></i></a>
+            </div>    
+
+        <!-- GAME SECTION + KONTAK -->
+        <div class="section-divider">
+            <hr>
+            <span><i class="fas fa-gamepad"></i> MAIN YUK! TANGKAP TOMBOL</span>
+            <hr>
+        </div>
+
+        <div class="game-arena" id="gameArena">
+            <div class="game-header">
+                <div class="game-title"><i class="fas fa-bolt"></i> CATCH ME IF YOU CAN</div>
+                <div class="mode-hard">HARD <i class="fas fa-skull"></i></div>
+            </div>
+
+            <!-- area game dengan button lompat -->
+            <div class="catch-box" id="catchBox">
+                <button id="targetBtn">📌 TANGKAP!</button>
+            </div>
+
+            <!-- skor dan kontak + reset -->
+            <div class="game-footer">
+                <div class="score-box" id="scoreDisplay">0 <small>catch</small></div>
+                <div class="contact-info" id="contactBlock">
+                    <i class="fas fa-envelope"></i> <a href="mailto:ariyantiretno14@gmail.com">ariyantiretno14</a>
+                    <i class="fas fa-phone-alt"></i> <a href="tel:+6287879182277">+62 878 7918 2277</a>
+                    <i class="fab fa-whatsapp"></i> WA
+                </div>
+                <button class="reset-game" id="resetGameBtn"><i class="fas fa-undo-alt"></i> Kejar lagi</button>
+            </div>
+
+            <!-- Pesan sukses (muncul jika berhasil menangkap 5 kali) -->
+            <div id="successMessage" class="success-message hidden">
+                <i class="fas fa-trophy"></i> SELAMAT! Kamu menangkap 5x! Hubungi Retno via kontak di atas ya! <i class="fas fa-heart" style="color:#f7d44b;"></i>
+            </div>
+        </div>
+
+        <!-- tambahan footer kecil -->
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ========== GAME LOGIC HARD MODE ==========
+            const targetBtn = document.getElementById('targetBtn');
+            const catchBox = document.getElementById('catchBox');
+            const scoreSpan = document.getElementById('scoreDisplay');
+            const resetBtn = document.getElementById('resetGameBtn');
+            const successMsgDiv = document.getElementById('successMessage');
+
+            let score = 0;
+            let gameActive = true; // selalu aktif
+            let moveInterval = null;
+            const HARD_SPEED = 180; // milidetik (cepat)
+
+            // fungsi acak posisi di dalam catchBox (mempertimbangkan ukuran tombol)
+            function moveButtonRandomly() {
+                if (!gameActive) return;
+
+                const boxRect = catchBox.getBoundingClientRect();
+                const btnRect = targetBtn.getBoundingClientRect();
+
+                // perkiraan lebar & tinggi tombol (karena bisa berubah mode hard)
+                const btnWidth = btnRect.width || 110;  // fallback
+                const btnHeight = btnRect.height || 46;
+
+                // batas agar tombol tidak keluar kotak (10px padding aman)
+                const maxLeft = boxRect.width - btnWidth - 15;
+                const maxTop = boxRect.height - btnHeight - 15;
+
+                if (maxLeft <= 0 || maxTop <= 0) {
+                    // fallback jika ukuran kotak kecil
+                    targetBtn.style.left = '20px';
+                    targetBtn.style.top = '20px';
+                    return;
+                }
+
+                const randomLeft = Math.random() * maxLeft;
+                const randomTop = Math.random() * maxTop;
+
+                targetBtn.style.left = randomLeft + 'px';
+                targetBtn.style.top = randomTop + 'px';
+            }
+
+            // memulai interval lompat (mode hard)
+            function startMoving() {
+                if (moveInterval) clearInterval(moveInterval);
+                moveInterval = setInterval(moveButtonRandomly, HARD_SPEED);
+            }
+
+            // hentikan interval
+            function stopMoving() {
+                if (moveInterval) {
+                    clearInterval(moveInterval);
+                    moveInterval = null;
+                }
+            }
+
+            // reset game sepenuhnya
+            function resetGame() {
+                stopMoving();
+                score = 0;
+                scoreSpan.innerText = '0';
+                successMsgDiv.classList.add('hidden');
+                gameActive = true;
+                // pindahkan tombol ke posisi awal aman
+                targetBtn.style.left = '40%';
+                targetBtn.style.top = '40%';
+                // kembalikan tampilan tombol seperti semula
+                targetBtn.style.background = '#d83848';
+                targetBtn.style.color = 'white';
+                targetBtn.innerText = '📌 TANGKAP!';
+                // mulai lagi
+                startMoving();
+            }
+
+            // tangkap event
+            targetBtn.addEventListener('click', function(e) {
+                e.stopPropagation();   // mencegah bubble
+                if (!gameActive) return; // jika sudah menang, tombol masih bisa? kita nonaktifkan setelah menang, tapi kita aktifkan lagi saat reset
+
+                score++;
+                scoreSpan.innerText = score;
+
+                // efek getar kecil (animasi)
+                targetBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => targetBtn.style.transform = '', 100);
+
+                if (score >= 5) {
+                    // MENANG! tampilkan kontak, hentikan gerak
+                    gameActive = false;
+                    stopMoving();
+                    successMsgDiv.classList.remove('hidden');
+                    // tambahkan animasi tombol tidak bergerak lagi
+                    targetBtn.style.background = '#f7d44b';
+                    targetBtn.style.color = '#1E2F4F';
+                    targetBtn.innerText = '⭐ WINNER ⭐';
+                } else {
+                    // langsung pindah setelah ditangkap (biar makin susah)
+                    moveButtonRandomly();
+                }
+            });
+
+            // reset button
+            resetBtn.addEventListener('click', function() {
+                resetGame();
+            });
+
+            // inisialisasi: pasting posisi awal, mulai interval
+            targetBtn.style.position = 'absolute';
+            targetBtn.style.left = '40%';
+            targetBtn.style.top = '40%';
+            // tambahkan class hard mode ke arena (bisa untuk styling tambahan)
+            document.getElementById('gameArena').classList.add('hard-mode');
+
+            // jalankan
+            startMoving();
+
+            // menyesuaikan ulang saat resize agar posisi tetap dalam kotak (opsional)
+            window.addEventListener('resize', function() {
+                if (gameActive) {
+                    // pindah ke area aman saat resize (jangan sampai keluar)
+                    moveButtonRandomly();
+                }
+            });
+
+            // juga panggil sekali setelah rendering stabil
+            setTimeout(() => {
+                if (gameActive) moveButtonRandomly();
+            }, 50);
+        })();
+    </script>
+</body>
+</html>

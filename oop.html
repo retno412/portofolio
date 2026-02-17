@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemrograman Berorientasi Objek (OOP) · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+        .card { max-width:1300px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; }
+        .logo h1 { font-size:2.5rem; color:#1E2F4F; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; font-weight:500; box-shadow:0 5px 0 #0f1e2f; transition:0.1s; display:inline-flex; align-items:center; gap:10px; }
+        .back-link a:active { transform:translateY(3px); box-shadow:0 2px 0 #0f1e2f; }
+        .page-title { font-size:2.2rem; font-weight:700; color:#1E2F4F; margin:1rem 0 0.5rem; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; }
+        .subtitle { color:#2F8F9D; font-size:1.3rem; margin-bottom:2rem; font-style:italic; }
+
+        .concept-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .concept-card {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            flex: 1 1 280px;
+            border: 1px solid #2F8F9D;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+            transition: 0.2s;
+        }
+        .concept-card:hover {
+            transform: translateY(-5px);
+            border-color: #f7d44b;
+        }
+        .concept-card h3 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-left: 6px solid #2F8F9D;
+            padding-left: 0.8rem;
+        }
+        .concept-card p {
+            color: #2d3e5c;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .code {
+            background: #1E2F4F;
+            color: #f7d44b;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin: 0.2rem 0;
+        }
+
+        .language-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+        .lang-btn {
+            background: #2F8F9D;
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 0 #195e68;
+            transition: 0.1s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .lang-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #195e68;
+        }
+        .lang-btn i {
+            font-size: 1.2rem;
+        }
+
+        .demo-area {
+            background: #e3eef5;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #2F8F9D;
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .demo-header h3 {
+            color: #1E2F4F;
+            font-size: 1.6rem;
+        }
+        .demo-panel {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: inset 0 0 10px #cbd6e8;
+        }
+        .demo-code {
+            background: #1E2F4F;
+            color: #f7d44b;
+            padding: 1rem;
+            border-radius: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+        .demo-output {
+            background: #0f1a24;
+            color: #a3f7b5;
+            padding: 1rem;
+            border-radius: 20px;
+            font-family: 'Fira Code', monospace;
+            min-height: 80px;
+            margin-top: 1rem;
+        }
+        .btn {
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #b58f2b;
+            transition: 0.1s;
+            margin: 0.5rem 0.5rem 0 0;
+        }
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+
+        .footer-note { margin-top:2rem; text-align:center; color:#1E2F4F; opacity:0.8; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a></div>
+        </div>
+        <div class="page-title"><i class="fas fa-cubes"></i> Pemrograman Berorientasi Objek (OOP)</div>
+        <div class="subtitle">Kelas, objek, inheritance, polymorphism, encapsulation – fondasi Java, C++, C#, Python</div>
+
+        <!-- Penjelasan konsep -->
+        <div class="concept-grid">
+            <!-- Kelas & Objek -->
+            <div class="concept-card">
+                <h3>🏷️ Kelas & Objek</h3>
+                <p><strong>Kelas</strong> adalah blueprint/cetakan. <strong>Objek</strong> adalah instance dari kelas. Contoh: Kelas <code>Mobil</code>, objek <code>mobilSaya</code>.</p>
+                <div class="code">class Mobil { ... }<br>Mobil mobilSaya = new Mobil();</div>
+            </div>
+            <!-- Encapsulation -->
+            <div class="concept-card">
+                <h3>🔒 Encapsulation</h3>
+                <p>Menyembunyikan data internal dan hanya menyediakan akses melalui metode. Menggunakan <strong>private</strong> dan <strong>getter/setter</strong>.</p>
+                <div class="code">private int umur;<br>public int getUmur() { return umur; }</div>
+            </div>
+            <!-- Inheritance -->
+            <div class="concept-card">
+                <h3>🌳 Inheritance</h3>
+                <p>Kelas mewarisi atribut dan metode dari kelas induk. Mencegah duplikasi kode. Contoh: <code>MobilListrik extends Mobil</code>.</p>
+                <div class="code">class MobilListrik extends Mobil { ... }</div>
+            </div>
+            <!-- Polymorphism -->
+            <div class="concept-card">
+                <h3>🔄 Polymorphism</h3>
+                <p>Metode yang sama dapat memiliki perilaku berbeda di kelas turunan (override) atau parameter berbeda (overload).</p>
+                <div class="code">void suara() { ... } // di kelas induk<br>@Override void suara() { ... } // di anak</div>
+            </div>
+        </div>
+
+        <!-- Link belajar bahasa -->
+        <h2 style="color:#1E2F4F; margin: 2rem 0 1rem;">📘 Pelajari OOP di Bahasa Favoritmu</h2>
+        <div class="language-links">
+            <a href="https://www.w3schools.com/java/java_oop.asp" target="_blank" class="lang-btn"><i class="fab fa-java"></i> Java (W3Schools)</a>
+            <a href="https://www.w3schools.com/cpp/cpp_oop.asp" target="_blank" class="lang-btn"><i class="fab fa-cuttlefish"></i> C++ (W3Schools)</a>
+            <a href="https://www.w3schools.com/cs/cs_oop.asp" target="_blank" class="lang-btn"><i class="fab fa-microsoft"></i> C# (W3Schools)</a>
+            <a href="https://www.w3schools.com/python/python_classes.asp" target="_blank" class="lang-btn"><i class="fab fa-python"></i> Python (W3Schools)</a>
+        </div>
+
+        <!-- Demo interaktif OOP dengan JavaScript -->
+        <div class="demo-area">
+            <div class="demo-header">
+                <i class="fas fa-flask" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Simulasi OOP dengan JavaScript</h3>
+            </div>
+            <div class="demo-panel">
+                <p style="margin-bottom:1rem;">Kita akan membuat kelas <code>Hewan</code> dan turunannya <code>Kucing</code> & <code>Anjing</code>. Klik tombol untuk melihat hasil.</p>
+                <div class="demo-code">
+// Definisi kelas (JavaScript class)
+class Hewan {
+    constructor(nama) {
+        this.nama = nama;
+    }
+    bersuara() {
+        return `${this.nama} membuat suara.`;
+    }
+}
+
+class Kucing extends Hewan {
+    bersuara() {
+        return `${this.nama} mengeong: Meow!`;
+    }
+}
+
+class Anjing extends Hewan {
+    bersuara() {
+        return `${this.nama} menggonggong: Guk guk!`;
+    }
+}
+
+const kucing = new Kucing("Milo");
+const anjing = new Anjing("Buddy");
+                </div>
+                <button class="btn" id="btnKucing">Panggil Kucing</button>
+                <button class="btn" id="btnAnjing">Panggil Anjing</button>
+                <button class="btn" id="btnPolymorphism">Tunjukkan Polymorphism</button>
+                <div class="demo-output" id="demoOutput">
+                    // Output akan muncul di sini
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        // Simulasi OOP dalam JavaScript
+        class Hewan {
+            constructor(nama) {
+                this.nama = nama;
+            }
+            bersuara() {
+                return `${this.nama} membuat suara.`;
+            }
+        }
+
+        class Kucing extends Hewan {
+            bersuara() {
+                return `${this.nama} mengeong: Meow!`;
+            }
+        }
+
+        class Anjing extends Hewan {
+            bersuara() {
+                return `${this.nama} menggonggong: Guk guk!`;
+            }
+        }
+
+        const kucing = new Kucing("Milo");
+        const anjing = new Anjing("Buddy");
+
+        const outputDiv = document.getElementById('demoOutput');
+
+        document.getElementById('btnKucing').addEventListener('click', () => {
+            outputDiv.innerText = '> ' + kucing.bersuara();
+        });
+
+        document.getElementById('btnAnjing').addEventListener('click', () => {
+            outputDiv.innerText = '> ' + anjing.bersuara();
+        });
+
+        document.getElementById('btnPolymorphism').addEventListener('click', () => {
+            outputDiv.innerHTML = `> ${kucing.bersuara()}<br>> ${anjing.bersuara()}<br>> Keduanya memanggil metode bersuara() yang sama, tapi hasil berbeda (polymorphism).`;
+        });
+    </script>
+</body>
+</html>.

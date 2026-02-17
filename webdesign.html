@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Web Design · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f3fa 0%, #e6ecf7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .learning-card {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 3.5rem 3.5rem 2.5rem 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,20,40,0.3);
+            overflow: hidden;
+            padding: 2.2rem 2.5rem 3rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px dashed #2F8F9D;
+            padding-bottom: 1.5rem;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1E2F4F;
+        }
+
+        .back-link a {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 5px 0 #0f1e2f;
+            transition: 0.1s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .back-link a:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #0f1e2f;
+        }
+
+        .page-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1E2F4F;
+            margin: 1rem 0 0.5rem;
+            background: rgba(47,143,157,0.1);
+            display: inline-block;
+            padding: 0.2rem 2rem;
+            border-radius: 60px;
+        }
+
+        .subtitle {
+            color: #2F8F9D;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Jalur belajar */
+        .path-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+        .path-item {
+            background: white;
+            border-radius: 40px;
+            padding: 1.5rem 1rem;
+            flex: 1 1 180px;
+            text-align: center;
+            box-shadow: 0 15px 20px -10px #1E2F4F40;
+            border: 2px solid rgba(47,143,157,0.3);
+            transition: 0.2s;
+        }
+        .path-item:hover {
+            transform: translateY(-5px);
+            border-color: #2F8F9D;
+        }
+        .path-icon {
+            font-size: 2.5rem;
+            color: #2F8F9D;
+            margin-bottom: 0.8rem;
+        }
+        .path-item h3 {
+            color: #1E2F4F;
+            font-size: 1.5rem;
+        }
+        .path-item p {
+            color: #2d3e5c;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .detail-list {
+            text-align: left;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            list-style: none;
+        }
+        .detail-list li {
+            margin: 0.3rem 0;
+        }
+        .detail-list i {
+            color: #2F8F9D;
+            width: 18px;
+        }
+
+        /* Karir dan tools */
+        .career-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .skills-box, .frontend-backend-box {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(2px);
+            border-radius: 40px;
+            padding: 1.8rem 2rem;
+            flex: 1 1 300px;
+            border: 1px solid #2F8F9D;
+        }
+        .skills-box h2, .frontend-backend-box h2 {
+            color: #1E2F4F;
+            margin-bottom: 1.2rem;
+            font-size: 1.8rem;
+            border-left: 6px solid #2F8F9D;
+            padding-left: 1rem;
+        }
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .skill-tag {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+        .fe-be-grid {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .fe-box, .be-box {
+            flex: 1;
+            background: #ffffffc0;
+            border-radius: 30px;
+            padding: 1.2rem;
+        }
+        .fe-box h3, .be-box h3 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+        }
+        .tool-badge {
+            display: inline-block;
+            background: #2F8F9D;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin: 0.2rem;
+        }
+
+        /* Live coding */
+        .live-coding {
+            background: #1E2F4F10;
+            border-radius: 50px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px dashed #2F8F9D;
+        }
+        .challenge-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: #f7d44b20;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+        }
+        .live-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        .preview-box {
+            flex: 1 1 250px;
+            background: white;
+            border-radius: 40px;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 280px;
+            box-shadow: inset 0 0 15px #cbd6e8;
+        }
+        .challenge-box {
+            width: 200px;
+            height: 200px;
+            background-color: #2F8F9D;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 30px;
+            box-shadow: 0 10px 0 #1E2F4F;
+            font-weight: bold;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .code-editor {
+            flex: 2 1 400px;
+            background: #1E2F4F;
+            border-radius: 40px;
+            padding: 1.5rem;
+            color: #f7d44b;
+            font-family: 'Courier New', monospace;
+        }
+        .code-editor textarea {
+            width: 100%;
+            height: 200px;
+            background: #142537;
+            border: 2px solid #2F8F9D;
+            border-radius: 20px;
+            color: #e6e6e6;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            resize: vertical;
+        }
+        .editor-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .editor-btn {
+            background: #f7d44b;
+            border: none;
+            color: #1E2F4F;
+            font-weight: 700;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #b58f2b;
+            transition: 0.1s;
+            border: 1px solid white;
+        }
+        .editor-btn.secondary {
+            background: #2F8F9D;
+            box-shadow: 0 5px 0 #195e68;
+            color: white;
+        }
+        .editor-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+        .hint {
+            color: #cbd6e8;
+            font-size: 0.85rem;
+            margin-top: 0.8rem;
+        }
+        .hint i {
+            color: #f7d44b;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            color: #1E2F4F;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="learning-card">
+        <div class="header">
+            <div class="logo">
+                <h1>RETNO</h1>
+            </div>
+            <div class="back-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a>
+            </div>
+        </div>
+
+        <div class="page-title">
+            <i class="fas fa-laptop-code"></i> WEB DESIGN BOOTCAMP
+        </div>
+        <div class="subtitle">Panduan cepat dari pemula hingga profesional</div>
+
+        <!-- Jalur Belajar -->
+        <h2 style="color:#1E2F4F; margin: 2rem 0 1rem;"><i class="fas fa-road"></i> Jalur Belajar (Learning Path)</h2>
+        <div class="path-container">
+            <div class="path-item">
+                <div class="path-icon"><i class="fas fa-seedling"></i></div>
+                <h3>Pemula</h3>
+                <ul class="detail-list">
+                    <li><i class="fas fa-check"></i> HTML5 semantic</li>
+                    <li><i class="fas fa-check"></i> CSS dasar (selector, box model)</li>
+                    <li><i class="fas fa-check"></i> Teks, warna, gambar</li>
+                    <li><i class="fas fa-check"></i> Struktur halaman sederhana</li>
+                </ul>
+            </div>
+            <div class="path-item">
+                <div class="path-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Menengah</h3>
+                <ul class="detail-list">
+                    <li><i class="fas fa-check"></i> Flexbox & Grid</li>
+                    <li><i class="fas fa-check"></i> Responsive design</li>
+                    <li><i class="fas fa-check"></i> Dasar JavaScript (DOM)</li>
+                    <li><i class="fas fa-check"></i> Form & validasi</li>
+                </ul>
+            </div>
+            <div class="path-item">
+                <div class="path-icon"><i class="fas fa-crown"></i></div>
+                <h3>Lanjut</h3>
+                <ul class="detail-list">
+                    <li><i class="fas fa-check"></i> Framework CSS (Bootstrap/Tailwind)</li>
+                    <li><i class="fas fa-check"></i> Animasi & transisi</li>
+                    <li><i class="fas fa-check"></i> Preprocessor (SASS)</li>
+                    <li><i class="fas fa-check"></i> SEO dasar</li>
+                </ul>
+            </div>
+            <div class="path-item">
+                <div class="path-icon"><i class="fas fa-rocket"></i></div>
+                <h3>Mahir</h3>
+                <ul class="detail-list">
+                    <li><i class="fas fa-check"></i> Performa & aksesibilitas</li>
+                    <li><i class="fas fa-check"></i> SSR, JAMstack</li>
+                    <li><i class="fas fa-check"></i> Kolaborasi dengan backend</li>
+                    <li><i class="fas fa-check"></i> Portfolio & networking</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Karir dan Tools -->
+        <div class="career-section">
+            <div class="skills-box">
+                <h2><i class="fas fa-briefcase"></i> Untuk Karir Profesional</h2>
+                <div class="skill-items">
+                    <span class="skill-tag"><a href="html.html" style="color:white; text-decoration:none;">HTML5</a></span>
+                    <span class="skill-tag"><a href="css.html" style="color:white; text-decoration:none;">CSS3</a></span>
+                    <span class="skill-tag"><a href="js.html" style="color:white; text-decoration:none;">JavaScript ES6+</a></span>
+                    <span class="skill-tag"><a href="github.html" style="color:white; text-decoration:none;">Git/Github</a></span>
+                    <span class="skill-tag"><a href="figma.html" style="color:white; text-decoration:none;">UI/UX Figma</a></span>
+                    <span class="skill-tag">Responsive</span>
+                    <span class="skill-tag">Problem solving</span>
+                    <span class="skill-tag">Komunikasi</span>
+                    <span class="skill-tag"><a href="react.html" style="color:white; text-decoration:none;">React (opsional) </a></span>
+                </div>
+                <p style="margin-top:1.5rem; background:#e3eef5; padding:0.8rem; border-radius:30px;">💡 Soft skill: adaptasi, berpikir kritis, kolaborasi, manajemen waktu.</p>
+            </div>
+
+            <div class="frontend-backend-box">
+                <h2><i class="fas fa-code-branch"></i> Frontend vs Backend</h2>
+                <div class="fe-be-grid">
+                    <div class="fe-box">
+                        <h3>🎨 Frontend</h3>
+                        <p><strong>Tugas:</strong> tampilan, interaksi, UI/UX.</p>
+                        <p><strong>Tools:</strong></p>
+                        <span class="tool-badge"><a href="html.html" style="color:white; text-decoration:none;">HTML</a></span>
+                        <span class="tool-badge"><a href="css.html" style="color:white; text-decoration:none;">CSS</a></span>
+                        <span class="tool-badge"><a href="js.html" style="color:white; text-decoration:none;">JavaScript</a></span>
+                        <span class="tool-badge"><a href="react.html" style="color:white; text-decoration:none;">React</a></span>
+                        <span class="tool-badge"><a href="vue.html" style="color:white; text-decoration:none;">Vue</a></span>
+                        <span class="tool-badge"><a href="bootstrap.html" style="color:white; text-decoration:none;">Bootstrap</a></span>
+                        <span class="tool-badge"><a href="tailwind.html" style="color:white; text-decoration:none;">Tailwind</a></span>
+                    </div>
+                    <div class="be-box">
+                        <h3>⚙️ Backend</h3>
+                        <p><strong>Tugas:</strong> server, database, API, logika bisnis.</p>
+                        <p><strong>Tools:</strong></p>
+                        <span class="tool-badge"><a href="nodejs.html" style="color:white; text-decoration:none;">Node.js</a></span>
+                        <span class="tool-badge"><a href="php.html" style="color:white; text-decoration:none;">PHP</a></span>
+                        <span class="tool-badge"><a href="python.html" style="color:white; text-decoration:none;">Python</a></span>
+                        <span class="tool-badge"><a href="mysql.html" style="color:white; text-decoration:none;">MySQL</a></span>
+                        <span class="tool-badge"><a href="laravel.html" style="color:white; text-decoration:none;">Laravel</a></span>
+                        <span class="tool-badge"><a href="express.html" style="color:white; text-decoration:none;">Express</a></span>
+                        <span class="tool-badge"><a href="mongodb.html" style="color:white; text-decoration:none;">MongoDB</a></span>
+                    </div>
+                </div>
+                <p style="margin-top:1.2rem; background:#f7d44b30; padding:0.5rem; border-radius:30px; text-align:center;">✨ Full-stack menguasai keduanya!</p>
+            </div>
+        </div>
+
+        <!-- Live Coding Sederhana -->
+        <div class="live-coding">
+            <div class="challenge-header">
+                <i class="fas fa-puzzle-piece" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3 style="color:#1E2F4F;">Live Coding Challenge: Pusatkan konten dengan Flexbox</h3>
+            </div>
+            <div class="live-preview">
+                <div class="preview-box">
+                    <div class="challenge-box" id="livePreviewTarget">
+                        <i class="fas fa-smile" style="font-size:2.5rem;"></i>
+                        <span>Halo, Web!</span>
+                    </div>
+                </div>
+                <div class="code-editor">
+                    <textarea id="cssInput" placeholder="Tulis CSS untuk .challenge-box di sini...">.challenge-box {
+    width: 200px;
+    height: 200px;
+    background-color: #2F8F9D;
+    color: white;
+    /* 👩‍💻 tambahkan flexbox agar konten berada di tengah */
+}</textarea>
+                    <div class="editor-actions">
+                        <button class="editor-btn" id="applyCssBtn"><i class="fas fa-play"></i> Terapkan CSS</button>
+                        <button class="editor-btn secondary" id="resetCssBtn"><i class="fas fa-undo"></i> Reset</button>
+                    </div>
+                    <div class="hint">
+                        <i class="fas fa-lightbulb"></i> Petunjuk: gunakan <code>display: flex;</code> <code>align-items: center;</code> <code>justify-content: center;</code>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top:1.5rem; background:#f0f3fa; border-radius:30px; padding:0.8rem 1.5rem;">
+                ✅ <strong>Hasil:</strong> Jika berhasil, teks dan ikon akan berada tepat di tengah kotak.
+            </p>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const cssInput = document.getElementById('cssInput');
+            const applyBtn = document.getElementById('applyCssBtn');
+            const resetCssBtn = document.getElementById('resetCssBtn');
+            const previewTarget = document.getElementById('livePreviewTarget');
+
+            let liveStyle = document.getElementById('liveStyle');
+            if (!liveStyle) {
+                liveStyle = document.createElement('style');
+                liveStyle.id = 'liveStyle';
+                document.head.appendChild(liveStyle);
+            }
+
+            const defaultCSS = `.challenge-box {
+    width: 200px;
+    height: 200px;
+    background-color: #2F8F9D;
+    color: white;
+    /* 👩‍💻 tambahkan flexbox agar konten berada di tengah */
+}`;
+            liveStyle.innerHTML = defaultCSS;
+
+            applyBtn.addEventListener('click', function() {
+                liveStyle.innerHTML = cssInput.value;
+            });
+
+            resetCssBtn.addEventListener('click', function() {
+                cssInput.value = defaultCSS;
+                liveStyle.innerHTML = defaultCSS;
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar GitHub · Retno Ariyanti</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f3fa 0%, #e6ecf7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .github-card {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 3.5rem 3.5rem 2.5rem 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,20,40,0.3);
+            overflow: hidden;
+            padding: 2.2rem 2.5rem 3rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px dashed #2F8F9D;
+            padding-bottom: 1.5rem;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1E2F4F;
+        }
+
+        .back-link a {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 5px 0 #0f1e2f;
+            transition: 0.1s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .back-link a:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #0f1e2f;
+        }
+
+        .page-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1E2F4F;
+            margin: 1rem 0 0.5rem;
+            background: rgba(47,143,157,0.1);
+            display: inline-block;
+            padding: 0.2rem 2rem;
+            border-radius: 60px;
+        }
+
+        .subtitle {
+            color: #2F8F9D;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* penjelasan */
+        .explanation {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+            border: 1px solid #2F8F9D;
+        }
+        .explanation h2 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        .explanation p {
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+        .highlight {
+            background: #f7d44b30;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #1E2F4F;
+        }
+
+        .command-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+        .command-card {
+            background: #e3eef5;
+            border-radius: 30px;
+            padding: 1rem 1.5rem;
+            flex: 1 1 150px;
+            border: 1px solid #2F8F9D;
+            transition: 0.2s;
+        }
+        .command-card:hover {
+            background: #d0e2ed;
+            transform: scale(1.02);
+        }
+        .command-card code {
+            background: #1E2F4F;
+            color: #f7d44b;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 1rem;
+        }
+        .command-card p {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #1a2b41;
+        }
+
+        /* Simulasi */
+        .simulation {
+            background: #1E2F4F10;
+            border-radius: 50px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 2px solid #2F8F9D;
+        }
+        .sim-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: #f7d44b20;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+        }
+        .sim-header h3 {
+            color: #1E2F4F;
+            font-size: 1.6rem;
+        }
+
+        .repo-visual {
+            background: #142537;
+            border-radius: 30px;
+            padding: 1.2rem;
+            color: #cbd6e8;
+            font-family: monospace;
+            margin-bottom: 1.5rem;
+            border: 1px solid #2F8F9D;
+        }
+        .file-tree {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        .file-tree li {
+            margin: 0.3rem 0;
+        }
+        .branch-indicator {
+            display: flex;
+            gap: 20px;
+            background: #1E2F4F;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .branch-tag {
+            background: #2F8F9D;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+
+        .console {
+            background: #0f1a24;
+            border-radius: 30px;
+            padding: 1.5rem;
+            color: #a3f7b5;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            border: 2px solid #2F8F9D;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .console p {
+            margin: 0.2rem 0;
+            white-space: pre-wrap;
+        }
+
+        .command-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+            justify-content: center;
+        }
+        .git-btn {
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 700;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            border: none;
+            box-shadow: 0 5px 0 #b58f2b;
+            cursor: pointer;
+            transition: 0.1s;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .git-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+        .git-btn.secondary {
+            background: #2F8F9D;
+            box-shadow: 0 5px 0 #195e68;
+            color: white;
+        }
+        .git-btn.secondary:active {
+            box-shadow: 0 1px 0 #195e68;
+        }
+
+        .reset-btn {
+            background: #b83b3b;
+            box-shadow: 0 5px 0 #752525;
+            color: white;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            color: #1E2F4F;
+            opacity: 0.8;
+        }
+
+        /* Animasi */
+        @keyframes pop {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="github-card">
+        <div class="header">
+            <div class="logo">
+                <h1>RETNO</h1>
+            </div>
+            <div class="back-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a>
+            </div>
+        </div>
+
+        <div class="page-title">
+            <i class="fab fa-github"></i> BELAJAR GITHUB
+        </div>
+        <div class="subtitle">Version control & kolaborasi untuk pemula</div>
+
+        <!-- Penjelasan singkat -->
+        <div class="explanation">
+            <h2><i class="fas fa-question-circle"></i> Apa itu GitHub?</h2>
+            <p><span class="highlight">GitHub</span> adalah platform berbasis web untuk <strong>hosting repositori Git</strong>. Git sendiri adalah sistem version control yang melacak perubahan kode. Dengan GitHub, tim dapat berkolaborasi, melakukan review kode, dan mengelola proyek secara terpusat.</p>
+            <p><i class="fas fa-check-circle" style="color:#2F8F9D;"></i> <strong>Manfaat:</strong> backup kode, kolaborasi, pelacakan perubahan, branch & merge, pull requests, integrasi dengan tools lain.</p>
+        </div>
+
+        <!-- Perintah Dasar Git -->
+        <h2 style="color:#1E2F4F; margin-top: 2rem;"><i class="fas fa-terminal"></i> Perintah Dasar Git</h2>
+        <div class="command-grid">
+            <div class="command-card">
+                <code>git init</code>
+                <p>Membuat repositori baru di folder lokal.</p>
+            </div>
+            <div class="command-card">
+                <code>git add .</code>
+                <p>Menambahkan semua perubahan ke staging area.</p>
+            </div>
+            <div class="command-card">
+                <code>git commit -m "pesan"</code>
+                <p>Menyimpan perubahan dengan pesan.</p>
+            </div>
+            <div class="command-card">
+                <code>git status</code>
+                <p>Menampilkan status file.</p>
+            </div>
+            <div class="command-card">
+                <code>git log</code>
+                <p>Melihat riwayat commit.</p>
+            </div>
+            <div class="command-card">
+                <code>git branch</code>
+                <p>Menampilkan atau membuat branch.</p>
+            </div>
+            <div class="command-card">
+                <code>git checkout -b nama</code>
+                <p>Membuat dan pindah branch baru.</p>
+            </div>
+            <div class="command-card">
+                <code>git merge branch</code>
+                <p>Menggabungkan branch ke branch aktif.</p>
+            </div>
+            <div class="command-card">
+                <code>git clone url</code>
+                <p>Menyalin repositori dari remote.</p>
+            </div>
+            <div class="command-card">
+                <code>git push</code>
+                <p>Mengirim commit ke remote.</p>
+            </div>
+            <div class="command-card">
+                <code>git pull</code>
+                <p>Mengambil perubahan dari remote.</p>
+            </div>
+            <div class="command-card">
+                <code>git remote add origin</code>
+                <p>Menambahkan remote repository.</p>
+            </div>
+        </div>
+
+        <!-- Simulasi Interaktif -->
+        <div class="simulation">
+            <div class="sim-header">
+                <i class="fas fa-laptop-code" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Simulasi Git</h3>
+            </div>
+            <p style="margin-bottom:1rem; background:#f0f3fa; padding:0.5rem 1.5rem; border-radius:30px;">Coba perintah Git di bawah. Ini hanya simulasi — tidak akan menyimpan ke akun sungguhan.</p>
+
+            <!-- Visualisasi repositori virtual -->
+            <div class="repo-visual">
+                <div><i class="fas fa-folder-open"></i> <strong>repo-virtual/</strong> (branch: <span id="currentBranch">main</span>)</div>
+                <ul class="file-tree" id="fileTree">
+                    <li><i class="far fa-file"></i> index.html</li>
+                    <li><i class="far fa-file"></i> style.css</li>
+                    <li><i class="far fa-file"></i> script.js</li>
+                </ul>
+                <div class="branch-indicator" id="branchList">
+                    <span class="branch-tag" style="background:#f7d44b; color:#1E2F4F;">main</span>
+                    <span class="branch-tag">fitur-a</span>
+                </div>
+            </div>
+
+            <!-- Console simulasi -->
+            <div class="console" id="console">
+                <p>$ <span style="color:#f7d44b;">Selamat datang di simulasi Git</span></p>
+                <p>$ Ketik perintah dengan tombol di bawah</p>
+            </div>
+
+            <!-- Tombol perintah -->
+            <div class="command-buttons">
+                <button class="git-btn" data-cmd="init"><i class="fas fa-inbox"></i> git init</button>
+                <button class="git-btn" data-cmd="add"><i class="fas fa-plus-circle"></i> git add .</button>
+                <button class="git-btn" data-cmd="commit"><i class="fas fa-save"></i> git commit -m "update"</button>
+                <button class="git-btn" data-cmd="branch"><i class="fas fa-code-branch"></i> git branch fitur-baru</button>
+                <button class="git-btn" data-cmd="checkout"><i class="fas fa-arrow-right"></i> git checkout fitur-baru</button>
+                <button class="git-btn" data-cmd="merge"><i class="fas fa-code-merge"></i> git merge fitur-baru</button>
+                <button class="git-btn" data-cmd="status"><i class="fas fa-info-circle"></i> git status</button>
+                <button class="git-btn" data-cmd="log"><i class="fas fa-history"></i> git log</button>
+                <button class="git-btn secondary" data-cmd="push"><i class="fas fa-cloud-upload-alt"></i> git push</button>
+                <button class="git-btn secondary" data-cmd="pull"><i class="fas fa-cloud-download-alt"></i> git pull</button>
+                <button class="git-btn reset-btn" id="resetSim"><i class="fas fa-undo-alt"></i> Reset Simulasi</button>
+            </div>
+
+            <p style="margin-top:1.5rem; font-style:italic; color:#1E2F4F;"><i class="fas fa-info-circle"></i> Simulasi ini menggambarkan alur kerja dasar Git. Tidak ada koneksi ke GitHub sungguhan.</p>
+        </div>
+
+        <!-- Cara penggunaan GitHub (singkat) -->
+        <div class="explanation" style="margin-top:2rem;">
+            <h2><i class="fab fa-github"></i> Cara Penggunaan GitHub</h2>
+            <ol style="margin-left:1.5rem; line-height:2;">
+                <li><strong>Buat akun</strong> di github.com (misal: retno412).</li>
+                <li><strong>Buat repositori baru</strong> (New repository), beri nama, jangan lupa init README.</li>
+                <li><strong>Clone ke lokal:</strong> <code>git clone https://github.com/retno412/nama-repo.git</code></li>
+                <li><strong>Lakukan perubahan, add, commit</strong> seperti simulasi di atas.</li>
+                <li><strong>Push ke remote:</strong> <code>git push origin main</code> (perlu autentikasi token).</li>
+                <li><strong>Jika kolaborasi:</strong> gunakan <code>git pull</code> sebelum push, buat branch untuk fitur, lalu pull request di GitHub.</li>
+            </ol>
+            <p style="margin-top:1rem;">🔐 <strong>Catatan:</strong> Untuk push/pull asli, Anda perlu mengatur token atau SSH. Simulasi ini hanya untuk latihan konsep.</p>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // State simulasi
+            let state = {
+                initialized: false,
+                staged: false,
+                commits: [],
+                branches: ['main', 'fitur-a'],
+                currentBranch: 'main',
+                files: ['index.html', 'style.css', 'script.js'],
+                remote: false
+            };
+
+            const consoleDiv = document.getElementById('console');
+            const currentBranchSpan = document.getElementById('currentBranch');
+            const branchListDiv = document.getElementById('branchList');
+            const fileTreeUl = document.getElementById('fileTree');
+
+            function logToConsole(text, isCommand = true) {
+                const p = document.createElement('p');
+                if (isCommand) {
+                    p.innerHTML = '$ <span style="color:#f7d44b;">' + text + '</span>';
+                } else {
+                    p.innerHTML = '  ' + text;
+                }
+                consoleDiv.appendChild(p);
+                consoleDiv.scrollTop = consoleDiv.scrollHeight;
+            }
+
+            function updateUI() {
+                // update branch display
+                currentBranchSpan.innerText = state.currentBranch;
+                // regenerate branch tags
+                branchListDiv.innerHTML = '';
+                state.branches.forEach(b => {
+                    const span = document.createElement('span');
+                    span.className = 'branch-tag';
+                    if (b === state.currentBranch) {
+                        span.style.background = '#f7d44b';
+                        span.style.color = '#1E2F4F';
+                    } else {
+                        span.style.background = '#2F8F9D';
+                        span.style.color = 'white';
+                    }
+                    span.innerText = b;
+                    branchListDiv.appendChild(span);
+                });
+                // file tree (statis tapi bisa ditambah nanti)
+                fileTreeUl.innerHTML = '';
+                state.files.forEach(f => {
+                    const li = document.createElement('li');
+                    li.innerHTML = '<i class="far fa-file"></i> ' + f;
+                    fileTreeUl.appendChild(li);
+                });
+            }
+
+            // Reset state
+            function resetSimulation() {
+                state = {
+                    initialized: true, // biar langsung terinisiasi
+                    staged: false,
+                    commits: [],
+                    branches: ['main', 'fitur-a'],
+                    currentBranch: 'main',
+                    files: ['index.html', 'style.css', 'script.js'],
+                    remote: false
+                };
+                consoleDiv.innerHTML = '';
+                logToConsole('Simulasi di-reset. Repo virtual siap digunakan.');
+                updateUI();
+            }
+
+            // Inisialisasi pertama
+            resetSimulation();
+
+            // Handler tombol
+            document.querySelectorAll('.git-btn[data-cmd]').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const cmd = this.dataset.cmd;
+                    processCommand(cmd);
+                });
+            });
+
+            document.getElementById('resetSim').addEventListener('click', resetSimulation);
+
+            function processCommand(cmd) {
+                if (!state.initialized && cmd !== 'init') {
+                    logToConsole('Error: repo belum diinisialisasi. Jalankan git init dulu.');
+                    return;
+                }
+
+                switch(cmd) {
+                    case 'init':
+                        if (!state.initialized) {
+                            state.initialized = true;
+                            logToConsole('git init');
+                            logToConsole('Initialized empty Git repository in repo-virtual/.git/', false);
+                        } else {
+                            logToConsole('git init');
+                            logToConsole('Reinitialized existing Git repository.', false);
+                        }
+                        break;
+                    case 'add':
+                        logToConsole('git add .');
+                        state.staged = true;
+                        logToConsole('Changes to be committed: (use "git reset HEAD ..." to unstage)', false);
+                        state.files.forEach(f => logToConsole('        modified:   ' + f, false));
+                        break;
+                    case 'commit':
+                        if (!state.staged) {
+                            logToConsole('git commit -m "update"');
+                            logToConsole('On branch ' + state.currentBranch + '; no changes added to commit.', false);
+                        } else {
+                            logToConsole('git commit -m "update"');
+                            const commitHash = Math.random().toString(36).substring(2,10);
+                            state.commits.push({ hash: commitHash, branch: state.currentBranch, msg: 'update' });
+                            logToConsole('[' + state.currentBranch + ' ' + commitHash + '] update', false);
+                            logToConsole(' 3 files changed, 42 insertions(+)', false);
+                            state.staged = false;
+                        }
+                        break;
+                    case 'branch':
+                        logToConsole('git branch fitur-baru');
+                        if (!state.branches.includes('fitur-baru')) {
+                            state.branches.push('fitur-baru');
+                            logToConsole('Branch fitur-baru created', false);
+                        } else {
+                            logToConsole('Branch fitur-baru already exists.', false);
+                        }
+                        updateUI();
+                        break;
+                    case 'checkout':
+                        logToConsole('git checkout fitur-baru');
+                        if (state.branches.includes('fitur-baru')) {
+                            state.currentBranch = 'fitur-baru';
+                            logToConsole('Switched to branch fitur-baru', false);
+                        } else {
+                            logToConsole('error: pathspec fitur-baru did not match any file(s) known to git', false);
+                        }
+                        updateUI();
+                        break;
+                    case 'merge':
+                        logToConsole('git merge fitur-baru');
+                        if (state.currentBranch === 'fitur-baru') {
+                            logToConsole('Already up to date.', false);
+                        } else if (state.branches.includes('fitur-baru')) {
+                            // Simulasi fast-forward
+                            logToConsole('Updating 1234567..89abcde', false);
+                            logToConsole('Fast-forward', false);
+                            logToConsole(' 3 files changed, 15 insertions(+)', false);
+                        } else {
+                            logToConsole('merge: fitur-baru – not something we can merge', false);
+                        }
+                        break;
+                    case 'status':
+                        logToConsole('git status');
+                        logToConsole('On branch ' + state.currentBranch, false);
+                        if (state.staged) {
+                            logToConsole('Changes to be committed:', false);
+                            state.files.forEach(f => logToConsole('        modified: ' + f, false));
+                        } else {
+                            logToConsole('nothing to commit, working tree clean', false);
+                        }
+                        break;
+                    case 'log':
+                        logToConsole('git log');
+                        if (state.commits.length === 0) {
+                            logToConsole('fatal: your current branch does not have any commits yet', false);
+                        } else {
+                            state.commits.slice().reverse().forEach(c => {
+                                logToConsole('commit ' + c.hash + ' (' + c.branch + ')', false);
+                                logToConsole('Author: User <user@example.com>', false);
+                                logToConsole('Date:   ' + new Date().toLocaleString(), false);
+                                logToConsole('    ' + c.msg, false);
+                                logToConsole('', false);
+                            });
+                        }
+                        break;
+                    case 'push':
+                        logToConsole('git push origin ' + state.currentBranch);
+                        if (!state.remote) {
+                            logToConsole('fatal: remote origin not found. (Simulasi: belum ada remote)', false);
+                        } else {
+                            logToConsole('Enumerating objects: 5, done.', false);
+                            logToConsole('To https://github.com/retno412/repo-virtual.git', false);
+                            logToConsole('   1234567..89abcde  ' + state.currentBranch + ' -> ' + state.currentBranch, false);
+                        }
+                        break;
+                    case 'pull':
+                        logToConsole('git pull origin ' + state.currentBranch);
+                        if (!state.remote) {
+                            logToConsole('fatal: remote origin not found. (Simulasi: belum ada remote)', false);
+                        } else {
+                            logToConsole('remote: Enumerating objects: 3, done.', false);
+                            logToConsole('https://github.com/retno412/repo-virtual.git', false);
+                            logToConsole('Already up to date.', false);
+                        }
+                        break;
+                    default:
+                        logToConsole('Perintah tidak dikenal dalam simulasi ini.');
+                }
+                updateUI();
+            }
+
+            // Tambahkan remote secara opsional? Untuk push/pull simulasi kita buat bisa diaktifkan dengan tombol khusus? Sederhananya, kita buat remote bisa di-set dengan command 'remote' tapi tidak ada tombol. Kita bisa tambahkan tombol remote jika mau.
+            // Tapi biarkan seperti ini, pengguna bisa mencoba push dan mendapat pesan error remote, itu realistis.
+        })();
+    </script>
+</body>
+</html>

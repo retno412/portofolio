@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Audio Engineer · Retno</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>/* style */</style>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); padding:2rem 1rem; display:flex; flex-direction:column; align-items:center; }
+        .card { max-width:1100px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; }
+        .header { display:flex; justify-content:space-between; border-bottom:2px dashed #2F8F9D; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; }
+        .title { font-size:2rem; color:#1E2F4F; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="belajar-game.html">Kembali</a></div>
+        </div>
+        <div class="title"><i class="fas fa-music"></i> Audio Engineer</div>
+        <div class="explanation" style="padding:1.5rem;">
+            <p>Komposer dan sound designer. Membuat musik latar, efek suara (SFX), dan mengintegrasikannya dengan game menggunakan middleware seperti <strong>FMOD</strong> atau <strong>Wwise</strong>. Tools: <strong>Ableton Live</strong>, <strong>FL Studio</strong>, <strong>Reaper</strong>.</p>
+            <div style="background:#1E2F4F; color:#f7d44b; padding:1rem; border-radius:30px; margin:1rem 0;">
+                <p>Simulasi: Klik tombol untuk memainkan nada (browser menggunakan Web Audio API).</p>
+                <button id="playNote" style="background:#f7d44b; padding:0.5rem 2rem; border:none; border-radius:30px;">Mainkan C4</button>
+            </div>
+        </div>
+        <div class="footer-note">Retno Ariyanti Nurningtias</div>
+    </div>
+    <script>
+        let audioCtx = null;
+        document.getElementById('playNote').addEventListener('click', function() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioCtx.createOscillator();
+            osc.type = 'sine';
+            osc.frequency.value = 261.63; // C4
+            osc.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.5);
+        });
+    </script>
+</body>
+</html>

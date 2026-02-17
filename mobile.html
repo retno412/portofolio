@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Flutter · Retno Ariyanti</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f3fa 0%, #e6ecf7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .card {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 3.5rem 3.5rem 2.5rem 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,20,40,0.3);
+            overflow: hidden;
+            padding: 2.2rem 2.5rem 3rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px dashed #2F8F9D;
+            padding-bottom: 1.5rem;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1E2F4F;
+        }
+
+        .back-link a {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 5px 0 #0f1e2f;
+            transition: 0.1s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .back-link a:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #0f1e2f;
+        }
+
+        .page-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1E2F4F;
+            margin: 1rem 0 0.5rem;
+            background: rgba(47,143,157,0.1);
+            display: inline-block;
+            padding: 0.2rem 2rem;
+            border-radius: 60px;
+        }
+
+        .subtitle {
+            color: #2F8F9D;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .explanation {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+            border: 1px solid #2F8F9D;
+        }
+        .explanation h2 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        .explanation p {
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+        .highlight {
+            background: #f7d44b30;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #1E2F4F;
+        }
+
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+        .feature-card {
+            background: #e3eef5;
+            border-radius: 30px;
+            padding: 1rem 1.5rem;
+            flex: 1 1 150px;
+            border: 1px solid #2F8F9D;
+            transition: 0.2s;
+        }
+        .feature-card:hover {
+            background: #d0e2ed;
+            transform: scale(1.02);
+        }
+        .feature-card i {
+            font-size: 2rem;
+            color: #1E2F4F;
+            margin-bottom: 0.5rem;
+        }
+        .feature-card h4 {
+            color: #1E2F4F;
+            margin-bottom: 0.3rem;
+        }
+        .feature-card p {
+            font-size: 0.85rem;
+            color: #1a2b41;
+        }
+
+        /* Simulasi Flutter */
+        .simulation {
+            background: #1E2F4F10;
+            border-radius: 50px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 2px solid #2F8F9D;
+        }
+        .sim-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: #f7d44b20;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+        }
+        .sim-header h3 {
+            color: #1E2F4F;
+            font-size: 1.6rem;
+        }
+
+        .playground {
+            background: #1E2F4F;
+            border-radius: 30px;
+            padding: 1.5rem;
+            color: white;
+            border: 2px solid #2F8F9D;
+        }
+        .control-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            align-items: flex-end;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .control-group label {
+            font-weight: 500;
+            color: #f7d44b;
+        }
+        .control-group select, .control-group input {
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            border: none;
+            background: #f0f3fa;
+            font-size: 1rem;
+            min-width: 150px;
+        }
+        .preview-btn {
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 700;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #b58f2b;
+            transition: 0.1s;
+            border: none;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .preview-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+
+        .preview-area {
+            background: #5f6f88;
+            border-radius: 30px;
+            padding: 2rem;
+            min-height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px dashed #f7d44b;
+        }
+        .flutter-preview {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .preview-box {
+            background: #2F8F9D;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 0 #195e68;
+            text-align: center;
+        }
+        .preview-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .preview-container {
+            background: #f7d44b;
+            color: #1E2F4F;
+            padding: 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .code-snippet {
+            background: #0f1a24;
+            border-radius: 30px;
+            padding: 1.2rem;
+            color: #f7d44b;
+            font-family: 'Fira Code', monospace;
+            margin-top: 1.5rem;
+            border: 1px solid #2F8F9D;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            color: #1E2F4F;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo">
+                <h1>RETNO</h1>
+            </div>
+            <div class="back-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a>
+            </div>
+        </div>
+
+        <div class="page-title">
+            <i class="fas fa-mobile-alt"></i> BELAJAR FLUTTER
+        </div>
+        <div class="subtitle">Cross-platform mobile dengan Dart & Google</div>
+
+        <!-- Penjelasan mobile programming & Flutter -->
+        <div class="explanation">
+            <h2><i class="fas fa-question-circle"></i> Apa itu Mobile Programming?</h2>
+            <p><span class="highlight">Mobile programming</span> adalah pengembangan aplikasi untuk perangkat mobile (Android, iOS). Pendekatan <strong>cross-platform</strong> memungkinkan menulis satu kode untuk dua platform sekaligus, menghemat biaya dan waktu. Flutter dan React Native adalah dua framework populer.</p>
+            <p><span class="highlight">Flutter</span> (dari Google) menggunakan bahasa <strong>Dart</strong>. Keunggulan: rendering UI sangat cepat dan konsisten (pixel perfect), hot reload, dan widget yang kaya.</p>
+            <!-- Tombol ke Belajar React Native -->
+                <div class="nav-button" style="margin-top:1rem;">
+                    <a href="react.html" class="btn-webdesign" style="background:#61dafb; color:#1E2F4F; box-shadow:0 8px 0 #2b7f9e;"><i class="fab fa-react"></i> Belajar React Native <i class="fas fa-arrow-right"></i></a>
+                </div>
+        </div>
+
+        <!-- Fitur utama Flutter -->
+        <h2 style="color:#1E2F4F; margin-top: 2rem;"><i class="fas fa-cogs"></i> Fitur Utama Flutter</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fas fa-paint-brush"></i>
+                <h4>Widget</h4>
+                <p>Semuanya adalah widget (Stateless/Stateful).</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-bolt"></i>
+                <h4>Hot Reload</h4>
+                <p>Lihat perubahan langsung tanpa rebuild.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h4>Pixel Perfect</h4>
+                <p>Tampilan sama persis di Android & iOS.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-code"></i>
+                <h4>Dart</h4>
+                <p>Bahasa modern, mudah dipelajari.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-layer-group"></i>
+                <h4>Material & Cupertino</h4>
+                <p>Widget sesuai desain Android & iOS.</p>
+            </div>
+        </div>
+
+        <!-- Simulasi sederhana Flutter -->
+        <div class="simulation">
+            <div class="sim-header">
+                <i class="fas fa-flask" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Playground Flutter Sederhana</h3>
+            </div>
+            <p style="margin-bottom:1rem; background:#f0f3fa; padding:0.5rem 1.5rem; border-radius:30px;">Pilih widget dan atur propertinya, lihat preview di bawah.</p>
+
+            <div class="playground">
+                <div class="control-panel">
+                    <div class="control-group">
+                        <label>Pilih Widget</label>
+                        <select id="widgetType">
+                            <option value="text">Text</option>
+                            <option value="container">Container</option>
+                            <option value="row">Row (dengan 3 teks)</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Isi / Warna</label>
+                        <input type="text" id="inputValue" value="Hello Flutter" placeholder="Teks atau warna (misal: merah)">
+                    </div>
+                    <button class="preview-btn" id="previewBtn"><i class="fas fa-eye"></i> Tampilkan</button>
+                </div>
+
+                <div class="preview-area" id="previewArea">
+                    <div class="flutter-preview" id="previewContent">
+                        <!-- Hasil preview akan diisi JS -->
+                        <div class="preview-box">Hello Flutter</div>
+                    </div>
+                </div>
+
+                <div class="code-snippet" id="codeSnippet">
+                    // Kode Dart akan muncul di sini
+                    Text('Hello Flutter')
+                </div>
+            </div>
+        </div>
+
+        <!-- Cara memulai Flutter -->
+        <div class="explanation">
+            <h2><i class="fas fa-rocket"></i> Cara Memulai Flutter</h2>
+            <ol style="margin-left:1.5rem; line-height:2;">
+                <li>Install Flutter SDK dari <a href="https://flutter.dev" target="_blank">flutter.dev</a>.</li>
+                <li>Install editor (Android Studio, VS Code) dan plugin Flutter/Dart.</li>
+                <li>Jalankan <code>flutter doctor</code> untuk cek kesiapan.</li>
+                <li>Buat project baru: <code>flutter create my_app</code>.</li>
+                <li>Masuk ke folder: <code>cd my_app</code>, lalu <code>flutter run</code> (bisa pilih emulator atau device).</li>
+                <li>Struktur dasar: <code>lib/main.dart</code> adalah pintu masuk. Gunakan <code>MaterialApp</code> dan <code>Scaffold</code>.</li>
+            </ol>
+            <p style="margin-top:1rem;">💡 <strong>Contoh kode minimal:</strong></p>
+            <pre style="background:#1E2F4F; color:#f7d44b; padding:1rem; border-radius:30px; font-family:'Fira Code';">
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Flutter Demo')),
+        body: Center(child: Text('Hello World')),
+      ),
+    );
+  }
+}
+            </pre>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        const widgetSelect = document.getElementById('widgetType');
+        const inputVal = document.getElementById('inputValue');
+        const previewBtn = document.getElementById('previewBtn');
+        const previewContent = document.getElementById('previewContent');
+        const codeSnippet = document.getElementById('codeSnippet');
+
+        function updatePreview() {
+            const type = widgetSelect.value;
+            let value = inputVal.value.trim() || 'Hello';
+            let html = '';
+            let code = '';
+
+            if (type === 'text') {
+                html = `<div class="preview-box">${value}</div>`;
+                code = `Text('${value}')`;
+            } else if (type === 'container') {
+                // value bisa berupa warna atau teks
+                const isColor = value.match(/^#?[0-9A-Fa-f]{6}$/) || value === 'merah' || value === 'biru' || value === 'hijau';
+                let bgColor = '#2F8F9D';
+                if (value === 'merah') bgColor = '#b83b3b';
+                else if (value === 'biru') bgColor = '#1E2F4F';
+                else if (value === 'hijau') bgColor = '#2e8b57';
+                else if (isColor) bgColor = value.startsWith('#') ? value : '#' + value;
+                html = `<div style="background: ${bgColor}; color: white; padding: 1rem 2rem; border-radius: 20px; box-shadow: 0 8px 0 #195e68;">Container</div>`;
+                code = `Container(\n  color: ${bgColor},\n  child: Text('Container'),\n)`;
+            } else if (type === 'row') {
+                html = `<div class="preview-row">
+                    <div class="preview-box" style="background:#f7d44b; color:#1E2F4F;">${value} 1</div>
+                    <div class="preview-box" style="background:#f7d44b; color:#1E2F4F;">${value} 2</div>
+                    <div class="preview-box" style="background:#f7d44b; color:#1E2F4F;">${value} 3</div>
+                </div>`;
+                code = `Row(\n  children: [\n    Text('${value} 1'),\n    Text('${value} 2'),\n    Text('${value} 3'),\n  ],\n)`;
+            }
+
+            previewContent.innerHTML = html;
+            codeSnippet.innerHTML = '// Kode Dart preview\n' + code;
+        }
+
+        previewBtn.addEventListener('click', updatePreview);
+        // inisialisasi
+        updatePreview();
+    </script>
+</body>
+</html>

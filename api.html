@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar API · Retno Ariyanti</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f3fa 0%, #e6ecf7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .api-card {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 3.5rem 3.5rem 2.5rem 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,20,40,0.3);
+            overflow: hidden;
+            padding: 2.2rem 2.5rem 3rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px dashed #2F8F9D;
+            padding-bottom: 1.5rem;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1E2F4F;
+        }
+
+        .back-link a {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 5px 0 #0f1e2f;
+            transition: 0.1s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .back-link a:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #0f1e2f;
+        }
+
+        .page-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1E2F4F;
+            margin: 1rem 0 0.5rem;
+            background: rgba(47,143,157,0.1);
+            display: inline-block;
+            padding: 0.2rem 2rem;
+            border-radius: 60px;
+        }
+
+        .subtitle {
+            color: #2F8F9D;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* penjelasan */
+        .explanation {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+            border: 1px solid #2F8F9D;
+        }
+        .explanation h2 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        .explanation p {
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+        .highlight {
+            background: #f7d44b30;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #1E2F4F;
+        }
+
+        .analogy-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background: #e3eef5;
+            border-radius: 40px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            justify-content: space-around;
+        }
+        .analogy-item {
+            text-align: center;
+            flex: 1;
+        }
+        .analogy-item i {
+            font-size: 2.5rem;
+            color: #2F8F9D;
+        }
+
+        .method-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .method-card {
+            background: #1E2F4F;
+            color: white;
+            border-radius: 30px;
+            padding: 1rem;
+            flex: 1 1 120px;
+            text-align: center;
+        }
+        .method-card code {
+            background: #f7d44b;
+            color: #1E2F4F;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .status-codes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+        .status-item {
+            background: #f0f3fa;
+            border-radius: 30px;
+            padding: 0.5rem 1rem;
+            border-left: 6px solid #2F8F9D;
+        }
+
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+        .tool-card {
+            background: white;
+            border-radius: 30px;
+            padding: 1rem 1.5rem;
+            flex: 1 1 150px;
+            border: 1px solid #2F8F9D;
+            transition: 0.2s;
+            text-align: center;
+        }
+        .tool-card i {
+            font-size: 2rem;
+            color: #1E2F4F;
+        }
+
+        .simulation {
+            background: #1E2F4F10;
+            border-radius: 50px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 2px solid #2F8F9D;
+        }
+        .sim-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: #f7d44b20;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+        }
+        .sim-header h3 {
+            color: #1E2F4F;
+            font-size: 1.6rem;
+        }
+
+        .api-playground {
+            background: #1E2F4F;
+            border-radius: 30px;
+            padding: 1.5rem;
+            color: white;
+        }
+        .playground-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-end;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .control-group label {
+            color: #f7d44b;
+            font-weight: 500;
+        }
+        .control-group select, .control-group input {
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            border: none;
+            background: #f0f3fa;
+            min-width: 120px;
+        }
+        .api-btn {
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 700;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            border: none;
+            box-shadow: 0 5px 0 #b58f2b;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .api-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+        .response-box {
+            background: #0f1a24;
+            border-radius: 30px;
+            padding: 1.2rem;
+            color: #a3f7b5;
+            font-family: 'Fira Code', monospace;
+            min-height: 150px;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #2F8F9D;
+        }
+
+        .public-api-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .api-link {
+            background: #2F8F9D;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            border: 1px solid white;
+        }
+        .api-link:hover {
+            background: #1E2F4F;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            color: #1E2F4F;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="api-card">
+        <div class="header">
+            <div class="logo">
+                <h1>RETNO</h1>
+            </div>
+            <div class="back-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a>
+            </div>
+        </div>
+
+        <div class="page-title">
+            <i class="fas fa-plug"></i> BELAJAR API
+        </div>
+        <div class="subtitle">Application Programming Interface – Jembatan antar aplikasi</div>
+
+        <!-- Apa itu API + analogi restoran -->
+        <div class="explanation">
+            <h2><i class="fas fa-question-circle"></i> Apa itu API?</h2>
+            <p><span class="highlight">API (Application Programming Interface)</span> adalah jembatan yang menghubungkan berbagai teknologi (Database, Mobile, Game). Tanpa API, aplikasi hanyalah "pulau terpencil" yang tidak bisa berkomunikasi dengan dunia luar.</p>
+            
+            <div class="analogy-box">
+                <div class="analogy-item">
+                    <i class="fas fa-user"></i>
+                    <h4>Customer (Client)</h4>
+                    <p>Kamu memesan makanan (Request)</p>
+                </div>
+                <div class="analogy-item">
+                    <i class="fas fa-utensils"></i>
+                    <h4>Pelayan (API)</h4>
+                    <p>Mengambil pesanan, menyampaikan ke dapur, membawa makanan kembali</p>
+                </div>
+                <div class="analogy-item">
+                    <i class="fas fa-database"></i>
+                    <h4>Dapur (Server/Database)</h4>
+                    <p>Tempat makanan disiapkan (Data)</p>
+                </div>
+            </div>
+            <p><strong>Analogi Restoran:</strong> Client memesan (request), API sebagai pelayan mengantarkan ke server, lalu server mengembalikan response (makanan).</p>
+        </div>
+
+        <!-- Jenis API -->
+        <h2 style="color:#1E2F4F; margin-top: 2rem;"><i class="fas fa-cubes"></i> Jenis API yang Wajib Diketahui</h2>
+        <div class="method-grid">
+            <div class="method-card" style="flex:2;">
+                <i class="fas fa-cloud"></i>
+                <h4>REST API</h4>
+                <p>Paling umum, gunakan JSON. Ringan & standar industri.</p>
+            </div>
+            <div class="method-card" style="flex:2;">
+                <i class="fas fa-project-diagram"></i>
+                <h4>GraphQL</h4>
+                <p>Client tentukan data yang dibutuhkan. Efisien.</p>
+            </div>
+            <div class="method-card" style="flex:2;">
+                <i class="fas fa-bolt"></i>
+                <h4>Webhooks</h4>
+                <p>API otomatis, misal bot Telegram.</p>
+            </div>
+        </div>
+
+        <!-- Cara kerja: metode CRUD dan status code -->
+        <div class="explanation">
+            <h2><i class="fas fa-sync-alt"></i> Cara Kerja API (Request-Response Cycle)</h2>
+            <p><strong>4 Metode Utama (CRUD):</strong></p>
+            <div class="method-grid">
+                <div class="method-card"><code>GET</code> SELECT (ambil data)</div>
+                <div class="method-card"><code>POST</code> INSERT (kirim data baru)</div>
+                <div class="method-card"><code>PUT/PATCH</code> UPDATE (ubah data)</div>
+                <div class="method-card"><code>DELETE</code> DELETE (hapus data)</div>
+            </div>
+            <p><strong>HTTP Status Code yang umum:</strong></p>
+            <div class="status-codes">
+                <span class="status-item">200 OK: Berhasil</span>
+                <span class="status-item">201 Created: Data dibuat</span>
+                <span class="status-item">404 Not Found: Alamat/data tidak ada</span>
+                <span class="status-item">500 Internal Server Error: Error server</span>
+            </div>
+        </div>
+
+        <!-- Tools yang harus dikuasai -->
+        <h2 style="color:#1E2F4F;"><i class="fas fa-tools"></i> Tools Wajib Developer API</h2>
+        <div class="tools-grid">
+            <div class="tool-card"><i class="fas fa-paper-plane"></i> <h4>Postman</h4><p>Testing API</p></div>
+            <div class="tool-card"><i class="fas fa-moon"></i> <h4>Insomnia</h4><p>Alternatif Postman</p></div>
+            <div class="tool-card"><i class="fas fa-file-code"></i> <h4>Swagger</h4><p>Dokumentasi API</p></div>
+            <div class="tool-card"><i class="fas fa-json"></i> <h4>JSON Formatter</h4><p>Merapikan JSON</p></div>
+        </div>
+
+        <!-- Kualifikasi Backend/API Developer -->
+        <div class="explanation">
+            <h2><i class="fas fa-globe"></i> Kualifikasi Backend/API Developer (Global)</h2>
+            <ul style="margin-left:1.5rem; line-height:2;">
+                <li><span class="highlight">Security (JWT/OAuth)</span> – Mengamankan API.</li>
+                <li><span class="highlight">API Documentation</span> – Panduan jelas (Swagger/Postman).</li>
+                <li><span class="highlight">Rate Limiting</span> – Batasi request agar server tidak tumbang.</li>
+                <li><span class="highlight">Versioning</span> – Kelola perubahan API (v1, v2).</li>
+            </ul>
+        </div>
+
+        <!-- Simulasi API sederhana -->
+        <div class="simulation">
+            <div class="sim-header">
+                <i class="fas fa-flask" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Simulasi API Tester</h3>
+            </div>
+            <p style="margin-bottom:1rem; background:#f0f3fa; padding:0.5rem 1.5rem; border-radius:30px;">Pilih metode dan kirim request, lihat response simulasi.</p>
+
+            <div class="api-playground">
+                <div class="playground-controls">
+                    <div class="control-group">
+                        <label>Method</label>
+                        <select id="apiMethod">
+                            <option value="GET">GET</option>
+                            <option value="POST">POST</option>
+                            <option value="PUT">PUT</option>
+                            <option value="DELETE">DELETE</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Endpoint</label>
+                        <input type="text" id="apiEndpoint" value="/api/users" placeholder="/api/...">
+                    </div>
+                    <button class="api-btn" id="sendRequest"><i class="fas fa-paper-plane"></i> Send</button>
+                </div>
+                <div class="response-box" id="apiResponse">
+                    // Response akan tampil di sini
+                </div>
+            </div>
+        </div>
+
+        <!-- Latihan dengan Public API -->
+        <h2 style="color:#1E2F4F; margin-top:2rem;"><i class="fas fa-external-link-alt"></i> Coba Public API Gratis</h2>
+        <div class="public-api-links">
+            <a href="https://pokeapi.co/" target="_blank" class="api-link"><i class="fas fa-dragon"></i> PokeAPI (Data Pokemon)</a>
+            <a href="https://openweathermap.org/api" target="_blank" class="api-link"><i class="fas fa-cloud-sun"></i> OpenWeatherMap</a>
+            <a href="https://developers.themoviedb.org/3" target="_blank" class="api-link"><i class="fas fa-film"></i> TMDB (Film)</a>
+        </div>
+        <p style="margin:1rem 0;">Contoh fetch ke PokeAPI (buka console browser untuk lihat hasil):</p>
+        <pre style="background:#1E2F4F; color:#f7d44b; padding:1rem; border-radius:30px; overflow-x:auto;">
+fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+        </pre>
+
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        const methodSelect = document.getElementById('apiMethod');
+        const endpointInput = document.getElementById('apiEndpoint');
+        const sendBtn = document.getElementById('sendRequest');
+        const responseDiv = document.getElementById('apiResponse');
+
+        function simulateResponse(method, endpoint) {
+            // Simulasi response berdasarkan method
+            const status = method === 'GET' ? 200 : (method === 'POST' ? 201 : (method === 'DELETE' ? 200 : 200));
+            const statusText = method === 'GET' ? 'OK' : (method === 'POST' ? 'Created' : 'OK');
+            let data = {};
+
+            if (method === 'GET') {
+                data = { id: 1, name: 'John Doe', email: 'john@example.com' };
+            } else if (method === 'POST') {
+                data = { id: 123, message: 'Data created successfully' };
+            } else if (method === 'PUT') {
+                data = { id: 1, updated: true };
+            } else if (method === 'DELETE') {
+                data = { message: 'Resource deleted' };
+            }
+
+            return {
+                status: status,
+                statusText: statusText,
+                data: data
+            };
+        }
+
+        sendBtn.addEventListener('click', () => {
+            const method = methodSelect.value;
+            const endpoint = endpointInput.value || '/api/unknown';
+            const res = simulateResponse(method, endpoint);
+            responseDiv.innerHTML = `
+                <p><span style="color:#f7d44b;">Status:</span> ${res.status} ${res.statusText}</p>
+                <p><span style="color:#f7d44b;">Response:</span> ${JSON.stringify(res.data, null, 2)}</p>
+            `;
+        });
+
+        // Inisialisasi response awal
+        responseDiv.innerHTML = '<p>Klik Send untuk melihat response simulasi.</p>';
+    </script>
+</body>
+</html>

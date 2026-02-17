@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Designer · Retno</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); padding:2rem 1rem; display:flex; flex-direction:column; align-items:center; }
+        .card { max-width:1100px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; margin-bottom:1.5rem; }
+        .logo h1 { color:#1E2F4F; font-size:2.5rem; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; box-shadow:0 5px 0 #0f1e2f; }
+        .title { font-size:2rem; color:#1E2F4F; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; margin-bottom:1rem; }
+        .explanation { background:white; border-radius:40px; padding:1.8rem; border:1px solid #2F8F9D; }
+        h2 { color:#1E2F4F; margin-bottom:1rem; }
+        .tool-list { list-style:none; margin:1rem 0; }
+        .tool-list li { margin:0.5rem 0; }
+        .simulation { background:#1E2F4F10; border-radius:40px; padding:1.5rem; margin-top:2rem; border:2px dashed #2F8F9D; }
+        .sim-header { background:#f7d44b20; padding:1rem; border-radius:40px; margin-bottom:1rem; }
+        .footer-note { margin-top:2rem; text-align:center; color:#1E2F4F; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="belajar-game.html"><i class="fas fa-arrow-left"></i> Kembali</a></div>
+        </div>
+        <div class="title"><i class="fas fa-chess-queen"></i> Game Designer</div>
+        <div class="explanation">
+            <h2>Sang "Sutradara" Game</h2>
+            <p>Menentukan aturan main, level, cerita, dan mekanik game agar seru. Game Designer membuat <strong>Game Design Document (GDD)</strong>, merancang keseimbangan, dan memastikan pengalaman pemain sesuai visi.</p>
+            <h3>Tools yang digunakan:</h3>
+            <ul class="tool-list">
+                <li><i class="fas fa-file-alt" style="color:#2F8F9D;"></i> Microsoft Word / Google Docs (untuk GDD)</li>
+                <li><i class="fas fa-sitemap" style="color:#2F8F9D;"></i> Miro / Lucidchart (diagram alur)</li>
+                <li><i class="fas fa-cubes" style="color:#2F8F9D;"></i> Unity / Unreal (untuk prototyping cepat)</li>
+                <li><i class="fas fa-pencil-ruler" style="color:#2F8F9D;"></i> Trello / Jira (manajemen proyek)</li>
+            </ul>
+            <div class="simulation">
+                <div class="sim-header"><i class="fas fa-puzzle-piece"></i> Coba rancang aturan sederhana: Klik untuk menambah skor jika menekan tombol dalam 1 detik</div>
+                <p id="designOutput" style="background:#1E2F4F; color:#f7d44b; padding:1rem; border-radius:30px;">Skor: 0</p>
+                <button id="designBtn" style="background:#f7d44b; padding:0.5rem 2rem; border:none; border-radius:30px; font-weight:bold; box-shadow:0 5px 0 #b58f2b; cursor:pointer;">Tekan cepat!</button>
+            </div>
+        </div>
+        <div class="footer-note">Retno Ariyanti Nurningtias</div>
+    </div>
+    <script>
+        let score = 0;
+        let timeout;
+        document.getElementById('designBtn').addEventListener('click', function() {
+            score++;
+            document.getElementById('designOutput').innerText = 'Skor: ' + score;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                alert('Terlambat! Skor direset.');
+                score = 0;
+                document.getElementById('designOutput').innerText = 'Skor: 0';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

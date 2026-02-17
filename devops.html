@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps & CI/CD · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+        .card { max-width:1300px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; }
+        .logo h1 { font-size:2.5rem; color:#1E2F4F; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; font-weight:500; box-shadow:0 5px 0 #0f1e2f; transition:0.1s; display:inline-flex; align-items:center; gap:10px; }
+        .back-link a:active { transform:translateY(3px); box-shadow:0 2px 0 #0f1e2f; }
+        .page-title { font-size:2.2rem; font-weight:700; color:#1E2F4F; margin:1rem 0 0.5rem; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; }
+        .subtitle { color:#2F8F9D; font-size:1.3rem; margin-bottom:2rem; font-style:italic; }
+
+        .section-title {
+            color: #1E2F4F;
+            margin: 2.5rem 0 1rem;
+            font-size: 1.8rem;
+            border-left: 8px solid #2F8F9D;
+            padding-left: 1.2rem;
+        }
+
+        .concept-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .concept-card {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            flex: 1 1 280px;
+            border: 1px solid #2F8F9D;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+            transition: 0.2s;
+        }
+        .concept-card:hover {
+            transform: translateY(-5px);
+            border-color: #f7d44b;
+        }
+        .concept-card h3 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-left: 6px solid #2F8F9D;
+            padding-left: 0.8rem;
+        }
+        .concept-card p {
+            color: #2d3e5c;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .pipeline {
+            background: #e3eef5;
+            border-radius: 60px;
+            padding: 2rem;
+            margin: 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .pipeline-step {
+            background: #1E2F4F;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 6px 0 #0f1e2f;
+        }
+        .pipeline-arrow {
+            font-size: 2rem;
+            color: #2F8F9D;
+        }
+
+        .tool-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            justify-content: center;
+        }
+        .tool-btn {
+            background: #2F8F9D;
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 0 #195e68;
+            transition: 0.1s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tool-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #195e68;
+        }
+        .tool-btn i {
+            font-size: 1.2rem;
+        }
+
+        .demo-area {
+            background: #e3eef5;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #2F8F9D;
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .demo-header h3 {
+            color: #1E2F4F;
+            font-size: 1.6rem;
+        }
+        .demo-panel {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: inset 0 0 10px #cbd6e8;
+        }
+        .demo-code {
+            background: #1E2F4F;
+            color: #f7d44b;
+            padding: 1rem;
+            border-radius: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+        .demo-output {
+            background: #0f1a24;
+            color: #a3f7b5;
+            padding: 1rem;
+            border-radius: 20px;
+            font-family: 'Fira Code', monospace;
+            min-height: 100px;
+            margin-top: 1rem;
+        }
+        .btn {
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #b58f2b;
+            transition: 0.1s;
+            margin: 0.5rem 0.5rem 0 0;
+        }
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+
+        .footer-note { margin-top:2rem; text-align:center; color:#1E2F4F; opacity:0.8; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a></div>
+        </div>
+        <div class="page-title"><i class="fas fa-cloud-upload-alt"></i> DevOps & CI/CD</div>
+        <div class="subtitle">Automasi build, testing, deployment – Docker, Jenkins, GitHub Actions, Infrastructure as Code</div>
+
+        <!-- Pengertian DevOps -->
+        <div class="concept-grid">
+            <div class="concept-card">
+                <h3>🤝 Apa itu DevOps?</h3>
+                <p>Gabungan dari Development dan Operations. Tujuannya mempercepat siklus pengiriman perangkat lunak dengan otomatisasi, kolaborasi, dan integrasi berkelanjutan.</p>
+            </div>
+            <div class="concept-card">
+                <h3>🔄 CI/CD Pipeline</h3>
+                <p><strong>Continuous Integration (CI)</strong>: menggabungkan kode secara rutin dan menjalankan pengujian otomatis.<br>
+                <strong>Continuous Delivery/Deployment (CD)</strong>: otomatis mengirim perubahan ke staging/produksi.</p>
+            </div>
+        </div>
+
+        <!-- Visual pipeline -->
+        <div class="pipeline">
+            <span class="pipeline-step">Code Commit</span>
+            <span class="pipeline-arrow"><i class="fas fa-arrow-right"></i></span>
+            <span class="pipeline-step">Build</span>
+            <span class="pipeline-arrow"><i class="fas fa-arrow-right"></i></span>
+            <span class="pipeline-step">Test</span>
+            <span class="pipeline-arrow"><i class="fas fa-arrow-right"></i></span>
+            <span class="pipeline-step">Deploy</span>
+        </div>
+
+        <!-- Tools -->
+        <h2 class="section-title"><i class="fas fa-tools"></i> Tools Populer</h2>
+        <div class="concept-grid">
+            <!-- Docker -->
+            <div class="concept-card">
+                <h3><i class="fab fa-docker"></i> Docker</h3>
+                <p>Container platform untuk mengemas aplikasi dan dependensinya agar berjalan konsisten di lingkungan mana pun.</p>
+                <a href="https://docs.docker.com/get-started/" target="_blank" class="tool-btn"><i class="fab fa-docker"></i> Docker Docs</a>
+            </div>
+            <!-- Jenkins -->
+            <div class="concept-card">
+                <h3><i class="fab fa-jenkins"></i> Jenkins</h3>
+                <p>Server otomasi open-source untuk membangun, menguji, dan menyebarkan perangkat lunak. Mendukung ribuan plugin.</p>
+                <a href="https://www.jenkins.io/doc/" target="_blank" class="tool-btn"><i class="fab fa-jenkins"></i> Jenkins Docs</a>
+            </div>
+            <!-- GitHub Actions -->
+            <div class="concept-card">
+                <h3><i class="fab fa-github"></i> GitHub Actions</h3>
+                <p>Fitur CI/CD terintegrasi di GitHub. Membuat workflow dengan file YAML di repositori.</p>
+                <a href="https://docs.github.com/en/actions" target="_blank" class="tool-btn"><i class="fab fa-github"></i> Actions Docs</a>
+            </div>
+        </div>
+
+        <!-- Infrastructure as Code -->
+        <h2 class="section-title"><i class="fas fa-code-branch"></i> Infrastructure as Code (IaC)</h2>
+        <div class="concept-grid">
+            <div class="concept-card">
+                <h3>📦 Apa itu IaC?</h3>
+                <p>Mengelola dan menyediakan infrastruktur (server, jaringan) melalui kode, bukan proses manual. Memastikan konsistensi, kecepatan, dan mengurangi kesalahan.</p>
+            </div>
+            <div class="concept-card">
+                <h3>🔥 Contoh Tools IaC</h3>
+                <ul style="margin-left:1.2rem;">
+                    <li><strong>Terraform</strong> (Hashicorp) – mendukung banyak cloud provider.</li>
+                    <li><strong>AWS CloudFormation</strong> – khusus AWS, menggunakan JSON/YAML.</li>
+                    <li><strong>Ansible</strong> – konfigurasi dan provisioning tanpa agen.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tabel Aplikasi Hits -->
+        <div style="background:white; border-radius:40px; padding:1.5rem; margin:2rem 0; border:1px solid #2F8F9D;">
+            <h3 style="color:#1E2F4F; margin-bottom:1rem;"><i class="fas fa-star"></i> Aplikasi Hits yang Menggunakan DevOps/IaC</h3>
+            <table style="width:100%; border-collapse:collapse;">
+                <tr style="background:#2F8F9D; color:white;">
+                    <th style="padding:10px; border-radius:20px 0 0 20px;">Aplikasi</th>
+                    <th style="padding:10px;">Tools yang Digunakan</th>
+                    <th style="padding:10px; border-radius:0 20px 20px 0;">Deskripsi</th>
+                </tr>
+                <tr style="border-bottom:1px solid #e3eef5;">
+                    <td style="padding:10px;"><strong>Netflix</strong></td>
+                    <td>Spinnaker, Jenkins, Docker</td>
+                    <td>Menggunakan pipeline CI/CD canggih untuk mendeploy ratusan layanan.</td>
+                </tr>
+                <tr style="border-bottom:1px solid #e3eef5;">
+                    <td style="padding:10px;"><strong>Airbnb</strong></td>
+                    <td>Terraform, Ansible, Docker</td>
+                    <td>Infrastruktur sebagai kode untuk mengelola ribuan server di cloud.</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px;"><strong>Google</strong></td>
+                    <td>Borg (internal), Kubernetes (open-source)</td>
+                    <td>Pelopor container orchestration dan IaC.</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Simulasi CI/CD sederhana -->
+        <div class="demo-area">
+            <div class="demo-header">
+                <i class="fas fa-play-circle" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Simulasi GitHub Actions Workflow</h3>
+            </div>
+            <div class="demo-panel">
+                <p style="margin-bottom:1rem;">Workflow sederhana: ketika ada push ke branch main, akan dijalankan build dan test.</p>
+                <div class="demo-code">
+name: CI Pipeline
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+                </div>
+                <button class="btn" id="runPipelineBtn">▶️ Jalankan Pipeline (Simulasi)</button>
+                <div class="demo-output" id="pipelineOutput">
+                    // Log simulasi akan muncul di sini
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        const pipelineOutput = document.getElementById('pipelineOutput');
+        document.getElementById('runPipelineBtn').addEventListener('click', () => {
+            pipelineOutput.innerHTML = `\
+$ git push origin main
+remote: GitHub Actions: triggered workflow "CI Pipeline"
+[1/5] actions/checkout@v3 ... ✅
+[2/5] Install dependencies: npm install ... ✅
+[3/5] Run tests: npm test ... ✅
+> test: passing (12 tests)
+✅ Pipeline succeeded.`;
+        });
+    </script>
+</body>
+</html>

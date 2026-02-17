@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keamanan Aplikasi · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+        .card { max-width:1300px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; }
+        .logo h1 { font-size:2.5rem; color:#1E2F4F; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; font-weight:500; box-shadow:0 5px 0 #0f1e2f; transition:0.1s; display:inline-flex; align-items:center; gap:10px; }
+        .back-link a:active { transform:translateY(3px); box-shadow:0 2px 0 #0f1e2f; }
+        .page-title { font-size:2.2rem; font-weight:700; color:#1E2F4F; margin:1rem 0 0.5rem; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; }
+        .subtitle { color:#2F8F9D; font-size:1.3rem; margin-bottom:2rem; font-style:italic; }
+
+        .section-title {
+            color: #1E2F4F;
+            margin: 2.5rem 0 1rem;
+            font-size: 1.8rem;
+            border-left: 8px solid #2F8F9D;
+            padding-left: 1.2rem;
+        }
+
+        .topic-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .topic-card {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            flex: 1 1 280px;
+            border: 1px solid #2F8F9D;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+            transition: 0.2s;
+        }
+        .topic-card:hover {
+            transform: translateY(-5px);
+            border-color: #f7d44b;
+        }
+        .topic-card h3 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-left: 6px solid #2F8F9D;
+            padding-left: 0.8rem;
+        }
+        .topic-card p {
+            color: #2d3e5c;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .topic-card ul {
+            margin-left: 1.2rem;
+            color: #2d3e5c;
+        }
+
+        .tool-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            justify-content: center;
+        }
+        .tool-btn {
+            background: #2F8F9D;
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 0 #195e68;
+            transition: 0.1s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tool-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #195e68;
+        }
+
+        .demo-area {
+            background: #e3eef5;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #2F8F9D;
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .demo-header h3 {
+            color: #1E2F4F;
+            font-size: 1.6rem;
+        }
+        .demo-panel {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: inset 0 0 10px #cbd6e8;
+        }
+        .demo-code {
+            background: #1E2F4F;
+            color: #f7d44b;
+            padding: 1rem;
+            border-radius: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+        .demo-input {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 30px;
+            border: 1px solid #2F8F9D;
+            margin: 0.5rem 0;
+        }
+        .demo-output {
+            background: #0f1a24;
+            color: #a3f7b5;
+            padding: 1rem;
+            border-radius: 20px;
+            font-family: 'Fira Code', monospace;
+            min-height: 80px;
+            margin-top: 1rem;
+        }
+        .btn {
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #b58f2b;
+            transition: 0.1s;
+            margin: 0.5rem 0.5rem 0 0;
+        }
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+
+        .footer-note { margin-top:2rem; text-align:center; color:#1E2F4F; opacity:0.8; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a></div>
+        </div>
+        <div class="page-title"><i class="fas fa-shield-alt"></i> Keamanan Aplikasi (Application Security)</div>
+        <div class="subtitle">Enkripsi, OWASP Top 10, Autentikasi (JWT/OAuth), Praktik Coding Aman</div>
+
+        <!-- 4 topik utama -->
+        <div class="topic-grid">
+            <!-- Enkripsi -->
+            <div class="topic-card">
+                <h3>🔐 Enkripsi</h3>
+                <p>Proses mengubah data menjadi format yang tidak dapat dibaca tanpa kunci. Jenis: Simetris (AES) dan Asimetris (RSA). Penting untuk penyimpanan kata sandi (hashing + salt) dan komunikasi (HTTPS).</p>
+                <a href="https://www.cloudflare.com/learning/ssl/what-is-encryption/" target="_blank" class="tool-btn">Cloudflare Encryption</a>
+                <a href="https://cryptii.com/" target="_blank" class="tool-btn">Cryptii (Playground)</a>
+            </div>
+            <!-- OWASP Top 10 -->
+            <div class="topic-card">
+                <h3>⚠️ OWASP Top 10</h3>
+                <p>10 risiko keamanan teratas untuk aplikasi web. Contoh: Injeksi SQL, Broken Authentication, XSS, Sensitive Data Exposure, dll.</p>
+                <ul>
+                    <li><strong>Injection</strong> – celah input</li>
+                    <li><strong>Broken Authentication</strong> – kelemahan login</li>
+                    <li><strong>XSS</strong> – skrip lintas situs</li>
+                </ul>
+                <a href="https://owasp.org/www-project-top-ten/" target="_blank" class="tool-btn">OWASP Official</a>
+            </div>
+            <!-- Autentikasi (JWT/OAuth) -->
+            <div class="topic-card">
+                <h3>🔑 Autentikasi (JWT/OAuth)</h3>
+                <p><strong>JWT (JSON Web Token):</strong> Token terstruktur (header.payload.signature) untuk mentransfer klaim antar pihak. Digunakan dalam autentikasi stateless.<br>
+                <strong>OAuth 2.0:</strong> Protokol otorisasi (misal Login dengan Google, Facebook).</p>
+                <a href="https://jwt.io/" target="_blank" class="tool-btn">jwt.io</a>
+                <a href="https://oauth.net/2/" target="_blank" class="tool-btn">OAuth.net</a>
+            </div>
+            <!-- Praktik Coding Aman -->
+            <div class="topic-card">
+                <h3>✅ Praktik Coding Aman</h3>
+                <p>Prinsip: validasi input, hindari hardcode credential, gunakan parameterized query, kelola sesi dengan aman, lakukan logging dan monitoring.</p>
+                <a href="https://cheatsheetseries.owasp.org/" target="_blank" class="tool-btn">OWASP Cheat Sheets</a>
+            </div>
+        </div>
+
+        <!-- Tabel Aplikasi Hits -->
+        <div style="background:white; border-radius:40px; padding:1.5rem; margin:2rem 0; border:1px solid #2F8F9D;">
+            <h3 style="color:#1E2F4F; margin-bottom:1rem;"><i class="fas fa-star"></i> Contoh Aplikasi yang Menerapkan Keamanan</h3>
+            <table style="width:100%; border-collapse:collapse;">
+                <tr style="background:#2F8F9D; color:white;">
+                    <th style="padding:10px; border-radius:20px 0 0 20px;">Aplikasi</th>
+                    <th style="padding:10px;">Praktik Keamanan</th>
+                    <th style="padding:10px; border-radius:0 20px 20px 0;">Keterangan</th>
+                </tr>
+                <tr style="border-bottom:1px solid #e3eef5;">
+                    <td style="padding:10px;"><strong>WhatsApp</strong></td>
+                    <td>End-to-end encryption</td>
+                    <td>Semua pesan dienkripsi menggunakan protokol Signal.</td>
+                </tr>
+                <tr style="border-bottom:1px solid #e3eef5;">
+                    <td style="padding:10px;"><strong>Google</strong></td>
+                    <td>OAuth 2.0, HSTS</td>
+                    <td>Login dengan Google menggunakan OAuth, seluruh layanan menggunakan HTTPS.</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px;"><strong>GitHub</strong></td>
+                    <td>JWT, 2FA, Secure coding</td>
+                    <td>Menggunakan JWT untuk API, mewajibkan 2FA untuk kontributor penting.</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Demo Interaktif: JWT Simulator & Caesar Cipher -->
+        <div class="demo-area">
+            <div class="demo-header">
+                <i class="fas fa-flask" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Simulasi JWT & Enkripsi Sederhana</h3>
+            </div>
+            <div class="demo-panel">
+                <h4 style="color:#1E2F4F;">🔹 JWT Encoder (simulasi)</h4>
+                <input type="text" id="jwtPayload" class="demo-input" placeholder='Contoh: {"user":"budi","role":"admin"}' value='{"user":"budi","role":"admin"}'>
+                <button class="btn" id="generateJwt">Generate JWT</button>
+                <div class="demo-output" id="jwtOutput">// JWT akan muncul di sini</div>
+
+                <h4 style="color:#1E2F4F; margin-top:2rem;">🔹 Caesar Cipher (enkripsi sederhana)</h4>
+                <input type="text" id="plainText" class="demo-input" placeholder="Teks rahasia" value="HELLO">
+                <input type="number" id="shift" class="demo-input" placeholder="Shift (misal 3)" value="3">
+                <button class="btn" id="encryptBtn">🔒 Enkripsi</button>
+                <button class="btn" id="decryptBtn">🔓 Dekripsi</button>
+                <div class="demo-output" id="cipherOutput">// Hasil enkripsi/dekripsi</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        // JWT Simulator (hanya format, tidak ada signature asli)
+        function base64urlEncode(str) {
+            return btoa(str).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+        }
+
+        document.getElementById('generateJwt').addEventListener('click', () => {
+            const payloadStr = document.getElementById('jwtPayload').value;
+            try {
+                // Coba parse JSON untuk memastikan valid
+                JSON.parse(payloadStr);
+                const header = { alg: "HS256", typ: "JWT" };
+                const encodedHeader = base64urlEncode(JSON.stringify(header));
+                const encodedPayload = base64urlEncode(payloadStr);
+                // Signature palsu (contoh)
+                const signature = "dummy_signature_untuk_demo";
+                const jwt = `${encodedHeader}.${encodedPayload}.${signature}`;
+                document.getElementById('jwtOutput').innerText = jwt;
+            } catch (e) {
+                document.getElementById('jwtOutput').innerText = 'Payload tidak valid JSON!';
+            }
+        });
+
+        // Caesar Cipher
+        function caesar(text, shift, decode = false) {
+            if (decode) shift = -shift;
+            return text.split('').map(char => {
+                if (char.match(/[A-Z]/)) {
+                    return String.fromCharCode(((char.charCodeAt(0) - 65 + shift) % 26 + 26) % 26 + 65);
+                } else if (char.match(/[a-z]/)) {
+                    return String.fromCharCode(((char.charCodeAt(0) - 97 + shift) % 26 + 26) % 26 + 97);
+                } else {
+                    return char;
+                }
+            }).join('');
+        }
+
+        document.getElementById('encryptBtn').addEventListener('click', () => {
+            const text = document.getElementById('plainText').value;
+            const shift = parseInt(document.getElementById('shift').value) || 0;
+            const result = caesar(text, shift);
+            document.getElementById('cipherOutput').innerText = 'Terenkripsi: ' + result;
+        });
+
+        document.getElementById('decryptBtn').addEventListener('click', () => {
+            const text = document.getElementById('plainText').value;
+            const shift = parseInt(document.getElementById('shift').value) || 0;
+            const result = caesar(text, shift, true);
+            document.getElementById('cipherOutput').innerText = 'Terdekripsi: ' + result;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase A · Informatika SD · Retno Ariyanti</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f3fa 0%, #e6ecf7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .fase-card {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 3.5rem 3.5rem 2.5rem 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,20,40,0.3), 0 0 0 1px rgba(156, 180, 215, 0.3) inset;
+            padding: 2.2rem 2.5rem 3rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .header-fase {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px dashed #2F8F9D;
+            padding-bottom: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1E2F4F;
+            text-shadow: 2px 2px 0 rgba(47,143,157,0.2);
+        }
+
+        .back-home a {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            border: 1px solid white;
+        }
+        .back-home a:hover {
+            background: #2F8F9D;
+            transform: scale(1.02);
+        }
+
+        .judul-fase {
+            font-size: 2.5rem;
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+        }
+        .judul-fase small {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #2F8F9D;
+            display: block;
+        }
+
+        .pengertian {
+            background: rgba(47,143,157,0.1);
+            border-radius: 40px;
+            padding: 1.8rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #2F8F9D;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .tp-section {
+            margin: 2.5rem 0;
+        }
+        .tp-section h3 {
+            font-size: 1.8rem;
+            color: #1E2F4F;
+            margin-bottom: 1.5rem;
+        }
+        .tp-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .tp-item {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 10px rgba(30,47,79,0.05);
+            border: 1px solid rgba(47,143,157,0.3);
+            display: flex;
+            gap: 1rem;
+        }
+        .tp-icon {
+            background: #2F8F9D;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .tp-text {
+            font-size: 1rem;
+            color: #1a2b41;
+        }
+
+        .kelengkapan {
+            background: #ffffffb0;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .kelengkapan h3 {
+            font-size: 1.8rem;
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+        }
+        .kelengkapan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .kelengkapan-item {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #2F8F9D;
+        }
+        .kelengkapan-item i {
+            font-size: 3rem;
+            color: #2F8F9D;
+            margin-bottom: 0.8rem;
+        }
+        .kelengkapan-item h4 {
+            color: #1E2F4F;
+            margin-bottom: 0.5rem;
+        }
+        .btn-download {
+            background: #f7d44b;
+            color: #1E2F4F;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 0.5rem;
+            border: 1px solid white;
+            box-shadow: 0 3px 0 #b58f2b;
+            transition: 0.1s;
+        }
+        .btn-download:active {
+            transform: translateY(3px);
+            box-shadow: none;
+        }
+
+        .proyek {
+            background: linear-gradient(145deg, #d4e2f0, #c2d6e8);
+            border-radius: 50px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .proyek h3 {
+            font-size: 2rem;
+            color: #1E2F4F;
+        }
+        .proyek-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        .proyek-text {
+            flex: 2;
+            font-size: 1.2rem;
+        }
+        .proyek-text i {
+            color: #f7d44b;
+            background: #1E2F4F;
+            padding: 0.5rem;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        .proyek-cta {
+            flex: 1;
+            background: #1E2F4F;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 40px;
+            text-align: center;
+        }
+        .proyek-cta a {
+            color: #f7d44b;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .interaktif {
+            background: #1E2F4F;
+            border-radius: 50px;
+            padding: 2rem;
+            margin-top: 2.5rem;
+            color: white;
+        }
+        .interaktif h3 {
+            font-size: 2rem;
+            color: #f7d44b;
+            margin-bottom: 1.5rem;
+        }
+        .game-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .game-card {
+            background: white;
+            width: 120px;
+            height: 120px;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #1E2F4F;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 5px solid transparent;
+        }
+        .game-card span {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+        .game-card.correct {
+            border-color: #00c851;
+            background: #e0f7e0;
+        }
+        .game-card.wrong {
+            border-color: #ff4444;
+            background: #ffe0e0;
+        }
+        .game-card.disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .game-info {
+            text-align: center;
+            font-size: 1.3rem;
+        }
+        .btn-reset-game {
+            background: #f7d44b;
+            color: #1E2F4F;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #b58f2b;
+            transition: 0.1s;
+            margin-top: 1rem;
+        }
+        .btn-reset-game:active {
+            transform: translateY(5px);
+            box-shadow: none;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            color: #1E2F4F;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="fase-card">
+        <div class="header-fase">
+            <div class="logo">
+                <h1>RETNO</h1>
+            </div>
+            <div class="back-home">
+                <a href="kelas.html"><i class="fas fa-arrow-left"></i> Kembali ke Kelas</a>
+            </div>
+        </div>
+
+        <h1 class="judul-fase">Fase A <small>Kelas 1–2 SD · Mengenal Dunia Digital</small></h1>
+
+        <!-- Pengertian singkat -->
+        <div class="pengertian">
+            <i class="fas fa-rocket" style="color:#2F8F9D; margin-right:10px;"></i> 
+            Di fase ini, siswa diajak menjadi <strong>penjelajah cilik dunia digital</strong>. Mereka belajar mengenali berbagai perangkat teknologi (komputer, tablet, ponsel) yang ada di rumah dan sekolah, memahami cara menggunakannya dengan aman dan sehat, serta mulai terbiasa dengan instruksi sederhana. Semua dikemas dengan bermain, bernyanyi, dan bercerita — karena belajar Informatika itu menyenangkan!
+        </div>
+
+        <!-- Tujuan Pembelajaran -->
+        <div class="tp-section">
+            <h3><i class="fas fa-bullseye" style="color:#2F8F9D;"></i> Tujuan Pembelajaran</h3>
+            <div class="tp-list">
+                <div class="tp-item">
+                    <div class="tp-icon">1</div>
+                    <div class="tp-text">Mengidentifikasi berbagai perangkat TIK (komputer, laptop, tablet, ponsel) di lingkungan sekitarnya.</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">2</div>
+                    <div class="tp-text">Menjalankan instruksi sederhana seperti menekan tombol, membuka aplikasi, dan menggambar dengan perangkat.</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">3</div>
+                    <div class="tp-text">Mengelompokkan objek berdasarkan ciri-ciri (misalnya: yang pakai listrik dan tidak) — awal berpikir komputasional.</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">4</div>
+                    <div class="tp-text">Menggunakan perangkat bersama dengan tertib dan mengenal aturan dasar penggunaan (durasi, sikap tubuh).</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kelengkapan Modul -->
+        <div class="kelengkapan">
+            <h3><i class="fas fa-box-open"></i> Kelengkapan Modul</h3>
+            <div class="kelengkapan-grid">
+                <div class="kelengkapan-item">
+                    <i class="fas fa-images"></i>
+                    <h4>Kartu Bergambar</h4>
+                    <p>32 kartu perangkat digital & non-digital (siap cetak)</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh PDF</a>
+                </div>
+                <div class="kelengkapan-item">
+                    <i class="fas fa-print"></i>
+                    <h4>Lembar Kerja</h4>
+                    <p>"Detektif Digital" – aktivitas mengelompokkan gambar</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh</a>
+                </div>
+                <div class="kelengkapan-item">
+                    <i class="fas fa-video"></i>
+                    <h4>Video Animasi</h4>
+                    <p>"Petualangan di Dunia Digital" (5 menit)</p>
+                    <a href="#" class="btn-download"><i class="fas fa-play"></i> Tonton</a>
+                </div>
+                <div class="kelengkapan-item">
+                    <i class="fas fa-users"></i>
+                    <h4>Panduan Orang Tua</h4>
+                    <p>Tips aktivitas tanpa gadget dan aturan screen time</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ide Proyek -->
+        <div class="proyek">
+            <h3><i class="fas fa-lightbulb"></i> Proyek: Detektif Benda Digital</h3>
+            <div class="proyek-content">
+                <div class="proyek-text">
+                    <p><i class="fas fa-magnifying-glass"></i> Siswa menjadi detektif yang mencari gambar perangkat digital dari majalah, koran, atau katalog bekas. Mereka menggunting, mengelompokkan, dan menempelkannya pada kertas poster. Tambahkan label sederhana (misal: "ini komputer", "ini tablet").</p>
+                    <p style="margin-top: 1rem;"><strong>Bahan:</strong> majalah bekas, gunting, lem, kertas karton, spidol.</p>
+                </div>
+                <div class="proyek-cta">
+                    <i class="fas fa-download" style="font-size: 2rem;"></i>
+                    <p style="margin: 1rem 0;">Unduh lembar panduan proyek untuk guru/orang tua.</p>
+                    <a href="#" class="btn-download" style="background: #f7d44b;">Ambil Panduan</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aktivitas Interaktif -->
+        <div class="interaktif">
+            <h3><i class="fas fa-gamepad"></i> Ayo Main: Kelompokkan Benda Digital</h3>
+            <p style="margin-bottom: 1rem;">Klik gambar yang termasuk perangkat digital (komputer, tablet, mouse). Hati-hati dengan benda non-digital seperti buku dan pensil!</p>
+            
+            <div class="game-grid" id="gameGrid">
+                <!-- Akan diisi JavaScript -->
+            </div>
+
+            <div class="game-info" id="gameInfo">
+                Skor: <span id="scoreValue">0</span> / 3
+            </div>
+
+            <button class="btn-reset-game" id="resetGame"><i class="fas fa-rotate-left"></i> Main Lagi</button>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-heart" style="color:#2F8F9D;"></i> Rancangan sesuai Kurikulum Merdeka Fase A – Retno Ariyanti
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Data untuk game interaktif
+            const items = [
+                { icon: 'fa-laptop', label: 'Laptop', isDigital: true, id: 0 },
+                { icon: 'fa-tablet-alt', label: 'Tablet', isDigital: true, id: 1 },
+                { icon: 'fa-mouse', label: 'Mouse', isDigital: true, id: 2 },
+                { icon: 'fa-book', label: 'Buku', isDigital: false, id: 3 },
+                { icon: 'fa-pencil-alt', label: 'Pensil', isDigital: false, id: 4 }
+            ];
+
+            const gameGrid = document.getElementById('gameGrid');
+            const scoreSpan = document.getElementById('scoreValue');
+            const resetBtn = document.getElementById('resetGame');
+            let score = 0;
+            let correctClicked = [false, false, false]; // untuk 3 item digital
+            let gameActive = true;
+
+            function renderGame() {
+                gameGrid.innerHTML = '';
+                items.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'game-card';
+                    if (!gameActive) card.classList.add('disabled');
+                    card.dataset.id = item.id;
+                    card.dataset.digital = item.isDigital;
+                    card.innerHTML = `<i class="fas ${item.icon}"></i><span>${item.label}</span>`;
+                    
+                    // Jika sudah benar, tandai
+                    if (item.isDigital && correctClicked[items.findIndex(i => i.id === item.id)]) {
+                        card.classList.add('correct');
+                    } else if (!item.isDigital && item.clickedWrong) {
+                        card.classList.add('wrong');
+                    }
+
+                    card.addEventListener('click', function(e) {
+                        if (!gameActive) return;
+                        if (this.classList.contains('correct') || this.classList.contains('wrong')) return;
+
+                        const isDigital = this.dataset.digital === 'true';
+                        const id = parseInt(this.dataset.id);
+                        const idx = items.findIndex(i => i.id === id);
+
+                        if (isDigital) {
+                            // Jika benar
+                            this.classList.add('correct');
+                            correctClicked[idx] = true;
+                            score++;
+                            scoreSpan.innerText = score;
+
+                            // Cek menang
+                            if (score === 3) {
+                                gameActive = false;
+                                alert('🎉 Selamat! Kamu berhasil mengelompokkan semua perangkat digital!');
+                                // Nonaktifkan semua kartu
+                                document.querySelectorAll('.game-card').forEach(c => c.classList.add('disabled'));
+                            }
+                        } else {
+                            // Jika salah
+                            this.classList.add('wrong');
+                            items[idx].clickedWrong = true; // simpan status
+                            alert('❌ Bukan perangkat digital. Coba lagi!');
+                        }
+                    });
+
+                    gameGrid.appendChild(card);
+                });
+            }
+
+            function resetGame() {
+                score = 0;
+                correctClicked = [false, false, false];
+                gameActive = true;
+                // Hapus semua status
+                items.forEach(item => delete item.clickedWrong);
+                renderGame();
+                scoreSpan.innerText = '0';
+            }
+
+            resetBtn.addEventListener('click', resetGame);
+
+            // Render awal
+            renderGame();
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar HTML5 · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style-web.css">
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="webdesign.html"><i class="fas fa-arrow-left"></i> Kembali</a></div>
+        </div>
+        <div class="page-title"><i class="fab fa-html5" style="color:#e34c26;"></i> HTML5 Lengkap</div>
+        <div class="content">
+            <p><strong>HTML (HyperText Markup Language)</strong> adalah bahasa standar untuk membuat halaman web. HTML5 adalah versi terbaru yang memperkenalkan elemen semantik dan API modern.</p>
+
+            <h2>🔹 Struktur Dasar Dokumen HTML5</h2>
+            <div class="code">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Judul Halaman&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Halo Dunia!&lt;/h1&gt;
+    &lt;p&gt;Ini paragraf pertama.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </div>
+
+            <h2>🔹 Elemen Semantik HTML5</h2>
+            <p>Elemen semantik memberikan makna pada struktur halaman, membantu SEO dan aksesibilitas.</p>
+            <div class="tag-list">
+                <span class="tag-item">&lt;header&gt;</span>
+                <span class="tag-item">&lt;nav&gt;</span>
+                <span class="tag-item">&lt;main&gt;</span>
+                <span class="tag-item">&lt;article&gt;</span>
+                <span class="tag-item">&lt;section&gt;</span>
+                <span class="tag-item">&lt;aside&gt;</span>
+                <span class="tag-item">&lt;footer&gt;</span>
+            </div>
+            <div class="code">
+&lt;header&gt;Logo dan judul situs&lt;/header&gt;
+&lt;nav&gt;&lt;a href="#"&gt;Home&lt;/a&gt; &lt;a href="#"&gt;Tentang&lt;/a&gt;&lt;/nav&gt;
+&lt;main&gt;
+    &lt;article&gt;
+        &lt;h2&gt;Judul Artikel&lt;/h2&gt;
+        &lt;p&gt;Isi artikel...&lt;/p&gt;
+    &lt;/article&gt;
+&lt;/main&gt;
+&lt;footer&gt;Hak cipta &amp;copy; 2025&lt;/footer&gt;
+            </div>
+
+            <h2>🔹 Heading dan Paragraf</h2>
+            <div class="tag-list">
+                <span class="tag-item">&lt;h1&gt; - &lt;h6&gt;</span>
+                <span class="tag-item">&lt;p&gt;</span>
+                <span class="tag-item">&lt;br&gt;</span>
+                <span class="tag-item">&lt;hr&gt;</span>
+            </div>
+            <div class="code">
+&lt;h1&gt;Judul Utama&lt;/h1&gt;
+&lt;h2&gt;Sub Judul&lt;/h2&gt;
+&lt;p&gt;Ini adalah paragraf.&lt;br&gt;Baris baru.&lt;/p&gt;
+&lt;hr&gt;
+            </div>
+
+            <h2>🔹 Tautan dan Gambar</h2>
+            <div class="tag-list">
+                <span class="tag-item">&lt;a&gt;</span>
+                <span class="tag-item">&lt;img&gt;</span>
+            </div>
+            <div class="code">
+&lt;a href="https://example.com" target="_blank"&gt;Kunjungi Situs&lt;/a&gt;
+&lt;img src="gambar.jpg" alt="Deskripsi gambar" width="300"&gt;
+            </div>
+
+            <h2>🔹 Daftar (List)</h2>
+            <div class="tag-list">
+                <span class="tag-item">&lt;ul&gt;</span>
+                <span class="tag-item">&lt;ol&gt;</span>
+                <span class="tag-item">&lt;li&gt;</span>
+            </div>
+            <div class="code">
+&lt;ul&gt;
+    &lt;li&gt;Item tidak berurutan&lt;/li&gt;
+    &lt;li&gt;Item kedua&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+    &lt;li&gt;Pertama&lt;/li&gt;
+    &lt;li&gt;Kedua&lt;/li&gt;
+&lt;/ol&gt;
+            </div>
+
+            <h2>🔹 Tabel</h2>
+            <div class="tag-list">
+                <span class="tag-item">&lt;table&gt;</span>
+                <span class="tag-item">&lt;tr&gt;</span>
+                <span class="tag-item">&lt;th&gt;</span>
+                <span class="tag-item">&lt;td&gt;</span>
+            </div>
+            <div class="code">
+&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Nama&lt;/th&gt;
+        &lt;th&gt;Umur&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Budi&lt;/td&gt;
+        &lt;td&gt;20&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+            </div>
+
+            <h2>🔹 Formulir</h2>
+            <div class="tag-list">
+                <span class="tag-item">&lt;form&gt;</span>
+                <span class="tag-item">&lt;input&gt;</span>
+                <span class="tag-item">&lt;textarea&gt;</span>
+                <span class="tag-item">&lt;button&gt;</span>
+                <span class="tag-item">&lt;select&gt;</span>
+                <span class="tag-item">&lt;label&gt;</span>
+            </div>
+            <div class="code">
+&lt;form action="/proses" method="post"&gt;
+    &lt;label for="nama"&gt;Nama:&lt;/label&gt;
+    &lt;input type="text" id="nama" name="nama" required&gt;
+    &lt;br&gt;
+    &lt;label for="pesan"&gt;Pesan:&lt;/label&gt;
+    &lt;textarea id="pesan" name="pesan"&gt;&lt;/textarea&gt;
+    &lt;br&gt;
+    &lt;button type="submit"&gt;Kirim&lt;/button&gt;
+&lt;/form&gt;
+            </div>
+
+            <h2>🔹 Elemen Multimedia</h2>
+            <div class="tag-list">
+                <span class="tag-item">&lt;audio&gt;</span>
+                <span class="tag-item">&lt;video&gt;</span>
+                <span class="tag-item">&lt;iframe&gt;</span>
+            </div>
+            <div class="code">
+&lt;video controls width="320"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+&lt;audio controls&gt;
+    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;
+            </div>
+
+            <h2>🔹 Elemen Lainnya</h2>
+            <div class="tag-list">
+                <span class="tag-item">&lt;div&gt;</span>
+                <span class="tag-item">&lt;span&gt;</span>
+                <span class="tag-item">&lt;strong&gt;</span>
+                <span class="tag-item">&lt;em&gt;</span>
+                <span class="tag-item">&lt;blockquote&gt;</span>
+                <span class="tag-item">&lt;code&gt;</span>
+            </div>
+
+            <a href="https://www.w3schools.com/html/default.asp" target="_blank" class="btn-link"><i class="fas fa-external-link-alt"></i> Tutorial HTML di W3Schools</a>
+            <a href="https://developer.mozilla.org/id/docs/Web/HTML" target="_blank" class="btn-link"><i class="fab fa-firefox"></i> MDN Web Docs</a>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="webdesign.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Kembali</a>
+            <a href="css.html" class="nav-btn">CSS <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+</body>
+</html>

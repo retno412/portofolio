@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemrograman Fungsional · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+        .card { max-width:1300px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; }
+        .logo h1 { font-size:2.5rem; color:#1E2F4F; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; font-weight:500; box-shadow:0 5px 0 #0f1e2f; transition:0.1s; display:inline-flex; align-items:center; gap:10px; }
+        .back-link a:active { transform:translateY(3px); box-shadow:0 2px 0 #0f1e2f; }
+        .page-title { font-size:2.2rem; font-weight:700; color:#1E2F4F; margin:1rem 0 0.5rem; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; }
+        .subtitle { color:#2F8F9D; font-size:1.3rem; margin-bottom:2rem; font-style:italic; }
+
+        .section-title {
+            color: #1E2F4F;
+            margin: 2.5rem 0 1rem;
+            font-size: 1.8rem;
+            border-left: 8px solid #2F8F9D;
+            padding-left: 1.2rem;
+        }
+
+        .paradigm-desc {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            margin: 2rem 0;
+            border: 1px solid #2F8F9D;
+            line-height: 1.6;
+        }
+
+        .lang-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+        .lang-card {
+            background: white;
+            border-radius: 40px;
+            padding: 2rem;
+            flex: 1 1 250px;
+            text-align: center;
+            border: 1px solid #2F8F9D;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+        }
+        .lang-card i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .lang-card h3 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+        }
+        .lang-card a {
+            background: #2F8F9D;
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            box-shadow: 0 4px 0 #195e68;
+            transition: 0.1s;
+        }
+        .lang-card a:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #195e68;
+        }
+
+        .js-functions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .func-card {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            flex: 1 1 250px;
+            border: 1px solid #2F8F9D;
+        }
+        .func-card h3 {
+            color: #1E2F4F;
+            margin-bottom: 0.8rem;
+            border-left: 6px solid #2F8F9D;
+            padding-left: 0.8rem;
+        }
+        .func-card pre {
+            background: #1E2F4F;
+            color: #f7d44b;
+            padding: 0.8rem;
+            border-radius: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .demo-area {
+            background: #e3eef5;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #2F8F9D;
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .demo-header h3 {
+            color: #1E2F4F;
+            font-size: 1.6rem;
+        }
+        .demo-panel {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: inset 0 0 10px #cbd6e8;
+        }
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: flex-end;
+            margin-bottom: 1rem;
+        }
+        .input-group label {
+            font-weight: 600;
+            color: #1E2F4F;
+        }
+        .input-group input, .input-group select {
+            padding: 0.6rem 1rem;
+            border-radius: 30px;
+            border: 1px solid #2F8F9D;
+            font-size: 1rem;
+            flex: 1;
+            min-width: 200px;
+        }
+        .btn {
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #b58f2b;
+            transition: 0.1s;
+        }
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+        .result-box {
+            background: #0f1a24;
+            color: #a3f7b5;
+            padding: 1rem;
+            border-radius: 20px;
+            font-family: 'Fira Code', monospace;
+            margin-top: 1rem;
+            min-height: 80px;
+        }
+
+        .footer-note { margin-top:2rem; text-align:center; color:#1E2F4F; opacity:0.8; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a></div>
+        </div>
+        <div class="page-title"><i class="fas fa-lambda"></i> Pemrograman Fungsional</div>
+        <div class="subtitle">Haskell, Scala, dan fitur JavaScript (map, filter, reduce)</div>
+
+        <!-- Pengantar -->
+        <div class="paradigm-desc">
+            <p><strong>Paradigma fungsional</strong> memandang komputasi sebagai evaluasi fungsi matematis dan menghindari perubahan state (immutable). Kode lebih ekspresif, mudah diuji, dan cocok untuk pemrosesan data paralel. Bahasa fungsional murni seperti <strong>Haskell</strong>, atau multi-paradigma seperti <strong>Scala</strong> dan <strong>JavaScript</strong> (dengan fitur fungsional).</p>
+        </div>
+
+        <!-- Bahasa: Haskell & Scala -->
+        <h2 class="section-title"><i class="fas fa-language"></i> Bahasa Fungsional</h2>
+        <div class="lang-grid">
+            <div class="lang-card">
+                <i class="fas fa-code" style="color:#5D4F85;"></i> <!-- ikon Haskell tidak ada di fontawesome, pakai generic -->
+                <h3>Haskell</h3>
+                <p>Fungsional murni, lazy evaluation, sistem tipe kuat. Digunakan di riset dan industri (Facebook, GitHub).</p>
+                <a href="https://www.haskell.org/documentation/" target="_blank">Pelajari Haskell</a>
+            </div>
+            <div class="lang-card">
+                <i class="fas fa-code" style="color:#DE3423;"></i> <!-- ikon Scala -->
+                <h3>Scala</h3>
+                <p>Menggabungkan OOP dan fungsional, berjalan di JVM. Populer untuk big data (Apache Spark).</p>
+                <a href="https://docs.scala-lang.org/" target="_blank">Pelajari Scala</a>
+            </div>
+        </div>
+
+        <!-- Fitur JavaScript: map, filter, reduce -->
+        <h2 class="section-title"><i class="fab fa-js"></i> JavaScript: Map, Filter, Reduce</h2>
+        <div class="js-functions">
+            <div class="func-card">
+                <h3>🔹 map()</h3>
+                <p>Membuat array baru dengan hasil pemanggilan fungsi pada setiap elemen.</p>
+                <pre>const angka = [1,2,3];<br>const kaliDua = angka.map(x => x * 2);<br>// hasil: [2,4,6]</pre>
+            </div>
+            <div class="func-card">
+                <h3>🔹 filter()</h3>
+                <p>Menyaring elemen yang memenuhi kondisi.</p>
+                <pre>const angka = [1,2,3,4];<br>const genap = angka.filter(x => x % 2 === 0);<br>// hasil: [2,4]</pre>
+            </div>
+            <div class="func-card">
+                <h3>🔹 reduce()</h3>
+                <p>Mereduksi array menjadi nilai tunggal (akumulasi).</p>
+                <pre>const angka = [1,2,3,4];<br>const jumlah = angka.reduce((acc, cur) => acc + cur, 0);<br>// hasil: 10</pre>
+            </div>
+        </div>
+
+        <!-- Simulasi Interaktif -->
+        <div class="demo-area">
+            <div class="demo-header">
+                <i class="fas fa-flask" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Coba Sendiri: Map, Filter, Reduce</h3>
+            </div>
+            <div class="demo-panel">
+                <div class="input-group">
+                    <label>Array (pisahkan dengan koma):</label>
+                    <input type="text" id="arrayInput" value="1,2,3,4,5" placeholder="contoh: 1,2,3,4">
+                </div>
+                <div class="input-group">
+                    <label>Pilih Operasi:</label>
+                    <select id="operationSelect">
+                        <option value="mapDouble">map (kali 2)</option>
+                        <option value="mapSquare">map (kuadrat)</option>
+                        <option value="filterGenap">filter (bilangan genap)</option>
+                        <option value="filterGanjil">filter (bilangan ganjil)</option>
+                        <option value="reduceJumlah">reduce (jumlah total)</option>
+                        <option value="reduceRata">reduce (rata-rata)</option>
+                    </select>
+                    <button class="btn" id="runBtn">Jalankan</button>
+                </div>
+                <div class="result-box" id="result">
+                    Hasil akan muncul di sini
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        const arrayInput = document.getElementById('arrayInput');
+        const operationSelect = document.getElementById('operationSelect');
+        const runBtn = document.getElementById('runBtn');
+        const resultDiv = document.getElementById('result');
+
+        function parseArray(str) {
+            return str.split(',').map(Number).filter(n => !isNaN(n));
+        }
+
+        runBtn.addEventListener('click', () => {
+            const arr = parseArray(arrayInput.value);
+            if (arr.length === 0) {
+                resultDiv.innerText = 'Array tidak valid. Masukkan angka dipisah koma.';
+                return;
+            }
+
+            const op = operationSelect.value;
+            let output;
+
+            switch (op) {
+                case 'mapDouble':
+                    output = arr.map(x => x * 2);
+                    break;
+                case 'mapSquare':
+                    output = arr.map(x => x * x);
+                    break;
+                case 'filterGenap':
+                    output = arr.filter(x => x % 2 === 0);
+                    break;
+                case 'filterGanjil':
+                    output = arr.filter(x => x % 2 !== 0);
+                    break;
+                case 'reduceJumlah':
+                    output = arr.reduce((acc, cur) => acc + cur, 0);
+                    break;
+                case 'reduceRata':
+                    const sum = arr.reduce((acc, cur) => acc + cur, 0);
+                    output = sum / arr.length;
+                    break;
+                default:
+                    output = 'Operasi tidak dikenal';
+            }
+
+            resultDiv.innerText = 'Hasil: ' + JSON.stringify(output);
+        });
+    </script>
+</body>
+</html>

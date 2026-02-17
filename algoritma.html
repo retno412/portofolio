@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritma dan Struktur Data · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+        .card { max-width:1300px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; }
+        .logo h1 { font-size:2.5rem; color:#1E2F4F; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; font-weight:500; box-shadow:0 5px 0 #0f1e2f; transition:0.1s; display:inline-flex; align-items:center; gap:10px; }
+        .back-link a:active { transform:translateY(3px); box-shadow:0 2px 0 #0f1e2f; }
+        .page-title { font-size:2.2rem; font-weight:700; color:#1E2F4F; margin:1rem 0 0.5rem; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; }
+        .subtitle { color:#2F8F9D; font-size:1.3rem; margin-bottom:2rem; font-style:italic; }
+
+        .topic-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .topic-card {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            flex: 1 1 300px;
+            border: 1px solid #2F8F9D;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+        }
+        .topic-card h3 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-left: 6px solid #2F8F9D;
+            padding-left: 0.8rem;
+        }
+        .topic-card p {
+            color: #2d3e5c;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .code {
+            background: #1E2F4F;
+            color: #f7d44b;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin: 0.2rem 0;
+        }
+
+        .demo-area {
+            background: #e3eef5;
+            border-radius: 30px;
+            padding: 1rem;
+            margin: 1rem 0;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .array-bars {
+            display: flex;
+            align-items: flex-end;
+            height: 120px;
+            gap: 5px;
+            margin: 10px 0;
+        }
+        .bar {
+            width: 30px;
+            background: #2F8F9D;
+            border-radius: 10px 10px 0 0;
+            transition: height 0.3s;
+        }
+        .btn {
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #b58f2b;
+            transition: 0.1s;
+            margin: 0.5rem;
+        }
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+        .linked-list {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .node {
+            background: #2F8F9D;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 30px;
+            position: relative;
+            box-shadow: 0 4px 0 #195e68;
+        }
+        .node::after {
+            content: "→";
+            position: absolute;
+            right: -18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #1E2F4F;
+        }
+        .node:last-child::after {
+            content: "";
+        }
+        .tree {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .tree-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 10px 0;
+        }
+        .tree-node {
+            background: #2F8F9D;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 0 #195e68;
+        }
+        .graph {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .graph-node {
+            background: #f7d44b;
+            color: #1E2F4F;
+            padding: 15px;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 0 #b58f2b;
+            position: relative;
+        }
+        .edge {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed #1E2F4F;
+            border-radius: 50%;
+        }
+
+        .footer-note { margin-top:2rem; text-align:center; color:#1E2F4F; opacity:0.8; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a></div>
+        </div>
+        <div class="page-title"><i class="fas fa-sitemap"></i> Algoritma & Struktur Data</div>
+        <div class="subtitle">Dasar pemrograman untuk memecahkan masalah secara efisien</div>
+
+        <div class="topic-grid">
+            <!-- Sorting -->
+            <div class="topic-card">
+                <h3>🔢 Sorting</h3>
+                <p>Mengurutkan data. Contoh: Bubble Sort, Quick Sort, Merge Sort. <br>Kompleksitas: O(n²) untuk bubble, O(n log n) untuk quick/merge.</p>
+                <div class="demo-area">
+                    <div class="array-bars" id="sortBars"></div>
+                    <button class="btn" id="randomizeBtn">Acak</button>
+                    <button class="btn" id="bubbleSortBtn">Bubble Sort</button>
+                </div>
+                <a href="https://www.w3schools.com/dsa/dsa_algo_bubblesort.php" target="_blank" class="btn" style="font-size:0.9rem;">Pelajari di W3Schools</a>
+            </div>
+
+            <!-- Searching -->
+            <div class="topic-card">
+                <h3>🔍 Searching</h3>
+                <p>Mencari nilai dalam data. Linear search (O(n)), binary search (O(log n)) untuk data terurut.</p>
+                <div class="demo-area">
+                    <div id="searchArray" style="display:flex; gap:5px; margin:10px 0; flex-wrap:wrap; justify-content:center;">
+                        <span class="code">5</span> <span class="code">12</span> <span class="code">23</span> <span class="code">34</span> <span class="code">45</span> <span class="code">56</span>
+                    </div>
+                    <input type="number" id="searchInput" placeholder="Cari angka" style="padding:8px; border-radius:30px; border:1px solid #2F8F9D; width:150px;">
+                    <button class="btn" id="binarySearchBtn">Binary Search</button>
+                    <p id="searchResult" style="margin-top:10px;"></p>
+                </div>
+                <a href="https://www.w3schools.com/dsa/dsa_algo_binarysearch.php" target="_blank" class="btn" style="font-size:0.9rem;">Pelajari Binary Search</a>
+            </div>
+
+            <!-- Linked List -->
+            <div class="topic-card">
+                <h3>🔗 Linked List</h3>
+                <p>Struktur data linear dengan node yang saling terhubung via pointer. Operasi: tambah, hapus, cari.</p>
+                <div class="demo-area">
+                    <div class="linked-list" id="linkedListDemo">
+                        <div class="node">5</div>
+                        <div class="node">12</div>
+                        <div class="node">23</div>
+                    </div>
+                    <button class="btn" id="addNodeBtn">Tambah Node (acak)</button>
+                </div>
+                <a href="https://www.w3schools.com/dsa/dsa_theory_linkedlist.php" target="_blank" class="btn" style="font-size:0.9rem;">Pelajari Linked List</a>
+            </div>
+
+            <!-- Tree -->
+            <div class="topic-card">
+                <h3>🌳 Tree</h3>
+                <p>Struktur hierarkis dengan root dan child. Contoh: Binary Search Tree, traversal (inorder, preorder, postorder).</p>
+                <div class="demo-area">
+                    <div class="tree">
+                        <div class="tree-row">
+                            <div class="tree-node">10</div>
+                        </div>
+                        <div class="tree-row">
+                            <div class="tree-node">5</div>
+                            <div class="tree-node">15</div>
+                        </div>
+                        <div class="tree-row">
+                            <div class="tree-node">2</div>
+                            <div class="tree-node">7</div>
+                            <div class="tree-node">12</div>
+                            <div class="tree-node">20</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://www.w3schools.com/dsa/dsa_data_binarysearchtrees.php" target="_blank" class="btn" style="font-size:0.9rem;">Pelajari Tree</a>
+            </div>
+
+            <!-- Graph -->
+            <div class="topic-card">
+                <h3>📊 Graph</h3>
+                <p>Kumpulan node (vertex) yang terhubung oleh edge. Digunakan untuk jaringan, peta, dll. Algoritma: BFS, DFS, Dijkstra.</p>
+                <div class="demo-area">
+                    <div class="graph">
+                        <div class="graph-node">A</div>
+                        <div class="graph-node">B</div>
+                        <div class="graph-node">C</div>
+                        <div class="graph-node">D</div>
+                    </div>
+                    <p style="font-size:0.8rem;">Edge: A-B, A-C, B-D, C-D</p>
+                </div>
+                <a href="https://www.w3schools.com/dsa/dsa_data_graphs.php" target="_blank" class="btn" style="font-size:0.9rem;">Pelajari Graph</a>
+            </div>
+
+            <!-- Time Complexity -->
+            <div class="topic-card">
+                <h3>⏱️ Kompleksitas Waktu</h3>
+                <p>Notasi Big O menggambarkan efisiensi algoritma. Contoh: O(1) konstan, O(log n) binary search, O(n) linear, O(n²) bubble sort.</p>
+                <div class="demo-area">
+                    <table style="width:100%; text-align:left;">
+                        <tr><th>Notasi</th><th>Contoh</th></tr>
+                        <tr><td>O(1)</td><td>Akses array</td></tr>
+                        <tr><td>O(log n)</td><td>Binary search</td></tr>
+                        <tr><td>O(n)</td><td>Linear search</td></tr>
+                        <tr><td>O(n log n)</td><td>Merge sort</td></tr>
+                        <tr><td>O(n²)</td><td>Bubble sort</td></tr>
+                    </table>
+                </div>
+                <a href="https://www.w3schools.com/dsa/dsa_timecomplexity_theory.php" target="_blank" class="btn" style="font-size:0.9rem;">Pelajari Big O</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        // Sorting demo
+        let arr = [34, 12, 56, 78, 23, 45, 67, 89, 90, 21];
+        const barsContainer = document.getElementById('sortBars');
+        function renderBars() {
+            barsContainer.innerHTML = '';
+            arr.forEach(val => {
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                bar.style.height = val + 'px';
+                bar.style.width = '30px';
+                bar.setAttribute('data-value', val);
+                barsContainer.appendChild(bar);
+            });
+        }
+        renderBars();
+
+        document.getElementById('randomizeBtn').addEventListener('click', () => {
+            arr = arr.map(() => Math.floor(Math.random() * 100) + 10);
+            renderBars();
+        });
+
+        document.getElementById('bubbleSortBtn').addEventListener('click', async () => {
+            let n = arr.length;
+            for (let i = 0; i < n-1; i++) {
+                for (let j = 0; j < n-i-1; j++) {
+                    if (arr[j] > arr[j+1]) {
+                        [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+                        renderBars();
+                        await new Promise(r => setTimeout(r, 200));
+                    }
+                }
+            }
+        });
+
+        // Binary search demo
+        const searchArray = [5, 12, 23, 34, 45, 56];
+        document.getElementById('binarySearchBtn').addEventListener('click', () => {
+            const target = parseInt(document.getElementById('searchInput').value);
+            let left = 0, right = searchArray.length - 1;
+            let found = false;
+            while (left <= right) {
+                let mid = Math.floor((left + right) / 2);
+                if (searchArray[mid] === target) {
+                    found = true;
+                    break;
+                } else if (searchArray[mid] < target) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+            document.getElementById('searchResult').innerText = found ? 'Ditemukan!' : 'Tidak ditemukan.';
+        });
+
+        // Linked list demo
+        let listNodes = [5, 12, 23];
+        function renderLinkedList() {
+            const container = document.getElementById('linkedListDemo');
+            container.innerHTML = '';
+            listNodes.forEach(val => {
+                const node = document.createElement('div');
+                node.className = 'node';
+                node.innerText = val;
+                container.appendChild(node);
+            });
+        }
+        renderLinkedList();
+        document.getElementById('addNodeBtn').addEventListener('click', () => {
+            const newVal = Math.floor(Math.random() * 50);
+            listNodes.push(newVal);
+            renderLinkedList();
+        });
+    </script>
+</body>
+</html>

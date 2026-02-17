@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase C · Informatika SD · Retno Ariyanti</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f3fa 0%, #e6ecf7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .fase-card {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 3.5rem 3.5rem 2.5rem 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,20,40,0.3), 0 0 0 1px rgba(156, 180, 215, 0.3) inset;
+            padding: 2.2rem 2.5rem 3rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .header-fase {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px dashed #2F8F9D;
+            padding-bottom: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1E2F4F;
+            text-shadow: 2px 2px 0 rgba(47,143,157,0.2);
+        }
+
+        .back-home a {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            border: 1px solid white;
+        }
+        .back-home a:hover {
+            background: #2F8F9D;
+            transform: scale(1.02);
+        }
+
+        .judul-fase {
+            font-size: 2.5rem;
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+        }
+        .judul-fase small {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #2F8F9D;
+            display: block;
+        }
+
+        .pengertian {
+            background: rgba(47,143,157,0.1);
+            border-radius: 40px;
+            padding: 1.8rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #2F8F9D;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .tp-section {
+            margin: 2.5rem 0;
+        }
+        .tp-section h3 {
+            font-size: 1.8rem;
+            color: #1E2F4F;
+            margin-bottom: 1.5rem;
+        }
+        .tp-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .tp-item {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 10px rgba(30,47,79,0.05);
+            border: 1px solid rgba(47,143,157,0.3);
+            display: flex;
+            gap: 1rem;
+        }
+        .tp-icon {
+            background: #2F8F9D;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .tp-text {
+            font-size: 1rem;
+            color: #1a2b41;
+        }
+
+        .kelengkapan {
+            background: #ffffffb0;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .kelengkapan h3 {
+            font-size: 1.8rem;
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+        }
+        .kelengkapan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .kelengkapan-item {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #2F8F9D;
+        }
+        .kelengkapan-item i {
+            font-size: 3rem;
+            color: #2F8F9D;
+            margin-bottom: 0.8rem;
+        }
+        .kelengkapan-item h4 {
+            color: #1E2F4F;
+            margin-bottom: 0.5rem;
+        }
+        .btn-download {
+            background: #f7d44b;
+            color: #1E2F4F;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 0.5rem;
+            border: 1px solid white;
+            box-shadow: 0 3px 0 #b58f2b;
+            transition: 0.1s;
+        }
+        .btn-download:active {
+            transform: translateY(3px);
+            box-shadow: none;
+        }
+
+        .proyek {
+            background: linear-gradient(145deg, #d4e2f0, #c2d6e8);
+            border-radius: 50px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .proyek h3 {
+            font-size: 2rem;
+            color: #1E2F4F;
+        }
+        .proyek-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        .proyek-text {
+            flex: 2;
+            font-size: 1.2rem;
+        }
+        .proyek-text i {
+            color: #f7d44b;
+            background: #1E2F4F;
+            padding: 0.5rem;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        .proyek-cta {
+            flex: 1;
+            background: #1E2F4F;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 40px;
+            text-align: center;
+        }
+        .proyek-cta a {
+            color: #f7d44b;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .interaktif {
+            background: #1E2F4F;
+            border-radius: 50px;
+            padding: 2rem;
+            margin-top: 2.5rem;
+            color: white;
+        }
+        .interaktif h3 {
+            font-size: 2rem;
+            color: #f7d44b;
+            margin-bottom: 1.5rem;
+        }
+
+        .ai-simulator {
+            background: #2a3f5a;
+            border-radius: 40px;
+            padding: 2rem;
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .image-card {
+            background: #f0f3fa;
+            width: 120px;
+            height: 120px;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #1E2F4F;
+            font-size: 4rem;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 5px solid white;
+            box-shadow: 0 5px 0 #b58f2b;
+        }
+        .image-card span {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+        .image-card:hover {
+            transform: scale(1.05);
+        }
+
+        .prediction-box {
+            background: #f7d44b;
+            color: #1E2F4F;
+            border-radius: 60px;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+        }
+
+        .ai-confidence {
+            font-size: 1.2rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 30px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .btn-reset-ai {
+            background: #f7d44b;
+            color: #1E2F4F;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #b58f2b;
+            transition: 0.1s;
+            margin: 1rem 0;
+        }
+        .btn-reset-ai:active {
+            transform: translateY(5px);
+            box-shadow: none;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            color: #1E2F4F;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="fase-card">
+        <div class="header-fase">
+            <div class="logo">
+                <h1>RETNO</h1>
+            </div>
+            <div class="back-home">
+                <a href="kelas.html"><i class="fas fa-arrow-left"></i> Kembali ke Kelas</a>
+            </div>
+        </div>
+
+        <h1 class="judul-fase">Fase C <small>Kelas 5–6 SD · Dunia Koding dan Sahabatku, AI</small></h1>
+
+        <!-- Pengertian singkat -->
+        <div class="pengertian">
+            <i class="fas fa-robot" style="color:#2F8F9D; margin-right:10px;"></i> 
+            Di fase C, siswa melangkah lebih jauh menjadi <strong>koder cilik dan sahabat AI</strong>. Mereka belajar membuat animasi dan game sederhana dengan Scratch (pemrograman visual). Tak hanya itu, mereka juga diperkenalkan pada <strong>kecerdasan buatan (AI)</strong> yang sudah ada di sekitar mereka — seperti filter Instagram, rekomendasi YouTube, atau asisten suara. Siswa bereksperimen dengan AI melalui alat sederhana seperti Teachable Machine, sehingga paham bahwa AI itu bisa dibuat dan dilatih oleh manusia.
+        </div>
+
+        <!-- Tujuan Pembelajaran -->
+        <div class="tp-section">
+            <h3><i class="fas fa-bullseye" style="color:#2F8F9D;"></i> Tujuan Pembelajaran</h3>
+            <div class="tp-list">
+                <div class="tp-item">
+                    <div class="tp-icon">🐱</div>
+                    <div class="tp-text">Membuat program animasi atau game sederhana dengan Scratch (pemrograman visual berbasis blok).</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">🔄</div>
+                    <div class="tp-text">Memahami konsep input, proses, dan output dalam sebuah program.</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">🧠</div>
+                    <div class="tp-text">Mengenal cara kerja AI melalui eksperimen klasifikasi gambar (misal dengan Teachable Machine).</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">⚖️</div>
+                    <div class="tp-text">Mendiskusikan etika penggunaan AI: privasi data, bias, dan dampaknya pada kehidupan.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kelengkapan Modul -->
+        <div class="kelengkapan">
+            <h3><i class="fas fa-box-open"></i> Kelengkapan Modul</h3>
+            <div class="kelengkapan-grid">
+                <div class="kelengkapan-item">
+                    <i class="fab fa-scratch"></i>
+                    <h4>Panduan Scratch</h4>
+                    <p>Langkah demi langkah membuat game "Tangkap Bola"</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh PDF</a>
+                </div>
+                <div class="kelengkapan-item">
+                    <i class="fas fa-cubes"></i>
+                    <h4>Kartu Blok Koding</h4>
+                    <p>24 kartu blok Scratch untuk aktivitas unplugged</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh</a>
+                </div>
+                <div class="kelengkapan-item">
+                    <i class="fas fa-brain"></i>
+                    <h4>Lembar Kerja AI</h4>
+                    <p>Eksperimen klasifikasi dengan Teachable Machine</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh</a>
+                </div>
+                <div class="kelengkapan-item">
+                    <i class="fas fa-video"></i>
+                    <h4>Video "Apa itu AI?"</h4>
+                    <p>Animasi 5 menit tentang AI di kehidupan sehari-hari</p>
+                    <a href="#" class="btn-download"><i class="fas fa-play"></i> Tonton</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ide Proyek -->
+        <div class="proyek">
+            <h3><i class="fas fa-lightbulb"></i> Proyek: Klasifikasi Sampah dengan AI</h3>
+            <div class="proyek-content">
+                <div class="proyek-text">
+                    <p><i class="fas fa-trash-alt"></i> Siswa menggunakan <strong>Teachable Machine</strong> (alat gratis dari Google) untuk melatih AI mengenali dua jenis sampah: organik dan anorganik. Mereka mengambil foto sampah di sekitar rumah, melatih model, lalu mengujinya dengan benda baru. Hasilnya bisa ditampilkan di Scratch sebagai game edukasi.</p>
+                    <p style="margin-top: 1rem;"><strong>Bahan:</strong> Laptop/kamera, koneksi internet, benda-benda sampah bersih (daun, botol plastik, kertas, dll).</p>
+                </div>
+                <div class="proyek-cta">
+                    <i class="fas fa-download" style="font-size: 2rem;"></i>
+                    <p style="margin: 1rem 0;">Panduan proyek lengkap + lembar kerja siswa.</p>
+                    <a href="#" class="btn-download" style="background: #f7d44b;">Ambil Panduan</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aktivitas Interaktif: Simulasi AI Klasifikasi Buah -->
+        <div class="interaktif">
+            <h3><i class="fas fa-robot"></i> Coba Sendiri: AI Klasifikasi Buah</h3>
+            <p style="margin-bottom: 1.5rem;">Klik salah satu gambar buah di bawah ini. AI akan menebak buah apa yang kamu pilih beserta tingkat keyakinannya (simulasi). Inilah cara kerja AI: belajar dari banyak contoh!</p>
+            
+            <div class="ai-simulator">
+                <div class="image-grid" id="fruitGrid">
+                    <div class="image-card" data-fruit="apel">
+                        <i class="fas fa-apple-alt"></i>
+                        <span>Apel</span>
+                    </div>
+                    <div class="image-card" data-fruit="pisang">
+                        <i class="fas fa-leaf"></i> <!-- Tidak ada ikon pisang spesifik, gunakan leaf sebagai ganti -->
+                        <span>Pisang</span>
+                    </div>
+                    <div class="image-card" data-fruit="jeruk">
+                        <i class="fas fa-circle" style="color: orange;"></i>
+                        <span>Jeruk</span>
+                    </div>
+                    <div class="image-card" data-fruit="stroberi">
+                        <i class="fas fa-heart" style="color: red;"></i>
+                        <span>Stroberi</span>
+                    </div>
+                </div>
+
+                <div class="prediction-box" id="prediction">
+                    👆 Klik buah di atas
+                </div>
+
+                <div class="ai-confidence" id="confidence"></div>
+
+                <div style="display: flex; justify-content: center;">
+                    <button class="btn-reset-ai" id="resetAI"><i class="fas fa-undo-alt"></i> Coba Lagi</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-heart" style="color:#2F8F9D;"></i> Rancangan sesuai Kurikulum Merdeka Fase C – Retno Ariyanti
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Simulasi AI klasifikasi buah
+            const fruitCards = document.querySelectorAll('.image-card');
+            const predictionBox = document.getElementById('prediction');
+            const confidenceBox = document.getElementById('confidence');
+            const resetBtn = document.getElementById('resetAI');
+
+            // Data simulasi: keyakinan acak untuk setiap buah
+            function getRandomConfidence() {
+                return (Math.random() * 30 + 70).toFixed(1); // 70.0 - 100.0%
+            }
+
+            function handleFruitClick(e) {
+                const card = e.currentTarget;
+                const fruit = card.dataset.fruit;
+                const fruitName = card.querySelector('span').innerText;
+                
+                // Simulasi proses AI: kadang salah tebak (untuk menunjukkan tidak sempurna)
+                const random = Math.random();
+                let prediction = fruitName;
+                let confidence = getRandomConfidence();
+
+                // 10% kemungkinan salah prediksi (agar realistis)
+                if (random < 0.1) {
+                    const otherFruits = ['Apel', 'Pisang', 'Jeruk', 'Stroberi'].filter(f => f !== fruitName);
+                    prediction = otherFruits[Math.floor(Math.random() * otherFruits.length)];
+                    confidence = (Math.random() * 20 + 40).toFixed(1); // 40-60% (ragu)
+                }
+
+                predictionBox.innerHTML = `🤖 AI menebak: <strong>${prediction}</strong>`;
+                confidenceBox.innerHTML = `Tingkat keyakinan: ${confidence}%`;
+
+                // Tambahkan efek visual pada kartu yang diklik
+                fruitCards.forEach(c => c.style.transform = 'scale(1)');
+                card.style.transform = 'scale(1.05)';
+            }
+
+            fruitCards.forEach(card => {
+                card.addEventListener('click', handleFruitClick);
+            });
+
+            resetBtn.addEventListener('click', () => {
+                predictionBox.innerHTML = '👆 Klik buah di atas';
+                confidenceBox.innerHTML = '';
+                fruitCards.forEach(c => c.style.transform = 'scale(1)');
+            });
+        })();
+    </script>
+</body>
+</html>

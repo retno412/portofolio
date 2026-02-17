@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unreal Engine · Retno</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>/* style sama, sesuaikan */</style>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); padding:2rem 1rem; display:flex; flex-direction:column; align-items:center; }
+        .card { max-width:1100px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; }
+        .logo h1 { color:#1E2F4F; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; box-shadow:0 5px 0 #0f1e2f; }
+        .title { font-size:2rem; color:#1E2F4F; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; margin-bottom:1rem; }
+        .explanation { background:white; border-radius:40px; padding:1.8rem; border:1px solid #2F8F9D; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="belajar-game.html"><i class="fas fa-arrow-left"></i> Kembali</a></div>
+        </div>
+        <div class="title"><i class="fas fa-cubes"></i> Unreal Engine</div>
+        <div class="explanation">
+            <h2>Engine untuk Game AAA</h2>
+            <p>Digunakan untuk game dengan grafik realistis seperti <em>Fortnite</em>, <em>Black Myth: Wukong</em>. Menggunakan C++ dan <strong>Blueprints</strong> (visual scripting) yang memungkinkan desainer membuat logika tanpa coding.</p>
+            <h3>Contoh Blueprints sederhana:</h3>
+            <img src="https://via.placeholder.com/400x200?text=Blueprint+Example" alt="Blueprint" style="max-width:100%; border-radius:20px; margin:1rem 0;">
+            <p>Blueprints menghubungkan event (seperti tombol ditekan) ke action (misal membuka pintu).</p>
+            <div style="background:#1E2F4F; color:white; padding:1rem; border-radius:30px;">
+                <i class="fas fa-lightbulb"></i> Coba bayangkan: Klik tombol di bawah untuk simulasi "event → action".
+                <button id="unrealBtn" style="display:block; margin-top:0.5rem; background:#f7d44b; padding:0.5rem; border:none; border-radius:20px;">Tekan untuk buka pintu</button>
+                <p id="unrealOutput" style="margin-top:0.5rem;">Pintu tertutup.</p>
+            </div>
+        </div>
+        <div class="footer-note">Retno Ariyanti Nurningtias</div>
+    </div>
+    <script>
+        let doorOpen = false;
+        document.getElementById('unrealBtn').addEventListener('click', function() {
+            doorOpen = !doorOpen;
+            document.getElementById('unrealOutput').innerText = doorOpen ? 'Pintu terbuka!' : 'Pintu tertutup.';
+        });
+    </script>
+</body>
+</html>

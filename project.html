@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Proyek Perangkat Lunak · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+        .card { max-width:1300px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; }
+        .logo h1 { font-size:2.5rem; color:#1E2F4F; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; font-weight:500; box-shadow:0 5px 0 #0f1e2f; transition:0.1s; display:inline-flex; align-items:center; gap:10px; }
+        .back-link a:active { transform:translateY(3px); box-shadow:0 2px 0 #0f1e2f; }
+        .page-title { font-size:2.2rem; font-weight:700; color:#1E2F4F; margin:1rem 0 0.5rem; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; }
+        .subtitle { color:#2F8F9D; font-size:1.3rem; margin-bottom:2rem; font-style:italic; }
+
+        .section-title {
+            color: #1E2F4F;
+            margin: 2.5rem 0 1rem;
+            font-size: 1.8rem;
+            border-left: 8px solid #2F8F9D;
+            padding-left: 1.2rem;
+        }
+
+        .agile-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .agile-card {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            flex: 1 1 280px;
+            border: 1px solid #2F8F9D;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+        }
+        .agile-card h3 {
+            color: #1E2F4F;
+            margin-bottom: 0.8rem;
+            border-left: 6px solid #2F8F9D;
+            padding-left: 0.8rem;
+        }
+        .agile-card ul {
+            margin-left: 1.2rem;
+            color: #2d3e5c;
+        }
+
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+        .tool-item {
+            background: white;
+            border-radius: 40px;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid #2F8F9D;
+            box-shadow: 0 5px 10px -5px #1E2F4F40;
+        }
+        .tool-item i {
+            font-size: 2rem;
+        }
+        .tool-item a {
+            text-decoration: none;
+            color: #1E2F4F;
+            font-weight: 600;
+        }
+        .tool-item a:hover {
+            color: #2F8F9D;
+        }
+
+        .collab-section {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            margin: 2rem 0;
+            border: 1px solid #2F8F9D;
+        }
+        .collab-section h3 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+        }
+        .collab-section p {
+            color: #2d3e5c;
+            line-height: 1.6;
+        }
+
+        .demo-area {
+            background: #e3eef5;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #2F8F9D;
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .demo-header h3 {
+            color: #1E2F4F;
+            font-size: 1.6rem;
+        }
+        .kanban-board {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .kanban-column {
+            background: white;
+            border-radius: 30px;
+            padding: 1rem;
+            flex: 1 1 200px;
+            min-height: 200px;
+            box-shadow: inset 0 0 10px #cbd6e8;
+        }
+        .kanban-column h4 {
+            text-align: center;
+            color: #1E2F4F;
+            margin-bottom: 0.8rem;
+            border-bottom: 2px solid #2F8F9D;
+            padding-bottom: 0.5rem;
+        }
+        .card-list {
+            min-height: 150px;
+            margin-bottom: 0.5rem;
+        }
+        .kanban-card {
+            background: #2F8F9D;
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 30px;
+            margin: 0.5rem 0;
+            cursor: move;
+            box-shadow: 0 4px 0 #195e68;
+            text-align: center;
+        }
+        .btn {
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #b58f2b;
+            transition: 0.1s;
+            margin: 0.5rem 0.5rem 0 0;
+        }
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+
+        .footer-note { margin-top:2rem; text-align:center; color:#1E2F4F; opacity:0.8; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a></div>
+        </div>
+        <div class="page-title"><i class="fas fa-tasks"></i> Manajemen Proyek Perangkat Lunak</div>
+        <div class="subtitle">Metodologi Agile (Scrum, Kanban), tools kolaborasi, dan kerja tim</div>
+
+        <!-- Agile: Scrum & Kanban -->
+        <h2 class="section-title"><i class="fas fa-sync-alt"></i> Metodologi Agile</h2>
+        <div class="agile-grid">
+            <div class="agile-card">
+                <h3>🏉 Scrum</h3>
+                <p><strong>Roles:</strong> Product Owner, Scrum Master, Development Team.</p>
+                <p><strong>Artifacts:</strong> Product Backlog, Sprint Backlog, Increment.</p>
+                <p><strong>Events:</strong> Sprint Planning, Daily Standup, Sprint Review, Sprint Retrospective.</p>
+            </div>
+            <div class="agile-card">
+                <h3>📋 Kanban</h3>
+                <p>Fokus pada visualisasi alur kerja, membatasi pekerjaan dalam proses (WIP), dan perbaikan berkelanjutan. Papan kanban dengan kolom: To Do, Doing, Done.</p>
+                <p>Prinsip: visualisasi, batasi WIP, ukur lead time, adaptif.</p>
+            </div>
+        </div>
+
+        <!-- Tools Populer -->
+        <h2 class="section-title"><i class="fas fa-tools"></i> Tools Manajemen Proyek</h2>
+        <div class="tools-grid">
+            <div class="tool-item"><i class="fab fa-jira" style="color:#0052CC;"></i> <a href="https://www.atlassian.com/software/jira/guides" target="_blank">Jira</a></div>
+            <div class="tool-item"><i class="fab fa-trello" style="color:#0079BF;"></i> <a href="https://trello.com/guide" target="_blank">Trello</a></div>
+            <div class="tool-item"><i class="fas fa-check-double" style="color:#7B68EE;"></i> <a href="https://clickup.com/features" target="_blank">ClickUp</a></div>
+            <div class="tool-item"><i class="fab fa-asana" style="color:#F06A6A;"></i> <a href="https://asana.com/guide" target="_blank">Asana</a></div>
+            <div class="tool-item"><i class="fas fa-tasks" style="color:#4A90E2;"></i> <a href="https://www.taskade.com/help" target="_blank">Taskade</a></div>
+            <div class="tool-item"><i class="fas fa-clipboard-list" style="color:#00BFA5;"></i> <a href="https://www.meistertask.com/help" target="_blank">MeisterTask</a></div>
+        </div>
+
+        <!-- Kolaborasi Tim -->
+        <div class="collab-section">
+            <h3><i class="fas fa-users"></i> Cara Berkolaborasi dalam Tim Pengembang</h3>
+            <ul style="margin-left:1.5rem; color:#2d3e5c; line-height:1.8;">
+                <li><strong>Komunikasi rutin:</strong> Daily standup (Scrum), chat (Slack/Teams), dan meeting berkala.</li>
+                <li><strong>Version control:</strong> Gunakan Git dengan branching strategy (Git Flow, GitHub Flow).</li>
+                <li><strong>Code review:</strong> Pull request dengan review dari anggota tim sebelum merge.</li>
+                <li><strong>Dokumentasi bersama:</strong> Confluence, Notion, atau README di repositori.</li>
+                <li><strong>Manajemen tugas:</strong> Gunakan tools seperti Jira/Trello untuk melacak progres.</li>
+                <li><strong>Integrasi berkelanjutan:</strong> Otomatisasi build dan test agar integrasi kode berjalan lancar.</li>
+                <li><strong>Saling membantu:</strong> Pair programming, diskusi teknis, dan berbagi pengetahuan.</li>
+            </ul>
+        </div>
+
+        <!-- Simulasi Kanban Board -->
+        <div class="demo-area">
+            <div class="demo-header">
+                <i class="fas fa-flask" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Simulasi Papan Kanban</h3>
+            </div>
+            <div class="demo-panel" style="background:white; border-radius:30px; padding:1.5rem;">
+                <div class="kanban-board" id="kanbanBoard">
+                    <div class="kanban-column">
+                        <h4>To Do</h4>
+                        <div class="card-list" id="todoList">
+                            <div class="kanban-card" draggable="true">Buat desain</div>
+                            <div class="kanban-card" draggable="true">Tulis kode</div>
+                        </div>
+                        <button class="btn" id="addTodoBtn">+ Tambah</button>
+                    </div>
+                    <div class="kanban-column">
+                        <h4>Doing</h4>
+                        <div class="card-list" id="doingList">
+                            <div class="kanban-card" draggable="true">Review PR</div>
+                        </div>
+                        <button class="btn" id="addDoingBtn">+ Tambah</button>
+                    </div>
+                    <div class="kanban-column">
+                        <h4>Done</h4>
+                        <div class="card-list" id="doneList">
+                            <div class="kanban-card" draggable="true">Setup proyek</div>
+                        </div>
+                        <button class="btn" id="addDoneBtn">+ Tambah</button>
+                    </div>
+                </div>
+                <p style="margin-top:1rem; text-align:center;">Drag & drop kartu antar kolom (simulasi). Klik tombol untuk menambah kartu baru.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        // Drag and drop sederhana (simulasi)
+        const cards = document.querySelectorAll('.kanban-card');
+        const lists = document.querySelectorAll('.card-list');
+
+        cards.forEach(card => {
+            card.addEventListener('dragstart', dragStart);
+            card.addEventListener('dragend', dragEnd);
+        });
+
+        lists.forEach(list => {
+            list.addEventListener('dragover', dragOver);
+            list.addEventListener('drop', drop);
+        });
+
+        function dragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.innerText);
+            e.target.style.opacity = '0.5';
+        }
+        function dragEnd(e) {
+            e.target.style.opacity = '1';
+        }
+        function dragOver(e) {
+            e.preventDefault();
+        }
+        function drop(e) {
+            e.preventDefault();
+            const text = e.dataTransfer.getData('text/plain');
+            // Cari elemen asli berdasarkan teks (sederhana, asumsi unik)
+            const draggedCard = Array.from(document.querySelectorAll('.kanban-card')).find(card => card.innerText === text);
+            if (draggedCard && e.target.closest('.card-list')) {
+                e.target.closest('.card-list').appendChild(draggedCard);
+            }
+        }
+
+        // Tambah kartu
+        function addCard(columnId, defaultText) {
+            const list = document.getElementById(columnId);
+            const newCard = document.createElement('div');
+            newCard.className = 'kanban-card';
+            newCard.innerText = defaultText || 'Tugas baru';
+            newCard.setAttribute('draggable', 'true');
+            newCard.addEventListener('dragstart', dragStart);
+            newCard.addEventListener('dragend', dragEnd);
+            list.appendChild(newCard);
+        }
+
+        document.getElementById('addTodoBtn').addEventListener('click', () => addCard('todoList', 'Analisis kebutuhan'));
+        document.getElementById('addDoingBtn').addEventListener('click', () => addCard('doingList', 'Implementasi fitur'));
+        document.getElementById('addDoneBtn').addEventListener('click', () => addCard('doneList', 'Testing selesai'));
+    </script>
+</body>
+</html>

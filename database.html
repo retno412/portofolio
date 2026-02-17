@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Database · Retno Ariyanti</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f3fa 0%, #e6ecf7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .db-card {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 3.5rem 3.5rem 2.5rem 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,20,40,0.3);
+            overflow: hidden;
+            padding: 2.2rem 2.5rem 3rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px dashed #2F8F9D;
+            padding-bottom: 1.5rem;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1E2F4F;
+        }
+
+        .back-link a {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 5px 0 #0f1e2f;
+            transition: 0.1s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .back-link a:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #0f1e2f;
+        }
+
+        .page-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1E2F4F;
+            margin: 1rem 0 0.5rem;
+            background: rgba(47,143,157,0.1);
+            display: inline-block;
+            padding: 0.2rem 2rem;
+            border-radius: 60px;
+        }
+
+        .subtitle {
+            color: #2F8F9D;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* penjelasan */
+        .explanation {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+            border: 1px solid #2F8F9D;
+        }
+        .explanation h2 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        .explanation p {
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+        .highlight {
+            background: #f7d44b30;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #1E2F4F;
+        }
+
+        .db-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .sql-box, .nosql-box {
+            background: #e3eef5;
+            border-radius: 40px;
+            padding: 1.8rem;
+            flex: 1 1 300px;
+            border: 2px solid #2F8F9D;
+        }
+        .sql-box h3, .nosql-box h3 {
+            color: #1E2F4F;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .sql-box i, .nosql-box i {
+            color: #2F8F9D;
+            margin-right: 8px;
+        }
+        .tool-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        .tool-list li {
+            margin: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .command-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+        .command-card {
+            background: white;
+            border-radius: 30px;
+            padding: 1rem 1.5rem;
+            flex: 1 1 150px;
+            border: 1px solid #2F8F9D;
+            transition: 0.2s;
+            box-shadow: 0 5px 10px -5px #1E2F4F40;
+        }
+        .command-card:hover {
+            transform: translateY(-3px);
+            border-color: #f7d44b;
+        }
+        .command-card code {
+            background: #1E2F4F;
+            color: #f7d44b;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-family: 'Fira Code', monospace;
+        }
+        .command-card p {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #1a2b41;
+        }
+
+        /* Simulasi SQL */
+        .simulation {
+            background: #1E2F4F10;
+            border-radius: 50px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 2px solid #2F8F9D;
+        }
+        .sim-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: #f7d44b20;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+        }
+        .sim-header h3 {
+            color: #1E2F4F;
+            font-size: 1.6rem;
+        }
+
+        .sql-console {
+            background: #1E2F4F;
+            border-radius: 30px;
+            padding: 1.5rem;
+            color: #cbd6e8;
+            font-family: 'Fira Code', monospace;
+            border: 2px solid #2F8F9D;
+        }
+        .sql-input-area {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .sql-input {
+            flex: 1;
+            background: #0f1a24;
+            border: 2px solid #2F8F9D;
+            border-radius: 30px;
+            padding: 0.8rem 1.2rem;
+            color: #f7d44b;
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            resize: vertical;
+        }
+        .sql-btn {
+            background: #f7d44b;
+            border: none;
+            color: #1E2F4F;
+            font-weight: 700;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #b58f2b;
+            transition: 0.1s;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .sql-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+        .sql-btn.reset {
+            background: #b83b3b;
+            box-shadow: 0 5px 0 #752525;
+            color: white;
+        }
+        .sql-output {
+            background: #0f1a24;
+            border-radius: 30px;
+            padding: 1.2rem;
+            min-height: 200px;
+            max-height: 300px;
+            overflow-y: auto;
+            color: #a3f7b5;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            border: 1px solid #2F8F9D;
+            margin-top: 1rem;
+        }
+        .sql-output p {
+            margin: 0.2rem 0;
+            white-space: pre-wrap;
+        }
+        .table-preview {
+            background: #1a2b41;
+            border-radius: 20px;
+            padding: 0.5rem;
+            color: white;
+            margin-top: 1rem;
+        }
+        .table-preview table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Fira Code', monospace;
+        }
+        .table-preview th {
+            background: #2F8F9D;
+            color: white;
+            padding: 0.4rem;
+        }
+        .table-preview td {
+            border: 1px solid #2F8F9D;
+            padding: 0.3rem;
+            color: #e6e6e6;
+        }
+
+        .xampp-info {
+            background: #e3eef5;
+            border-radius: 40px;
+            padding: 1.5rem 2rem;
+            margin-top: 2rem;
+        }
+        .xampp-info h3 {
+            color: #1E2F4F;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            color: #1E2F4F;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="db-card">
+        <div class="header">
+            <div class="logo">
+                <h1>RETNO</h1>
+            </div>
+            <div class="back-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a>
+            </div>
+        </div>
+
+        <div class="page-title">
+            <i class="fas fa-database"></i> BELAJAR DATABASE
+        </div>
+        <div class="subtitle">Memahami RDBMS, SQL, dan pengenalan database</div>
+
+        <!-- Penjelasan Database -->
+        <div class="explanation">
+            <h2><i class="fas fa-question-circle"></i> Apa itu Database?</h2>
+            <p><span class="highlight">Database</span> adalah kumpulan data terstruktur yang disimpan secara elektronik. Ada dua jenis utama: <strong>Relational (RDBMS)</strong> dan <strong>NoSQL</strong>.</p>
+            <p><span class="highlight">RDBMS</span> menyimpan data dalam tabel (baris dan kolom) yang saling terhubung. Menggunakan <strong>SQL (Structured Query Language)</strong>. Cocok untuk data terstruktur, transaksi keuangan, dan integritas data tinggi.</p>
+            <p><span class="highlight">NoSQL</span> menyimpan data tanpa skema tetap (dokumen, grafik, key-value). Cocok untuk big data, real-time apps, data tidak terstruktur.</p>
+        </div>
+
+        <!-- Perbandingan SQL vs NoSQL -->
+        <div class="db-types">
+            <div class="sql-box">
+                <h3><i class="fas fa-table"></i> SQL (RDBMS)</h3>
+                <p><strong>Tools Populer:</strong></p>
+                <ul class="tool-list">
+                    <li><i class="fas fa-check-circle"></i> MySQL / MariaDB – standar web development, open source</li>
+                    <li><i class="fas fa-check-circle"></i> PostgreSQL – lebih canggih, tipe data kompleks</li>
+                    <li><i class="fas fa-check-circle"></i> Oracle Database – enterprise besar</li>
+                    <li><i class="fas fa-check-circle"></i> SQL Server – ekosistem Microsoft</li>
+                </ul>
+                <p><strong>Kapan digunakan:</strong> data terstruktur, transaksi, integritas data tinggi.</p>
+            </div>
+            <div class="nosql-box">
+                <h3><i class="fas fa-folder-open"></i> NoSQL</h3>
+                <p><strong>Tools Populer:</strong></p>
+                <ul class="tool-list">
+                    <li><i class="fas fa-check-circle"></i> MongoDB – dokumen JSON-like</li>
+                    <li><i class="fas fa-check-circle"></i> Redis – in-memory, cepat untuk caching</li>
+                    <li><i class="fas fa-check-circle"></i> Cassandra – data masif, tersebar</li>
+                </ul>
+                <p><strong>Kapan digunakan:</strong> big data, real-time, data tidak terstruktur.</p>
+            </div>
+        </div>
+
+        <!-- Perintah SQL Dasar -->
+        <h2 style="color:#1E2F4F; margin: 2rem 0 1rem;"><i class="fas fa-code"></i> Perintah Dasar SQL (CRUD)</h2>
+        <div class="command-grid">
+            <div class="command-card">
+                <code>CREATE TABLE</code>
+                <p>Membuat tabel baru.</p>
+            </div>
+            <div class="command-card">
+                <code>INSERT INTO</code>
+                <p>Menambahkan data ke tabel.</p>
+            </div>
+            <div class="command-card">
+                <code>SELECT</code>
+                <p>Mengambil data dari tabel.</p>
+            </div>
+            <div class="command-card">
+                <code>UPDATE</code>
+                <p>Memperbarui data.</p>
+            </div>
+            <div class="command-card">
+                <code>DELETE</code>
+                <p>Menghapus data.</p>
+            </div>
+            <div class="command-card">
+                <code>ALTER TABLE</code>
+                <p>Mengubah struktur tabel.</p>
+            </div>
+            <div class="command-card">
+                <code>DROP TABLE</code>
+                <p>Menghapus tabel.</p>
+            </div>
+        </div>
+
+        <!-- Simulasi SQL Interaktif -->
+        <div class="simulation">
+            <div class="sim-header">
+                <i class="fas fa-terminal" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Simulasi SQL (MySQL) — Coba sendiri!</h3>
+            </div>
+            <p style="margin-bottom:1rem; background:#f0f3fa; padding:0.5rem 1.5rem; border-radius:30px;">Ketik perintah SQL sederhana (CREATE, INSERT, SELECT, UPDATE, DELETE) dan lihat hasilnya. Data hanya simulasi.</p>
+
+            <div class="sql-console">
+                <div class="sql-input-area">
+                    <textarea id="sqlCommand" class="sql-input" rows="3" placeholder="Contoh: SELECT * FROM siswa;">SELECT * FROM siswa;</textarea>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <button class="sql-btn" id="executeSql"><i class="fas fa-play"></i> Jalankan</button>
+                        <button class="sql-btn reset" id="resetDb"><i class="fas fa-undo-alt"></i> Reset</button>
+                    </div>
+                </div>
+                <div class="sql-output" id="sqlOutput">
+                    <p>$ Menunggu perintah...</p>
+                </div>
+                <div class="table-preview" id="tablePreview">
+                    <!-- Tampilan tabel akan muncul di sini -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Pengenalan XAMPP -->
+        <div class="xampp-info">
+            <h3><i class="fas fa-cogs"></i> Menggunakan MySQL dengan XAMPP</h3>
+            <p><strong>XAMPP</strong> adalah paket server lokal yang berisi Apache, MySQL, PHP, dan Perl. Untuk mulai menggunakan MySQL:</p>
+            <ol style="margin-left:1.5rem; line-height:2;">
+                <li>Download dan install XAMPP dari <a href="https://www.apachefriends.org" target="_blank">apachefriends.org</a>.</li>
+                <li>Jalankan XAMPP Control Panel, start Apache dan MySQL.</li>
+                <li>Buka browser, akses <strong>http://localhost/phpmyadmin</strong> untuk mengelola database via phpMyAdmin (antarmuka web).</li>
+                <li>Atau gunakan command line: buka terminal, arahkan ke folder MySQL (misal <code>C:\xampp\mysql\bin</code>) dan jalankan <code>mysql -u root</code>.</li>
+                <li>Buat database baru: <code>CREATE DATABASE namadb;</code> lalu gunakan: <code>USE namadb;</code></li>
+                <li>Jalankan perintah SQL seperti di simulasi untuk membuat tabel dan mengelola data.</li>
+            </ol>
+            <p style="margin-top:1rem;">💡 Dengan XAMPP, Anda dapat berlatih SQL secara nyata di komputer sendiri.</p>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Simulasi database dalam memori
+            let database = {
+                siswa: [
+                    { id: 1, nama: 'Zul', umur: 17, kelas: 'XII RPL' },
+                    { id: 2, nama: 'Taufik', umur: 16, kelas: 'XI RPL' },
+                    { id: 3, nama: 'Tania', umur: 16, kelas: 'X RPL' },
+                    { id: 4, nama: 'Alfian', umur: 17, kelas: 'XI RPL' }
+                ],
+                guru: [
+                    { id: 1, nama: 'Retno', mapel: 'Pemrograman' }
+                ]
+            };
+
+            const outputDiv = document.getElementById('sqlOutput');
+            const tablePreview = document.getElementById('tablePreview');
+            const sqlInput = document.getElementById('sqlCommand');
+            const executeBtn = document.getElementById('executeSql');
+            const resetBtn = document.getElementById('resetDb');
+
+            // Fungsi untuk menampilkan output
+            function logOutput(text, isError = false) {
+                const p = document.createElement('p');
+                p.style.color = isError ? '#f7a3a3' : '#a3f7b5';
+                p.innerHTML = text;
+                outputDiv.appendChild(p);
+                outputDiv.scrollTop = outputDiv.scrollHeight;
+            }
+
+            // Fungsi untuk merender tabel (misal tabel siswa)
+            function renderTable(tableName) {
+                if (!database[tableName]) return '<p>Tabel tidak ditemukan</p>';
+                const data = database[tableName];
+                if (data.length === 0) return '<p>Tabel kosong.</p>';
+                let html = `<table><tr>${Object.keys(data[0]).map(k => '<th>' + k + '</th>').join('')}</tr>`;
+                data.forEach(row => {
+                    html += '<tr>' + Object.values(row).map(v => '<td>' + v + '</td>').join('') + '</tr>';
+                });
+                html += '</table>';
+                return html;
+            }
+
+            // Menampilkan preview default
+            function updatePreview() {
+                tablePreview.innerHTML = '<h4 style="color:white; margin-bottom:0.5rem;">📋 Tabel siswa:</h4>' + renderTable('siswa');
+            }
+
+            // Reset database ke awal
+            function resetDatabase() {
+                database = {
+                    siswa: [
+                        { id: 1, nama: 'Zul', umur: 17, kelas: 'XII RPL' },
+                        { id: 2, nama: 'Taufik', umur: 16, kelas: 'XI RPL' },
+                        { id: 3, nama: 'Tania', umur: 16, kelas: 'X RPL' },
+                        { id: 4, nama: 'Alfian', umur: 17, kelas: 'XI RPL' }
+                    ],
+                    guru: [
+                        { id: 1, nama: 'Retno', mapel: 'Pemrograman' }
+                    ]
+                };
+                outputDiv.innerHTML = '<p>$ Database di-reset ke awal.</p>';
+                updatePreview();
+            }
+
+            // Parse perintah SQL sederhana (case insensitive, sederhana)
+            function executeSql(command) {
+                command = command.trim();
+                if (!command) return;
+
+                outputDiv.innerHTML = ''; // clear output
+                const upper = command.toUpperCase();
+
+                try {
+                    // CREATE TABLE
+                    if (upper.startsWith('CREATE TABLE')) {
+                        const match = command.match(/CREATE TABLE\s+(\w+)\s*\((.+)\)/i);
+                        if (match) {
+                            const tableName = match[1];
+                            if (database[tableName]) {
+                                logOutput(`Tabel ${tableName} sudah ada.`, true);
+                            } else {
+                                database[tableName] = [];
+                                logOutput(`Tabel ${tableName} berhasil dibuat.`);
+                            }
+                        } else {
+                            logOutput('Syntax CREATE TABLE tidak valid.', true);
+                        }
+                    }
+                    // INSERT INTO
+                    else if (upper.startsWith('INSERT INTO')) {
+                        const match = command.match(/INSERT INTO\s+(\w+)\s*(?:\((.+?)\))?\s*VALUES\s*\((.+)\)/i);
+                        if (match) {
+                            const tableName = match[1];
+                            const columnsPart = match[2]; // bisa undefined
+                            const valuesPart = match[3];
+                            if (!database[tableName]) {
+                                logOutput(`Tabel ${tableName} tidak ditemukan.`, true);
+                            } else {
+                                // Parsing values sederhana (asumsikan angka dan string dipisah koma)
+                                const values = valuesPart.split(',').map(v => v.trim().replace(/^'|'$/g, '').replace(/^"|"$/g, ''));
+                                // Jika tidak ada kolom disebut, asumsikan semua kolom
+                                let columns = [];
+                                if (columnsPart) {
+                                    columns = columnsPart.split(',').map(c => c.trim());
+                                } else {
+                                    // Ambil kolom dari data pertama jika ada, else buat default
+                                    if (database[tableName].length > 0) {
+                                        columns = Object.keys(database[tableName][0]);
+                                    } else {
+                                        // Tidak tahu kolom, buat kolom generik
+                                        columns = values.map((_, i) => 'kolom' + (i+1));
+                                    }
+                                }
+                                // Buat objek baru
+                                let newRow = {};
+                                columns.forEach((col, idx) => {
+                                    newRow[col] = values[idx] || null;
+                                });
+                                // Beri id otomatis jika tidak ada
+                                if (!newRow.id && database[tableName].length > 0) {
+                                    const maxId = Math.max(...database[tableName].map(r => r.id || 0), 0);
+                                    newRow.id = maxId + 1;
+                                } else if (!newRow.id) {
+                                    newRow.id = 1;
+                                }
+                                database[tableName].push(newRow);
+                                logOutput(`Data ditambahkan ke tabel ${tableName}.`);
+                            }
+                        } else {
+                            logOutput('Syntax INSERT tidak valid.', true);
+                        }
+                    }
+                    // SELECT
+                    else if (upper.startsWith('SELECT')) {
+                        const match = command.match(/SELECT\s+(.+?)\s+FROM\s+(\w+)(?:\s+WHERE\s+(.+))?/i);
+                        if (match) {
+                            const columns = match[1].trim();
+                            const tableName = match[2];
+                            const whereClause = match[3];
+                            if (!database[tableName]) {
+                                logOutput(`Tabel ${tableName} tidak ditemukan.`, true);
+                            } else {
+                                let data = database[tableName];
+                                // Jika ada WHERE sederhana (hanya satu kondisi =)
+                                if (whereClause) {
+                                    const whereMatch = whereClause.match(/(\w+)\s*=\s*'?(.+?)'?$/);
+                                    if (whereMatch) {
+                                        const field = whereMatch[1];
+                                        let value = whereMatch[2].replace(/^'|'$/g, '');
+                                        // coba konversi angka
+                                        if (!isNaN(value) && value.trim() !== '') value = Number(value);
+                                        data = data.filter(row => row[field] == value);
+                                    } else {
+                                        logOutput('WHERE hanya mendukung kondisi sederhana (kolom = nilai).', true);
+                                        return;
+                                    }
+                                }
+                                if (columns === '*') {
+                                    logOutput(`Hasil SELECT dari ${tableName}:`);
+                                    data.forEach(row => logOutput(JSON.stringify(row)));
+                                } else {
+                                    const colList = columns.split(',').map(c => c.trim());
+                                    data.forEach(row => {
+                                        let obj = {};
+                                        colList.forEach(c => obj[c] = row[c]);
+                                        logOutput(JSON.stringify(obj));
+                                    });
+                                }
+                            }
+                        } else {
+                            logOutput('Syntax SELECT tidak valid.', true);
+                        }
+                    }
+                    // UPDATE
+                    else if (upper.startsWith('UPDATE')) {
+                        const match = command.match(/UPDATE\s+(\w+)\s+SET\s+(.+?)(?:\s+WHERE\s+(.+))?/i);
+                        if (match) {
+                            const tableName = match[1];
+                            const setClause = match[2];
+                            const whereClause = match[3];
+                            if (!database[tableName]) {
+                                logOutput(`Tabel ${tableName} tidak ditemukan.`, true);
+                                return;
+                            }
+                            // Parse SET
+                            const setParts = setClause.split(',').map(s => s.trim());
+                            let updates = [];
+                            setParts.forEach(part => {
+                                const eq = part.match(/(\w+)\s*=\s*(.+)/);
+                                if (eq) updates.push({ field: eq[1], value: eq[2].replace(/^'|'$/g, '') });
+                            });
+                            // Filter baris
+                            let rowsToUpdate = database[tableName];
+                            if (whereClause) {
+                                const whereMatch = whereClause.match(/(\w+)\s*=\s*'?(.+?)'?$/);
+                                if (whereMatch) {
+                                    const field = whereMatch[1];
+                                    let value = whereMatch[2].replace(/^'|'$/g, '');
+                                    if (!isNaN(value) && value.trim() !== '') value = Number(value);
+                                    rowsToUpdate = rowsToUpdate.filter(row => row[field] == value);
+                                } else {
+                                    logOutput('WHERE hanya mendukung kondisi sederhana.', true);
+                                    return;
+                                }
+                            }
+                            // Lakukan update
+                            rowsToUpdate.forEach(row => {
+                                updates.forEach(u => {
+                                    let val = u.value;
+                                    if (!isNaN(val) && val.trim() !== '') val = Number(val);
+                                    row[u.field] = val;
+                                });
+                            });
+                            logOutput(`Data di tabel ${tableName} diperbarui (${rowsToUpdate.length} baris).`);
+                        } else {
+                            logOutput('Syntax UPDATE tidak valid.', true);
+                        }
+                    }
+                    // DELETE
+                    else if (upper.startsWith('DELETE FROM')) {
+                        const match = command.match(/DELETE FROM\s+(\w+)(?:\s+WHERE\s+(.+))?/i);
+                        if (match) {
+                            const tableName = match[1];
+                            const whereClause = match[2];
+                            if (!database[tableName]) {
+                                logOutput(`Tabel ${tableName} tidak ditemukan.`, true);
+                                return;
+                            }
+                            if (!whereClause) {
+                                // Hapus semua
+                                database[tableName] = [];
+                                logOutput(`Semua data di tabel ${tableName} dihapus.`);
+                            } else {
+                                const whereMatch = whereClause.match(/(\w+)\s*=\s*'?(.+?)'?$/);
+                                if (whereMatch) {
+                                    const field = whereMatch[1];
+                                    let value = whereMatch[2].replace(/^'|'$/g, '');
+                                    if (!isNaN(value) && value.trim() !== '') value = Number(value);
+                                    const before = database[tableName].length;
+                                    database[tableName] = database[tableName].filter(row => row[field] != value);
+                                    const deleted = before - database[tableName].length;
+                                    logOutput(`Menghapus ${deleted} baris dari ${tableName}.`);
+                                } else {
+                                    logOutput('WHERE hanya mendukung kondisi sederhana.', true);
+                                }
+                            }
+                        } else {
+                            logOutput('Syntax DELETE tidak valid.', true);
+                        }
+                    }
+                    // DROP TABLE
+                    else if (upper.startsWith('DROP TABLE')) {
+                        const tableName = command.match(/DROP TABLE\s+(\w+)/i)?.[1];
+                        if (tableName && database[tableName]) {
+                            delete database[tableName];
+                            logOutput(`Tabel ${tableName} dihapus.`);
+                        } else {
+                            logOutput(`Tabel ${tableName} tidak ditemukan.`, true);
+                        }
+                    }
+                    else {
+                        logOutput('Perintah tidak dikenali atau belum didukung. Coba CREATE, INSERT, SELECT, UPDATE, DELETE, DROP.', true);
+                    }
+                } catch (e) {
+                    logOutput('Error: ' + e.message, true);
+                }
+
+                // Update preview tabel siswa
+                updatePreview();
+            }
+
+            // Event listeners
+            executeBtn.addEventListener('click', () => {
+                const cmd = sqlInput.value;
+                executeSql(cmd);
+            });
+
+            resetBtn.addEventListener('click', resetDatabase);
+
+            // Inisialisasi
+            resetDatabase();
+
+            // Contoh perintah untuk dicoba
+            sqlInput.value = 'SELECT * FROM siswa;';
+        })();
+    </script>
+</body>
+</html>

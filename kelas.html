@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelas Informatika · Retno Ariyanti</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f3fa 0%, #e6ecf7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .kelas-card {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 3.5rem 3.5rem 2.5rem 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,20,40,0.3), 0 0 0 1px rgba(156, 180, 215, 0.3) inset;
+            padding: 2.2rem 2.5rem 3rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .header-kelas {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px dashed #2F8F9D;
+            padding-bottom: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1E2F4F;
+            text-shadow: 2px 2px 0 rgba(47,143,157,0.2);
+        }
+
+        .back-home a {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            border: 1px solid white;
+        }
+        .back-home a:hover {
+            background: #2F8F9D;
+            transform: scale(1.02);
+        }
+
+        .intro {
+            background: rgba(47,143,157,0.1);
+            border-radius: 50px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border-left: 10px solid #2F8F9D;
+        }
+
+        .intro h2 {
+            color: #1E2F4F;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #1a2b41;
+            margin-bottom: 1rem;
+        }
+
+        .intro strong {
+            color: #2F8F9D;
+        }
+
+        .elemen-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .elemen-item {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(30,47,79,0.1);
+            border: 1px solid rgba(47,143,157,0.3);
+            transition: 0.2s;
+        }
+        .elemen-item:hover {
+            transform: translateY(-5px);
+            border-color: #2F8F9D;
+        }
+
+        .elemen-item i {
+            font-size: 2.5rem;
+            color: #2F8F9D;
+            margin-bottom: 1rem;
+        }
+
+        .elemen-item h3 {
+            color: #1E2F4F;
+            margin-bottom: 0.5rem;
+        }
+
+        .elemen-item p {
+            color: #2d3a4f;
+            font-size: 0.95rem;
+        }
+
+        .fase-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #1E2F4F;
+            margin: 3rem 0 2rem;
+        }
+
+        .fase-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn-fase {
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 700;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 5px 0 #b58f2b;
+            transition: 0.1s;
+            border: 2px solid white;
+            min-width: 150px;
+            text-align: center;
+        }
+        .btn-fase:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+        .btn-fase small {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: normal;
+        }
+
+        /* Mini game monitor */
+        .monitor-game {
+            background: #1E2F4F;
+            border-radius: 40px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 20px 20px -10px rgba(0,0,0,0.5), inset 0 0 20px #2F8F9D;
+        }
+
+        .monitor-game h3 {
+            color: #f7d44b;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .monitor-screen {
+            background: #0a1a2a;
+            border-radius: 30px;
+            padding: 2rem;
+            border: 5px solid #2F8F9D;
+            min-height: 200px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            color: #7cfc00;
+            box-shadow: inset 0 0 20px black;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .monitor-screen span {
+            display: inline-block;
+            width: 100%;
+        }
+
+        .keyboard-hint {
+            color: #a0b9d6;
+            margin-top: 1rem;
+            font-style: italic;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-reset-monitor {
+            background: #f7d44b;
+            border: none;
+            color: #1E2F4F;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #b58f2b;
+            transition: 0.1s;
+        }
+        .btn-reset-monitor:active {
+            transform: translateY(3px);
+            box-shadow: none;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            color: #1E2F4F;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="kelas-card">
+        <!-- Header dengan logo dan tautan kembali -->
+        <div class="header-kelas">
+            <div class="logo">
+                <h1>RETNO</h1>
+            </div>
+            <div class="back-home">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a>
+            </div>
+        </div>
+
+        <!-- Penjelasan mengapa Informatika penting -->
+        <div class="intro">
+            <h2><i class="fas fa-lightbulb" style="color:#2F8F9D;"></i> Mengapa Informatika?</h2>
+            <p>Informatika bukan sekadar tentang komputer dan kode. Ia adalah <strong>cara berpikir logis, kreatif, dan terstruktur</strong> yang kita gunakan setiap hari. Saat kamu memilih rute tercepat ke sekolah, <strong>algoritma pencarian rute</strong> bekerja. Saat kamu menonton film di Netflix, <strong>sistem rekomendasi berbasis data</strong> menemanimu. Bahkan ketika berbelanja online, <strong>keamanan data dan transaksi</strong> melindungimu.</p>
+            <p>Dengan mempelajari informatika, kamu akan memahami dunia digital yang semakin merasuk ke semua aspek kehidupan. Kamu tidak hanya menjadi pengguna pasif, tapi juga <strong>pencipta solusi</strong> untuk masalah nyata di sekitarmu. Dari petani yang memantau kelembaban tanah lewat IoT, hingga dokter yang mendiagnosis dengan bantuan AI — semua membutuhkan fondasi informatika.</p>
+        </div>
+
+        <!-- Elemen-elemen utama informatika -->
+        <h2 style="color:#1E2F4F; margin-bottom:1rem;">🧩 Elemen Utama Informatika</h2>
+        <div class="elemen-grid">
+            <div class="elemen-item">
+                <i class="fas fa-puzzle-piece"></i>
+                <h3>Berpikir Komputasional</h3>
+                <p>Dekomposisi, pengenalan pola, abstraksi, algoritma — fondasi memecahkan masalah.</p>
+            </div>
+            <div class="elemen-item">
+                <i class="fas fa-laptop"></i>
+                <h3>TIK</h3>
+                <p>Menggunakan perangkat dan aplikasi untuk berkreasi, berkomunikasi, dan berkolaborasi.</p>
+            </div>
+            <div class="elemen-item">
+                <i class="fas fa-microchip"></i>
+                <h3>Sistem Komputer</h3>
+                <p>Memahami hardware, software, dan bagaimana mereka bekerja bersama.</p>
+            </div>
+            <div class="elemen-item">
+                <i class="fas fa-wifi"></i>
+                <h3>Jaringan & Internet</h3>
+                <p>Bagaimana data berpindah, protokol, dan keamanan dasar.</p>
+            </div>
+            <div class="elemen-item">
+                <i class="fas fa-chart-bar"></i>
+                <h3>Analisis Data</h3>
+                <p>Mengumpulkan, mengolah, dan memvisualisasi data untuk mengambil keputusan.</p>
+            </div>
+            <div class="elemen-item">
+                <i class="fas fa-code"></i>
+                <h3>Algoritma & Pemrograman</h3>
+                <p>Menulis instruksi untuk menciptakan aplikasi, game, dan solusi digital.</p>
+            </div>
+            <div class="elemen-item">
+                <i class="fas fa-globe"></i>
+                <h3>Dampak Sosial Informatika</h3>
+                <p>Etika digital, privasi, dan peran teknologi dalam masyarakat.</p>
+            </div>
+            <div class="elemen-item">
+                <i class="fas fa-project-diagram"></i>
+                <h3>Praktik Lintas Bidang</h3>
+                <p>Menerapkan informatika untuk menyelesaikan proyek nyata dari berbagai disiplin.</p>
+            </div>
+        </div>
+
+        <!-- Tombol fase A - F -->
+        <h2 class="fase-title">📚 Pilih Fase Belajarmu</h2>
+        <div class="fase-buttons">
+            <a href="fase-a.html" class="btn-fase">Fase A <small>Kelas 1-2 SD</small></a>
+            <a href="fase-b.html" class="btn-fase">Fase B <small>Kelas 3-4 SD</small></a>
+            <a href="fase-c.html" class="btn-fase">Fase C <small>Kelas 5-6 SD</small></a>
+            <a href="fase-d.html" class="btn-fase">Fase D <small>Kelas 7-9 SMP</small></a>
+            <a href="fase-e.html" class="btn-fase">Fase E <small>Kelas 10 SMA/SMK</small></a>
+            <a href="fase-f.html" class="btn-fase">Fase F <small>Kelas 11-12 SMA/SMK</small></a>
+        </div>
+
+        <!-- Mini game monitor keyboard -->
+        <div class="monitor-game">
+            <h3><i class="fas fa-keyboard"></i> Monitor Ketikan</h3>
+            <div class="monitor-screen" id="monitorScreen">
+                <span id="monitorText">Ketik sesuatu...</span>
+            </div>
+            <div class="keyboard-hint">
+                <span><i class="fas fa-regular fa-circle-info"></i> Mulai mengetik, lihat hasilnya di layar</span>
+                <button class="btn-reset-monitor" id="resetMonitor"><i class="fas fa-eraser"></i> Hapus</button>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-heart" style="color:#2F8F9D;"></i> Rancang bersama Retno Ariyanti – Guru Informatika
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Mini game monitor
+            const monitorText = document.getElementById('monitorText');
+            const resetBtn = document.getElementById('resetMonitor');
+            let currentText = 'Ketik sesuatu...';
+
+            // Fungsi untuk memperbarui tampilan
+            function updateMonitor(newText) {
+                if (newText.trim() === '') {
+                    monitorText.innerText = 'Ketik sesuatu...';
+                    currentText = 'Ketik sesuatu...';
+                } else {
+                    monitorText.innerText = newText;
+                    currentText = newText;
+                }
+            }
+
+            // Event listener untuk keydown
+            window.addEventListener('keydown', function(e) {
+                // Mencegah shortcut browser agar tidak mengganggu
+                if (e.ctrlKey || e.altKey || e.metaKey) return;
+
+                // Jika teks awal adalah placeholder, kosongkan
+                if (currentText === 'Ketik sesuatu...') {
+                    currentText = '';
+                }
+
+                // Tangani backspace
+                if (e.key === 'Backspace') {
+                    currentText = currentText.slice(0, -1);
+                    e.preventDefault();
+                } 
+                // Tangani enter (tambah newline)
+                else if (e.key === 'Enter') {
+                    currentText += '\n';
+                    e.preventDefault();
+                }
+                // Tangani karakter biasa (hanya satu huruf, hindari key seperti Shift)
+                else if (e.key.length === 1) {
+                    currentText += e.key;
+                }
+                // Untuk spasi
+                else if (e.key === ' ') {
+                    currentText += ' ';
+                }
+
+                // Update tampilan
+                if (currentText === '') {
+                    monitorText.innerText = 'Ketik sesuatu...';
+                } else {
+                    monitorText.innerText = currentText;
+                }
+            });
+
+            // Reset monitor
+            resetBtn.addEventListener('click', function() {
+                currentText = '';
+                monitorText.innerText = 'Ketik sesuatu...';
+            });
+        })();
+    </script>
+</body>
+</html>

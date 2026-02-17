@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Godot Engine · Retno</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>/* style singkat */</style>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); padding:2rem 1rem; display:flex; flex-direction:column; align-items:center; }
+        .card { max-width:1100px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; border-bottom:2px dashed #2F8F9D; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; }
+        .title { font-size:2rem; color:#1E2F4F; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="belajar-game.html">Kembali</a></div>
+        </div>
+        <div class="title"><i class="fas fa-heart"></i> Godot Engine</div>
+        <div class="explanation" style="padding:1.5rem;">
+            <p><strong>Godot</strong> adalah engine open-source yang ringan, gratis total, dan sedang naik daun. Menggunakan bahasa GDScript (mirip Python) atau C#. Cocok untuk game 2D dan 3D ringan.</p>
+            <pre style="background:#1E2F4F; color:#f7d44b; padding:1rem; border-radius:30px; overflow-x:auto;">
+extends Node2D
+
+func _ready():
+    print("Hello Godot!")
+
+func _process(delta):
+    position.x += 100 * delta  # gerak ke kanan
+            </pre>
+            <div style="background:#2F8F9D20; padding:1rem; border-radius:30px;">
+                <p>Simulasi: Godot menggunakan scene dan node. Klik untuk menambah node:</p>
+                <button id="addNode" style="background:#f7d44b; padding:0.5rem 1rem; border:none; border-radius:30px;">Tambah Node</button>
+                <div id="nodeContainer" style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;"></div>
+            </div>
+        </div>
+        <div class="footer-note">Retno Ariyanti Nurningtias</div>
+    </div>
+    <script>
+        let nodeCount = 0;
+        document.getElementById('addNode').addEventListener('click', function() {
+            nodeCount++;
+            const div = document.createElement('div');
+            div.style.background = '#2F8F9D';
+            div.style.color = 'white';
+            div.style.padding = '0.5rem 1rem';
+            div.style.borderRadius = '20px';
+            div.innerText = 'Node ' + nodeCount;
+            document.getElementById('nodeContainer').appendChild(div);
+        });
+    </script>
+</body>
+</html>

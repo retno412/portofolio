@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Computing untuk Developer · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+        .card { max-width:1300px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; }
+        .logo h1 { font-size:2.5rem; color:#1E2F4F; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; font-weight:500; box-shadow:0 5px 0 #0f1e2f; transition:0.1s; display:inline-flex; align-items:center; gap:10px; }
+        .back-link a:active { transform:translateY(3px); box-shadow:0 2px 0 #0f1e2f; }
+        .page-title { font-size:2.2rem; font-weight:700; color:#1E2F4F; margin:1rem 0 0.5rem; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; }
+        .subtitle { color:#2F8F9D; font-size:1.3rem; margin-bottom:2rem; font-style:italic; }
+
+        .section-title {
+            color: #1E2F4F;
+            margin: 2.5rem 0 1rem;
+            font-size: 1.8rem;
+            border-left: 8px solid #2F8F9D;
+            padding-left: 1.2rem;
+        }
+
+        .cloud-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .cloud-card {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            flex: 1 1 250px;
+            border: 1px solid #2F8F9D;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+            transition: 0.2s;
+            text-align: center;
+        }
+        .cloud-card:hover {
+            transform: translateY(-5px);
+            border-color: #f7d44b;
+        }
+        .cloud-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .cloud-card h3 {
+            color: #1E2F4F;
+            margin-bottom: 0.5rem;
+        }
+        .cloud-card p {
+            color: #2d3e5c;
+            margin-bottom: 1.5rem;
+        }
+        .cloud-link {
+            background: #2F8F9D;
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            box-shadow: 0 4px 0 #195e68;
+            transition: 0.1s;
+        }
+        .cloud-link:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #195e68;
+        }
+
+        .deploy-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .method-card {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            flex: 1 1 250px;
+            border: 1px solid #2F8F9D;
+        }
+        .method-card h3 {
+            color: #1E2F4F;
+            margin-bottom: 0.8rem;
+            border-left: 6px solid #2F8F9D;
+            padding-left: 0.8rem;
+        }
+
+        .demo-area {
+            background: #e3eef5;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #2F8F9D;
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .demo-header h3 {
+            color: #1E2F4F;
+            font-size: 1.6rem;
+        }
+        .demo-panel {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: inset 0 0 10px #cbd6e8;
+        }
+        .demo-select {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 30px;
+            border: 1px solid #2F8F9D;
+            margin: 0.5rem 0 1rem;
+            font-size: 1rem;
+        }
+        .demo-output {
+            background: #0f1a24;
+            color: #a3f7b5;
+            padding: 1rem;
+            border-radius: 20px;
+            font-family: 'Fira Code', monospace;
+            min-height: 150px;
+            margin-top: 1rem;
+            white-space: pre-wrap;
+        }
+        .btn {
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #b58f2b;
+            transition: 0.1s;
+            margin-right: 0.5rem;
+        }
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+
+        .footer-note { margin-top:2rem; text-align:center; color:#1E2F4F; opacity:0.8; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a></div>
+        </div>
+        <div class="page-title"><i class="fas fa-cloud"></i> Cloud Computing untuk Developer</div>
+        <div class="subtitle">AWS, Google Cloud, Azure – deploy aplikasi, serverless, database cloud</div>
+
+        <!-- Pengertian Cloud -->
+        <div style="background:white; border-radius:40px; padding:1.5rem; margin:2rem 0; border:1px solid #2F8F9D;">
+            <h3 style="color:#1E2F4F; margin-bottom:1rem;">☁️ Apa itu Cloud Computing?</h3>
+            <p>Cloud computing adalah penyediaan sumber daya komputasi (server, penyimpanan, database, perangkat lunak) melalui internet. Model layanan utama: <strong>IaaS</strong> (infrastruktur), <strong>PaaS</strong> (platform), <strong>SaaS</strong> (perangkat lunak). Developer dapat fokus pada kode tanpa mengelola infrastruktur fisik.</p>
+        </div>
+
+        <!-- 3 Cloud Providers -->
+        <h2 class="section-title"><i class="fas fa-cloud-upload-alt"></i> Penyedia Cloud Utama</h2>
+        <div class="cloud-grid">
+            <!-- AWS -->
+            <div class="cloud-card">
+                <i class="fab fa-aws" style="color:#FF9900;"></i>
+                <h3>AWS</h3>
+                <p>Layanan terbanyak, ekosistem luas. Populer: EC2, S3, Lambda, RDS.</p>
+                <a href="https://aws.amazon.com/free/" target="_blank" class="cloud-link">Belajar AWS</a>
+            </div>
+            <!-- Google Cloud -->
+            <div class="cloud-card">
+                <i class="fab fa-google" style="color:#4285F4;"></i>
+                <h3>Google Cloud</h3>
+                <p>Unggul di data analytics, Kubernetes (GKE). Populer: Compute Engine, Cloud Functions, Firestore.</p>
+                <a href="https://cloud.google.com/training" target="_blank" class="cloud-link">Belajar GCP</a>
+            </div>
+            <!-- Azure -->
+            <div class="cloud-card">
+                <i class="fab fa-microsoft" style="color:#00A4EF;"></i>
+                <h3>Microsoft Azure</h3>
+                <p>Integrasi dengan produk Microsoft. Populer: Virtual Machines, Functions, Cosmos DB.</p>
+                <a href="https://learn.microsoft.com/en-us/training/azure/" target="_blank" class="cloud-link">Belajar Azure</a>
+            </div>
+        </div>
+
+        <!-- Cara Deploy -->
+        <h2 class="section-title"><i class="fas fa-rocket"></i> Cara Deploy Aplikasi ke Cloud</h2>
+        <div class="deploy-methods">
+            <div class="method-card">
+                <h3>📦 Traditional (VM)</h3>
+                <p>Menggunakan mesin virtual (EC2, Compute Engine, Azure VM). Cocok untuk aplikasi monolitik atau yang perlu kontrol penuh.</p>
+            </div>
+            <div class="method-card">
+                <h3>⚡ Serverless</h3>
+                <p>Menjalankan kode tanpa mengelola server. Contoh: AWS Lambda, Google Cloud Functions, Azure Functions. Skala otomatis, bayar per eksekusi.</p>
+            </div>
+            <div class="method-card">
+                <h3>🗄️ Database Cloud</h3>
+                <p>Database terkelola: Amazon RDS, Cloud SQL, Azure SQL. Atau NoSQL: DynamoDB, Firestore, Cosmos DB.</p>
+            </div>
+        </div>
+
+        <!-- Contoh Aplikasi Hits -->
+        <div style="background:white; border-radius:40px; padding:1.5rem; margin:2rem 0; border:1px solid #2F8F9D;">
+            <h3 style="color:#1E2F4F; margin-bottom:1rem;"><i class="fas fa-star"></i> Aplikasi Terkenal yang Menggunakan Cloud</h3>
+            <table style="width:100%; border-collapse:collapse;">
+                <tr style="background:#2F8F9D; color:white;">
+                    <th style="padding:10px; border-radius:20px 0 0 20px;">Aplikasi</th>
+                    <th style="padding:10px;">Layanan Cloud</th>
+                    <th style="padding:10px; border-radius:0 20px 20px 0;">Deskripsi</th>
+                </tr>
+                <tr style="border-bottom:1px solid #e3eef5;">
+                    <td style="padding:10px;"><strong>Netflix</strong></td>
+                    <td>AWS (EC2, S3, DynamoDB)</td>
+                    <td>Hampir seluruh infrastruktur Netflix berjalan di AWS.</td>
+                </tr>
+                <tr style="border-bottom:1px solid #e3eef5;">
+                    <td style="padding:10px;"><strong>Spotify</strong></td>
+                    <td>Google Cloud (Dataflow, BigQuery)</td>
+                    <td>Menggunakan GCP untuk analitik dan rekomendasi musik.</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px;"><strong>Microsoft</strong></td>
+                    <td>Azure (own platform)</td>
+                    <td>Office 365, LinkedIn, dan banyak layanan Microsoft berjalan di Azure.</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Simulasi Deploy -->
+        <div class="demo-area">
+            <div class="demo-header">
+                <i class="fas fa-flask" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Simulasi Deploy ke Cloud</h3>
+            </div>
+            <div class="demo-panel">
+                <p>Pilih layanan dan klik Deploy untuk melihat simulasi proses.</p>
+                <select id="serviceSelect" class="demo-select">
+                    <option value="lambda">AWS Lambda (Serverless)</option>
+                    <option value="gcf">Google Cloud Functions (Serverless)</option>
+                    <option value="azuref">Azure Functions (Serverless)</option>
+                    <option value="dynamo">Amazon DynamoDB (NoSQL)</option>
+                    <option value="firestore">Firestore (NoSQL)</option>
+                    <option value="cosmos">Azure Cosmos DB (NoSQL)</option>
+                </select>
+                <button class="btn" id="deployBtn">🚀 Deploy</button>
+                <div class="demo-output" id="deployOutput">
+                    // Log simulasi akan muncul di sini
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        const deployBtn = document.getElementById('deployBtn');
+        const serviceSelect = document.getElementById('serviceSelect');
+        const output = document.getElementById('deployOutput');
+
+        const logs = {
+            lambda: `Deploying to AWS Lambda...
+✔️ Packaging code (Node.js 18)
+✔️ Uploading to S3 bucket
+✔️ Creating function "my-function"
+✔️ Setting environment variables
+✔️ Attaching IAM role
+✅ Deployment successful! Endpoint: https://abcd.execute-api.us-east-1.amazonaws.com/my-function`,
+            gcf: `Deploying to Google Cloud Functions...
+✔️ Building container
+✔️ Uploading source to Cloud Storage
+✔️ Deploying function "my-function"
+✔️ Setting runtime (Node.js 18)
+✔️ Configuring trigger (HTTP)
+✅ Function deployed. URL: https://us-central1-project.cloudfunctions.net/my-function`,
+            azuref: `Deploying to Azure Functions...
+✔️ Preparing deployment (Node.js 18)
+✔️ Uploading zip package
+✔️ Creating function app "myapp"
+✔️ Configuring application settings
+✔️ Syncing triggers
+✅ Deployment successful. Endpoint: https://myapp.azurewebsites.net/api/my-function`,
+            dynamo: `Creating Amazon DynamoDB table...
+✔️ Table name: Users
+✔️ Primary key: userId (String)
+✔️ Provisioned throughput: 5 RCU, 5 WCU
+✔️ Creating indexes...
+✅ Table "Users" is ACTIVE. ARN: arn:aws:dynamodb:us-east-1:123456789012:table/Users`,
+            firestore: `Creating Firestore database...
+✔️ Project: my-project
+✔️ Location: nam5 (us-central)
+✔️ Creating collection "users"
+✔️ Adding indexes...
+✅ Firestore ready. Native mode enabled.`,
+            cosmos: `Deploying Azure Cosmos DB...
+✔️ Account: my-cosmos-db
+✔️ API: SQL (Core)
+✔️ Region: Southeast Asia
+✔️ Creating database "my-db" with container "users" (partition key /userId)
+✅ Cosmos DB account active. Connection string: ...`
+        };
+
+        deployBtn.addEventListener('click', () => {
+            const selected = serviceSelect.value;
+            output.innerText = logs[selected] || 'Unknown service';
+        });
+    </script>
+</body>
+</html>

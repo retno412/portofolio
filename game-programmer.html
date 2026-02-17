@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Programmer (Unity) · Retno</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>/* style sama seperti sebelumnya, disingkat */</style>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); padding:2rem 1rem; display:flex; flex-direction:column; align-items:center; }
+        .card { max-width:1100px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; margin-bottom:1.5rem; }
+        .logo h1 { color:#1E2F4F; font-size:2.5rem; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; box-shadow:0 5px 0 #0f1e2f; }
+        .title { font-size:2rem; color:#1E2F4F; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; margin-bottom:1rem; }
+        .explanation { background:white; border-radius:40px; padding:1.8rem; border:1px solid #2F8F9D; }
+        .code-snippet { background:#1E2F4F; color:#f7d44b; padding:1rem; border-radius:30px; font-family:'Courier New',monospace; }
+        .footer-note { margin-top:2rem; text-align:center; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="belajar-game.html"><i class="fas fa-arrow-left"></i> Kembali</a></div>
+        </div>
+        <div class="title"><i class="fas fa-code"></i> Game Programmer & Unity</div>
+        <div class="explanation">
+            <h2>Sang "Pembangun" dengan C# dan Unity</h2>
+            <p>Menulis kode untuk logika game, pergerakan karakter, AI, dan interaksi. <strong>Unity</strong> adalah engine nomor 1 untuk game mobile dan indie, menggunakan bahasa C# dengan komunitas raksasa.</p>
+            <h3>Contoh skrip C# (gerakan sederhana):</h3>
+            <pre class="code-snippet">
+using UnityEngine;
+
+public class PlayerMove : MonoBehaviour {
+    public float speed = 5f;
+    void Update() {
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        transform.Translate(new Vector3(h, 0, v) * speed * Time.deltaTime);
+    }
+}
+            </pre>
+            <div style="margin-top:1rem; background:#2F8F9D20; padding:1rem; border-radius:30px;">
+                <p><i class="fas fa-gamepad"></i> Simulasi: Klik "Gerak" untuk memindahkan kotak (logika sederhana).</p>
+                <div id="playerBox" style="width:50px; height:50px; background:#f7d44b; border-radius:10px; position:relative; left:0; transition:left 0.1s;"></div>
+                <button id="moveLeft" style="margin-top:0.5rem;">← Kiri</button>
+                <button id="moveRight">Kanan →</button>
+            </div>
+        </div>
+        <div class="footer-note">Retno Ariyanti Nurningtias</div>
+    </div>
+    <script>
+        let pos = 0;
+        document.getElementById('moveLeft').addEventListener('click', function() {
+            pos = Math.max(0, pos - 10);
+            document.getElementById('playerBox').style.left = pos + 'px';
+        });
+        document.getElementById('moveRight').addEventListener('click', function() {
+            pos = Math.min(250, pos + 10);
+            document.getElementById('playerBox').style.left = pos + 'px';
+        });
+    </script>
+</body>
+</html>

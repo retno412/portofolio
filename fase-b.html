@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase B · Informatika SD · Retno Ariyanti</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f3fa 0%, #e6ecf7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .fase-card {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 3.5rem 3.5rem 2.5rem 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,20,40,0.3), 0 0 0 1px rgba(156, 180, 215, 0.3) inset;
+            padding: 2.2rem 2.5rem 3rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .header-fase {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px dashed #2F8F9D;
+            padding-bottom: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1E2F4F;
+            text-shadow: 2px 2px 0 rgba(47,143,157,0.2);
+        }
+
+        .back-home a {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            border: 1px solid white;
+        }
+        .back-home a:hover {
+            background: #2F8F9D;
+            transform: scale(1.02);
+        }
+
+        .judul-fase {
+            font-size: 2.5rem;
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+        }
+        .judul-fase small {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #2F8F9D;
+            display: block;
+        }
+
+        .pengertian {
+            background: rgba(47,143,157,0.1);
+            border-radius: 40px;
+            padding: 1.8rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #2F8F9D;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .tp-section {
+            margin: 2.5rem 0;
+        }
+        .tp-section h3 {
+            font-size: 1.8rem;
+            color: #1E2F4F;
+            margin-bottom: 1.5rem;
+        }
+        .tp-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .tp-item {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 10px rgba(30,47,79,0.05);
+            border: 1px solid rgba(47,143,157,0.3);
+            display: flex;
+            gap: 1rem;
+        }
+        .tp-icon {
+            background: #2F8F9D;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .tp-text {
+            font-size: 1rem;
+            color: #1a2b41;
+        }
+
+        .kelengkapan {
+            background: #ffffffb0;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .kelengkapan h3 {
+            font-size: 1.8rem;
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+        }
+        .kelengkapan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .kelengkapan-item {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #2F8F9D;
+        }
+        .kelengkapan-item i {
+            font-size: 3rem;
+            color: #2F8F9D;
+            margin-bottom: 0.8rem;
+        }
+        .kelengkapan-item h4 {
+            color: #1E2F4F;
+            margin-bottom: 0.5rem;
+        }
+        .btn-download {
+            background: #f7d44b;
+            color: #1E2F4F;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 0.5rem;
+            border: 1px solid white;
+            box-shadow: 0 3px 0 #b58f2b;
+            transition: 0.1s;
+        }
+        .btn-download:active {
+            transform: translateY(3px);
+            box-shadow: none;
+        }
+
+        .proyek {
+            background: linear-gradient(145deg, #d4e2f0, #c2d6e8);
+            border-radius: 50px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .proyek h3 {
+            font-size: 2rem;
+            color: #1E2F4F;
+        }
+        .proyek-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        .proyek-text {
+            flex: 2;
+            font-size: 1.2rem;
+        }
+        .proyek-text i {
+            color: #f7d44b;
+            background: #1E2F4F;
+            padding: 0.5rem;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        .proyek-cta {
+            flex: 1;
+            background: #1E2F4F;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 40px;
+            text-align: center;
+        }
+        .proyek-cta a {
+            color: #f7d44b;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .interaktif {
+            background: #1E2F4F;
+            border-radius: 50px;
+            padding: 2rem;
+            margin-top: 2.5rem;
+            color: white;
+        }
+        .interaktif h3 {
+            font-size: 2rem;
+            color: #f7d44b;
+            margin-bottom: 1.5rem;
+        }
+
+        .algo-puzzle {
+            background: #2a3f5a;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+
+        .step-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .step-card {
+            background: #f7d44b;
+            color: #1E2F4F;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: grab;
+            user-select: none;
+            box-shadow: 0 5px 0 #b58f2b;
+            transition: all 0.1s;
+            border: 2px solid white;
+        }
+        .step-card:active {
+            cursor: grabbing;
+            opacity: 0.8;
+        }
+
+        .drop-zone {
+            background: #1a2f40;
+            border: 3px dashed #f7d44b;
+            border-radius: 40px;
+            padding: 2rem;
+            min-height: 120px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .drop-zone .step-card {
+            cursor: default;
+            background: #2F8F9D;
+            color: white;
+            box-shadow: 0 5px 0 #1b555e;
+        }
+
+        .btn-check {
+            background: #f7d44b;
+            color: #1E2F4F;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #b58f2b;
+            transition: 0.1s;
+            margin: 0.5rem;
+        }
+        .btn-check:active {
+            transform: translateY(5px);
+            box-shadow: none;
+        }
+
+        .feedback {
+            text-align: center;
+            font-size: 1.3rem;
+            margin: 1rem 0;
+            min-height: 3rem;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            color: #1E2F4F;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="fase-card">
+        <div class="header-fase">
+            <div class="logo">
+                <h1>RETNO</h1>
+            </div>
+            <div class="back-home">
+                <a href="kelas.html"><i class="fas fa-arrow-left"></i> Kembali ke Kelas</a>
+            </div>
+        </div>
+
+        <h1 class="judul-fase">Fase B <small>Kelas 3–4 SD · Berkreasi dan Berpikir Logis</small></h1>
+
+        <!-- Pengertian singkat -->
+        <div class="pengertian">
+            <i class="fas fa-paint-brush" style="color:#2F8F9D; margin-right:10px;"></i> 
+            Di fase B, siswa berkembang dari sekadar pengguna menjadi <strong>kreator cilik</strong>. Mereka mulai menggunakan aplikasi untuk menggambar, mengetik, dan membuat cerita. Yang lebih seru, mereka belajar <strong>berpikir logis</strong> dengan menyusun instruksi (algoritma) sederhana — misalnya langkah-langkah membuat roti lapis atau menyikat gigi. Semua diajarkan dengan permainan dan aktivitas kelompok yang menyenangkan.
+        </div>
+
+        <!-- Tujuan Pembelajaran -->
+        <div class="tp-section">
+            <h3><i class="fas fa-bullseye" style="color:#2F8F9D;"></i> Tujuan Pembelajaran</h3>
+            <div class="tp-list">
+                <div class="tp-item">
+                    <div class="tp-icon">🎨</div>
+                    <div class="tp-text">Menggunakan aplikasi menggambar dan mengetik untuk membuat karya digital sederhana (poster, cerita bergambar).</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">🧩</div>
+                    <div class="tp-text">Memahami instruksi berurutan (algoritma) melalui aktivitas sehari-hari seperti membuat minuman atau merapikan mainan.</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">🤝</div>
+                    <div class="tp-text">Mengenal etika sederhana dalam berkomunikasi daring (menggunakan kata sopan, tidak mengganggu teman).</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">🔍</div>
+                    <div class="tp-text">Mengidentifikasi pola sederhana dalam gambar dan angka (pengenalan pola – dasar berpikir komputasional).</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kelengkapan Modul -->
+        <div class="kelengkapan">
+            <h3><i class="fas fa-box-open"></i> Kelengkapan Modul</h3>
+            <div class="kelengkapan-grid">
+                <div class="kelengkapan-item">
+                    <i class="fas fa-paint-brush"></i>
+                    <h4>Panduan Paint</h4>
+                    <p>Langkah-langkah menggambar dengan Paint/ aplikasi sejenis</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh PDF</a>
+                </div>
+                <div class="kelengkapan-item">
+                    <i class="fas fa-cards"></i>
+                    <h4>Kartu Algoritma</h4>
+                    <p>20 kartu bergambar aktivitas sehari-hari (siap gunting)</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh</a>
+                </div>
+                <div class="kelengkapan-item">
+                    <i class="fas fa-video"></i>
+                    <h4>Video "Apa itu Algoritma?"</h4>
+                    <p>Animasi 4 menit dengan contoh membuat kue</p>
+                    <a href="#" class="btn-download"><i class="fas fa-play"></i> Tonton</a>
+                </div>
+                <div class="kelengkapan-item">
+                    <i class="fas fa-sticker"></i>
+                    <h4>Poster Etika Digital</h4>
+                    <p>Tips berkomunikasi daring (ukuran A3, warna-warni)</p>
+                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ide Proyek -->
+        <div class="proyek">
+            <h3><i class="fas fa-lightbulb"></i> Proyek: Petualangan Si Krayon Ajaib</h3>
+            <div class="proyek-content">
+                <div class="proyek-text">
+                    <p><i class="fas fa-magic"></i> Siswa membuat <strong>cerita bergambar 3-4 panel</strong> menggunakan aplikasi Paint (atau kertas dan krayon). Tema: "Petualangan Si Krayon Ajaib" – krayon yang bisa menghidupkan gambar. Setelah selesai, siswa menceritakan urutan kejadian (algoritma cerita) di depan kelas.</p>
+                    <p style="margin-top: 1rem;"><strong>Bahan:</strong> Komputer/tablet dengan Paint, atau kertas HVS, krayon, pensil.</p>
+                </div>
+                <div class="proyek-cta">
+                    <i class="fas fa-download" style="font-size: 2rem;"></i>
+                    <p style="margin: 1rem 0;">Lembar kerja dan rubrik penilaian proyek.</p>
+                    <a href="#" class="btn-download" style="background: #f7d44b;">Ambil Panduan</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aktivitas Interaktif: Susun Algoritma -->
+        <div class="interaktif">
+            <h3><i class="fas fa-puzzle-piece"></i> Susun Langkah Membuat Roti Lapis</h3>
+            <p style="margin-bottom: 1.5rem;">Tarik dan urutkan kartu-kartu berikut sesuai langkah yang benar. Ini adalah <strong>algoritma</strong> – urutan instruksi untuk mencapai tujuan.</p>
+            
+            <div class="algo-puzzle">
+                <!-- Langkah-langkah acak (sumber) -->
+                <div class="step-container" id="sourceSteps">
+                    <div class="step-card" draggable="true" data-step="3">3. Tutup dengan roti</div>
+                    <div class="step-card" draggable="true" data-step="1">1. Siapkan 2 lembar roti</div>
+                    <div class="step-card" draggable="true" data-step="2">2. Oleskan selai</div>
+                    <div class="step-card" draggable="true" data-step="4">4. Potong segitiga</div>
+                </div>
+
+                <!-- Area target untuk menyusun -->
+                <p style="color: #f7d44b; margin: 1rem 0;">⬇️ Susun di sini (urut dari atas ke bawah) ⬇️</p>
+                <div class="drop-zone" id="dropZone"></div>
+
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn-check" id="checkOrder">Cek Urutan</button>
+                    <button class="btn-check" id="resetOrder">Reset</button>
+                </div>
+
+                <div class="feedback" id="feedback"></div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-heart" style="color:#2F8F9D;"></i> Rancangan sesuai Kurikulum Merdeka Fase B – Retno Ariyanti
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Aktivitas drag and drop untuk algoritma
+            const sourceSteps = document.getElementById('sourceSteps');
+            const dropZone = document.getElementById('dropZone');
+            const checkBtn = document.getElementById('checkOrder');
+            const resetBtn = document.getElementById('resetOrder');
+            const feedback = document.getElementById('feedback');
+            
+            let correctOrder = ['1', '2', '3', '4']; // urutan benar berdasarkan data-step
+
+            // Menangani drag start
+            document.querySelectorAll('.step-card').forEach(card => {
+                card.addEventListener('dragstart', handleDragStart);
+                card.addEventListener('dragend', handleDragEnd);
+            });
+
+            function handleDragStart(e) {
+                e.dataTransfer.setData('text/plain', e.target.dataset.step);
+                e.dataTransfer.setData('text/html', e.target.outerHTML);
+                e.target.style.opacity = '0.5';
+            }
+
+            function handleDragEnd(e) {
+                e.target.style.opacity = '1';
+            }
+
+            // Mencegah default drag over di drop zone
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+            });
+
+            // Menangani drop
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                const stepData = e.dataTransfer.getData('text/plain');
+                const cardHTML = e.dataTransfer.getData('text/html');
+                
+                if (!stepData) return;
+
+                // Buat elemen baru dari HTML yang di-drag
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = cardHTML;
+                const newCard = tempDiv.firstChild;
+                
+                // Hapus atribut draggable agar tidak bisa di-drag lagi dari drop zone
+                newCard.setAttribute('draggable', 'false');
+                newCard.style.cursor = 'default';
+                
+                // Cek apakah sudah ada di drop zone (hindari duplikasi data-step yang sama)
+                const existingSteps = Array.from(dropZone.children).map(child => child.dataset.step);
+                if (!existingSteps.includes(stepData)) {
+                    dropZone.appendChild(newCard);
+                }
+
+                // Sembunyikan kartu asli di source? (opsional, agar tidak bingung)
+                // Kita akan hapus dari source jika ditemukan
+                const sourceCard = Array.from(sourceSteps.children).find(card => card.dataset.step === stepData);
+                if (sourceCard) {
+                    sourceCard.style.display = 'none';
+                }
+            });
+
+            // Tombol cek urutan
+            checkBtn.addEventListener('click', () => {
+                const droppedSteps = Array.from(dropZone.children).map(child => child.dataset.step);
+                
+                if (droppedSteps.length !== 4) {
+                    feedback.innerHTML = '❌ Masukkan semua 4 langkah terlebih dahulu!';
+                    feedback.style.color = '#ffaaaa';
+                    return;
+                }
+
+                // Cek urutan
+                let isCorrect = true;
+                for (let i = 0; i < 4; i++) {
+                    if (droppedSteps[i] !== correctOrder[i]) {
+                        isCorrect = false;
+                        break;
+                    }
+                }
+
+                if (isCorrect) {
+                    feedback.innerHTML = '✅ Benar! Urutan membuat roti lapis sudah tepat. Kamu hebat!';
+                    feedback.style.color = '#a0ffa0';
+                } else {
+                    feedback.innerHTML = '❌ Urutan masih salah. Coba periksa lagi langkah-langkahnya.';
+                    feedback.style.color = '#ffaaaa';
+                }
+            });
+
+            // Tombol reset
+            resetBtn.addEventListener('click', () => {
+                // Kosongkan drop zone
+                dropZone.innerHTML = '';
+                
+                // Tampilkan kembali semua kartu di source
+                Array.from(sourceSteps.children).forEach(card => {
+                    card.style.display = 'inline-block';
+                });
+                
+                feedback.innerHTML = '';
+            });
+
+            // Juga izinkan drag dari drop zone? Tidak, karena kita set draggable false setelah drop.
+            // Tapi jika user ingin mengatur ulang urutan di drop zone, mereka bisa reset dan mulai lagi.
+        })();
+    </script>
+</body>
+</html>

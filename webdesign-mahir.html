@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design Mahir · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+        .card { max-width:1300px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; }
+        .logo h1 { font-size:2.5rem; color:#1E2F4F; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; box-shadow:0 5px 0 #0f1e2f; transition:0.1s; display:inline-flex; align-items:center; gap:10px; }
+        .back-link a:active { transform:translateY(3px); box-shadow:0 2px 0 #0f1e2f; }
+        .page-title { font-size:2rem; color:#1E2F4F; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; margin-bottom:1rem; }
+        .subtitle { color:#2F8F9D; font-size:1.3rem; margin-bottom:2rem; }
+
+        /* Materi grid */
+        .materi-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .materi-card {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            flex: 1 1 280px;
+            border: 1px solid #2F8F9D;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+            transition: 0.2s;
+        }
+        .materi-card:hover {
+            transform: translateY(-5px);
+            border-color: #f7d44b;
+        }
+        .materi-card h3 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .materi-card p {
+            color: #2d3e5c;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .diagram {
+            background: #e3eef5;
+            border-radius: 30px;
+            padding: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 140px;
+            flex-wrap: wrap;
+        }
+        .perf-demo {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .perf-score {
+            background: #1E2F4F;
+            color: white;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .akses-demo {
+            display: flex;
+            gap: 10px;
+        }
+        .akses-icon {
+            background: #2F8F9D;
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+        }
+        .ssr-demo {
+            display: flex;
+            gap: 5px;
+            background: #f7d44b30;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .jamstack-demo {
+            display: flex;
+            gap: 5px;
+            background: #2F8F9D20;
+            padding: 10px;
+            border-radius: 20px;
+        }
+        .backend-demo {
+            display: flex;
+            gap: 5px;
+            background: #1E2F4F10;
+            padding: 10px;
+            border-radius: 20px;
+        }
+        .influencer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .influencer-card {
+            background: #f0f3fa;
+            border-radius: 30px;
+            padding: 1rem;
+            flex: 1 1 150px;
+            text-align: center;
+        }
+        .influencer-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .influencer-card a {
+            color: #1E2F4F;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .materi-card a {
+            background: #2F8F9D;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+            border: 1px solid white;
+            box-shadow: 0 3px 0 #195e68;
+        }
+        .materi-card a:active { transform:translateY(3px); box-shadow:none; }
+
+        /* Demo proyek */
+        .demo-section {
+            background: #e3eef5;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .demo-header h3 { color:#1E2F4F; font-size:1.6rem; }
+        .demo-area {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: inset 0 0 10px #cbd6e8;
+        }
+        .demo-code {
+            background: #1E2F4F;
+            color: #f7d44b;
+            padding: 1rem;
+            border-radius: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+        .demo-preview {
+            background: #f9f9f9;
+            border-radius: 20px;
+            padding: 1rem;
+            border: 2px solid #2F8F9D;
+        }
+        .preview-frame {
+            width: 100%;
+            min-height: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+        }
+        /* demo performa ringan */
+        .perf-meter {
+            display: flex;
+            gap: 10px;
+            background: #eef2f6;
+            padding: 10px;
+            border-radius: 30px;
+        }
+        .perf-bar {
+            height: 20px;
+            background: #2F8F9D;
+            border-radius: 20px;
+            width: 85%;
+        }
+        .akses-badge {
+            display: inline-block;
+            background: #f7d44b;
+            padding: 5px 10px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin: 2px;
+        }
+
+        .video-section { background:#e3eef5; border-radius:40px; padding:1.5rem; margin:2rem 0; }
+        .video-grid { display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; }
+        .video-card { background:white; border-radius:30px; padding:1rem; max-width:320px; }
+        .video-card iframe { width:100%; height:180px; border-radius:20px; }
+
+        .course-section { background:#f7d44b20; border-radius:40px; padding:1.5rem; margin:2rem 0; }
+        .course-grid { display:flex; flex-wrap:wrap; gap:1rem; }
+        .course-item { background:#1E2F4F; color:white; border-radius:30px; padding:1rem 1.5rem; flex:1 1 200px; text-align:center; }
+        .course-item a { color:#f7d44b; text-decoration:none; font-weight:bold; }
+
+        .nav-buttons { display:flex; justify-content:space-between; margin-top:2rem; }
+        .nav-btn { background:#2F8F9D; color:white; padding:0.8rem 2rem; border-radius:40px; text-decoration:none; font-weight:600; box-shadow:0 5px 0 #195e68; transition:0.1s; }
+        .nav-btn:active { transform:translateY(4px); box-shadow:0 1px 0 #195e68; }
+        .footer-note { margin-top:2rem; text-align:center; color:#1E2F4F; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="webdesign.html"><i class="fas fa-arrow-left"></i> Kembali ke Web Design</a></div>
+        </div>
+        <div class="page-title"><i class="fas fa-rocket"></i> Level Mahir</div>
+        <div class="subtitle">Performa, SSR/JAMstack, Kolaborasi Backend, Portfolio & Networking</div>
+
+        <!-- Materi dengan penjelasan dan diagram -->
+        <h2 style="color:#1E2F4F; margin: 2rem 0 1rem;">📚 Materi Inti</h2>
+        <div class="materi-grid">
+            <!-- Performa & Aksesibilitas -->
+            <div class="materi-card">
+                <h3>Performa & Aksesibilitas</h3>
+                <p><strong>Performa:</strong> Kecepatan muat halaman (optimasi gambar, minifikasi, lazy loading). Tools: Lighthouse, WebPageTest.<br>
+                <strong>Aksesibilitas (a11y):</strong> Halaman dapat digunakan oleh semua orang, termasuk penyandang disabilitas (ARIA, kontras warna, navigasi keyboard).</p>
+                <div class="diagram">
+                    <div class="perf-demo">
+                        <div class="perf-score">Lighthouse 95</div>
+                        <div class="perf-meter">
+                            <div class="perf-bar" style="width:95%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span class="akses-badge">alt text</span>
+                    <span class="akses-badge">ARIA</span>
+                    <span class="akses-badge">high contrast</span>
+                </div>
+                <a href="https://web.dev/learn/performance/" target="_blank">Web.dev Performance</a>
+                <a href="https://www.w3.org/WAI/fundamentals/accessibility-intro/" target="_blank">Aksesibilitas</a>
+            </div>
+            <!-- SSR, JAMstack -->
+            <div class="materi-card">
+                <h3>SSR, JAMstack</h3>
+                <p><strong>SSR (Server-Side Rendering):</strong> Halaman dirender di server setiap request. Baik untuk SEO dan initial load. Contoh: Next.js, Nuxt.js.<br>
+                <strong>JAMstack (JavaScript, APIs, Markup):</strong> Halaman statis di-generate saat build, diperkaya dengan API. Cepat, aman, mudah di-scale. Contoh: Gatsby, Astro.</p>
+                <div class="diagram">
+                    <div style="display:flex; gap:10px;">
+                        <div class="ssr-demo">Server → HTML → Client</div>
+                        <div class="jamstack-demo">Build → CDN → HTML + API</div>
+                    </div>
+                </div>
+                <a href="https://nextjs.org/learn" target="_blank">Next.js (SSR)</a>
+                <a href="https://jamstack.org/" target="_blank">JAMstack</a>
+            </div>
+            <!-- Kolaborasi dengan backend -->
+            <div class="materi-card">
+                <h3>Kolaborasi dengan Backend</h3>
+                <p>Frontend dan backend berkomunikasi melalui API. Frontend mengirim request, backend memproses dan mengembalikan data (JSON). Penting memahami REST/GraphQL, status code, dan autentikasi (JWT).</p>
+                <div class="diagram">
+                    <div class="backend-demo">
+                        <span>⚡ FE</span>
+                        <i class="fas fa-arrow-right"></i>
+                        <span>🌐 API</span>
+                        <i class="fas fa-arrow-right"></i>
+                        <span>🗄️ DB</span>
+                        <i class="fas fa-arrow-left"></i>
+                        <span>📦 JSON</span>
+                    </div>
+                </div>
+                <a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side" target="_blank">MDN Server-side</a>
+                <a href="https://www.freecodecamp.org/news/rest-api-tutorial/" target="_blank">REST API Tutorial</a>
+            </div>
+            <!-- Portfolio & Networking -->
+            <div class="materi-card">
+                <h3>Portfolio & Networking</h3>
+                <p>Portfolio menampilkan karya terbaik. Networking membangun koneksi dengan sesama developer, designer, dan calon klien/pemberi kerja. Ikuti influencer, aktif di komunitas.</p>
+                <div class="influencer-grid">
+                    <div class="influencer-card">
+                        <img src="https://yt3.googleusercontent.com/ytc/AIdro_lWt0R2_0iE9NfjI1gGc6rG_5U9qDzGX0XwN7U7Hg=s176-c-k-c0x00ffffff-no-rj" alt="Dea Afrizal">
+                        <a href="https://www.youtube.com/@deaafrizal" target="_blank">Dea Afrizal</a>
+                    </div>
+                    <div class="influencer-card">
+                        <img src="https://yt3.googleusercontent.com/ytc/AIdro_l2B_8Z4D7gLgYf8WwV5VvRr0KJdKXfWgYlW8U8sQ=s176-c-k-c0x00ffffff-no-rj" alt="IdStack">
+                        <a href="https://www.youtube.com/@idstack" target="_blank">IdStack</a>
+                    </div>
+                    <div class="influencer-card">
+                        <img src="https://yt3.googleusercontent.com/ytc/AIdro_nXjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjKjK=s176-c-k-c0x00ffffff-no-rj" alt="The Net Ninja">
+                        <a href="https://www.youtube.com/@NetNinja" target="_blank">Net Ninja</a>
+                    </div>
+                    <div class="influencer-card">
+                        <img src="https://yt3.googleusercontent.com/ytc/AIdro_lWt0R2_0iE9NfjI1gGc6rG_5U9qDzGX0XwN7U7Hg=s176-c-k-c0x00ffffff-no-rj" alt="Fireship">
+                        <a href="https://www.youtube.com/@Fireship" target="_blank">Fireship</a>
+                    </div>
+                </div>
+                <a href="https://www.behance.net/" target="_blank">Behance</a>
+                <a href="https://github.com/" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+
+        <!-- Demo Proyek: Halaman portofolio dengan performa tinggi, SSR (simulasi), aksesibilitas, dan kolaborasi API -->
+        <div class="demo-section">
+            <div class="demo-header">
+                <i class="fas fa-bolt" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Demo: Portfolio Next.js (SSR) + API + Aksesibilitas</h3>
+            </div>
+            <div class="demo-area">
+                <div class="demo-code">
+                    // Next.js page with SSR (pages/index.js)<br>
+                    export async function getServerSideProps() {<br>
+                    &nbsp;&nbsp;const res = await fetch('https://api.example.com/projects');<br>
+                    &nbsp;&nbsp;const projects = await res.json();<br>
+                    &nbsp;&nbsp;return { props: { projects } };<br>
+                    }<br>
+                    <br>
+                    export default function Home({ projects }) {<br>
+                    &nbsp;&nbsp;return &lt;div&gt;...&lt;/div&gt;;<br>
+                    }<br>
+                    <br>
+                    &lt;!-- Aksesibilitas: aria-label, alt --&gt;<br>
+                    &lt;button aria-label="Close"&gt;&times;&lt;/button&gt;
+                </div>
+                <div class="demo-preview">
+                    <div class="preview-frame">
+                        <!-- Simulasi tampilan -->
+                        <div style="background:#1E2F4F; color:white; padding:15px; border-radius:30px;">
+                            <h2 style="color:#f7d44b;">Portfolio Saya</h2>
+                            <div style="display:flex; gap:15px; flex-wrap:wrap; margin-top:15px;">
+                                <div style="background:#2F8F9D; padding:15px; border-radius:20px; flex:1 1 150px;">
+                                    <h4>Project A</h4>
+                                    <p>Deskripsi proyek</p>
+                                </div>
+                                <div style="background:#2F8F9D; padding:15px; border-radius:20px; flex:1 1 150px;">
+                                    <h4>Project B</h4>
+                                    <p>Deskripsi proyek</p>
+                                </div>
+                            </div>
+                            <div style="margin-top:15px; background:#f7d44b; padding:10px; border-radius:30px; color:#1E2F4F;">
+                                <span>Lighthouse Score: 98 (Performance) · 100 (Accessibility)</span>
+                            </div>
+                            <div style="margin-top:10px; color:#a0c4e2;">
+                                <i class="fas fa-robot"></i> Data diambil dari API (SSR)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Rekomendasi -->
+        <div class="video-section">
+            <h3><i class="fab fa-youtube" style="color:#c4302b;"></i> Rekomendasi Video YouTube (Indonesia)</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/2a8nB7xKzWk" title="Web Performance" frameborder="0" allowfullscreen></iframe>
+                    <h4>Web Performance (IdStack)</h4>
+                </div>
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/LrE7U0k0y8U" title="JAMstack" frameborder="0" allowfullscreen></iframe>
+                    <h4>JAMstack (Programmer Zaman Now)</h4>
+                </div>
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/6fM3ueN9nZM" title="Kolaborasi Frontend Backend" frameborder="0" allowfullscreen></iframe>
+                    <h4>Kolaborasi FE-BE (Dea Afrizal)</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kursus Relevan -->
+        <div class="course-section">
+            <h3><i class="fas fa-graduation-cap"></i> Kursus yang Relevan</h3>
+            <div class="course-grid">
+                <div class="course-item">
+                    <p><strong>Dicoding</strong> Belajar Aksesibilitas Web</p>
+                    <a href="https://www.dicoding.com/academies/401" target="_blank">Lihat Kursus</a>
+                </div>
+                <div class="course-item">
+                    <p><strong>Next.js</strong> Official Tutorial</p>
+                    <a href="https://nextjs.org/learn" target="_blank">Kunjungi</a>
+                </div>
+                <div class="course-item">
+                    <p><strong>Web.dev</strong> Performance</p>
+                    <a href="https://web.dev/learn/performance/" target="_blank">Kunjungi</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigasi antar level -->
+        <div class="nav-buttons">
+            <a href="webdesign-lanjut.html" class="nav-btn"><i class="fas fa-arrow-left"></i> ke Lanjut</a>
+            <span></span>
+        </div>
+
+        <div class="footer-note"><i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias</div>
+    </div>
+</body>
+</html>

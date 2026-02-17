@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design Lanjut · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+        .card { max-width:1300px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; }
+        .logo h1 { font-size:2.5rem; color:#1E2F4F; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; box-shadow:0 5px 0 #0f1e2f; transition:0.1s; display:inline-flex; align-items:center; gap:10px; }
+        .back-link a:active { transform:translateY(3px); box-shadow:0 2px 0 #0f1e2f; }
+        .page-title { font-size:2rem; color:#1E2F4F; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; margin-bottom:1rem; }
+        .subtitle { color:#2F8F9D; font-size:1.3rem; margin-bottom:2rem; }
+
+        /* Materi grid */
+        .materi-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .materi-card {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            flex: 1 1 280px;
+            border: 1px solid #2F8F9D;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+            transition: 0.2s;
+        }
+        .materi-card:hover {
+            transform: translateY(-5px);
+            border-color: #f7d44b;
+        }
+        .materi-card h3 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .materi-card p {
+            color: #2d3e5c;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .diagram {
+            background: #e3eef5;
+            border-radius: 30px;
+            padding: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 140px;
+            flex-wrap: wrap;
+        }
+        .framework-demo {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .bootstrap-badge {
+            background: #7e3af2;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 30px;
+        }
+        .tailwind-badge {
+            background: #38bdf8;
+            color: #1e293b;
+            padding: 8px 15px;
+            border-radius: 30px;
+        }
+        .animation-demo {
+            width: 60px;
+            height: 60px;
+            background: #2F8F9D;
+            border-radius: 12px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .sass-demo {
+            display: flex;
+            gap: 10px;
+            background: #1E2F4F;
+            color: #f7d44b;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .sass-demo pre {
+            background: #0f1a24;
+            padding: 5px;
+            border-radius: 10px;
+        }
+        .seo-demo {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .meta-tag {
+            background: #f7d44b;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+        }
+        .materi-card a {
+            background: #2F8F9D;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+            border: 1px solid white;
+            box-shadow: 0 3px 0 #195e68;
+        }
+        .materi-card a:active { transform:translateY(3px); box-shadow:none; }
+
+        /* Demo proyek */
+        .demo-section {
+            background: #e3eef5;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .demo-header h3 { color:#1E2F4F; font-size:1.6rem; }
+        .demo-area {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: inset 0 0 10px #cbd6e8;
+        }
+        .demo-code {
+            background: #1E2F4F;
+            color: #f7d44b;
+            padding: 1rem;
+            border-radius: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+        .demo-preview {
+            background: #f9f9f9;
+            border-radius: 20px;
+            padding: 1rem;
+            border: 2px solid #2F8F9D;
+        }
+        .preview-frame {
+            width: 100%;
+            min-height: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+        }
+        /* demo interaktif dengan tailwind style (manual) */
+        .btn-tailwind {
+            background: #38bdf8;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .btn-tailwind:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -5px #38bdf8;
+        }
+        .btn-bootstrap {
+            background: #7e3af2;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn-bootstrap:hover {
+            background: #5b2cbf;
+        }
+        .animated-box {
+            width: 80px;
+            height: 80px;
+            background: #2F8F9D;
+            border-radius: 16px;
+            animation: slideIn 1.5s infinite alternate;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(50px); opacity: 0.7; }
+        }
+
+        .video-section { background:#e3eef5; border-radius:40px; padding:1.5rem; margin:2rem 0; }
+        .video-grid { display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; }
+        .video-card { background:white; border-radius:30px; padding:1rem; max-width:320px; }
+        .video-card iframe { width:100%; height:180px; border-radius:20px; }
+
+        .course-section { background:#f7d44b20; border-radius:40px; padding:1.5rem; margin:2rem 0; }
+        .course-grid { display:flex; flex-wrap:wrap; gap:1rem; }
+        .course-item { background:#1E2F4F; color:white; border-radius:30px; padding:1rem 1.5rem; flex:1 1 200px; text-align:center; }
+        .course-item a { color:#f7d44b; text-decoration:none; font-weight:bold; }
+
+        .nav-buttons { display:flex; justify-content:space-between; margin-top:2rem; }
+        .nav-btn { background:#2F8F9D; color:white; padding:0.8rem 2rem; border-radius:40px; text-decoration:none; font-weight:600; box-shadow:0 5px 0 #195e68; transition:0.1s; }
+        .nav-btn:active { transform:translateY(4px); box-shadow:0 1px 0 #195e68; }
+        .footer-note { margin-top:2rem; text-align:center; color:#1E2F4F; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="webdesign.html"><i class="fas fa-arrow-left"></i> Kembali ke Web Design</a></div>
+        </div>
+        <div class="page-title"><i class="fas fa-crown"></i> Level Lanjut</div>
+        <div class="subtitle">Framework CSS, Animasi, SASS, SEO Dasar</div>
+
+        <!-- Materi dengan penjelasan dan diagram -->
+        <h2 style="color:#1E2F4F; margin: 2rem 0 1rem;">📚 Materi Inti</h2>
+        <div class="materi-grid">
+            <!-- Framework CSS -->
+            <div class="materi-card">
+                <h3>Framework CSS (Bootstrap/Tailwind)</h3>
+                <p><strong>Bootstrap:</strong> Framework berbasis komponen. Siap pakai dengan desain konsisten. Menggunakan kelas seperti <code>btn btn-primary</code>.<br>
+                <strong>Tailwind:</strong> Framework utility-first. Membangun desain dengan kelas utilitas seperti <code>bg-blue-500 p-4</code>. Fleksibel dan ringan.</p>
+                <div class="diagram">
+                    <div class="framework-demo">
+                        <div class="bootstrap-badge">Bootstrap<br><small>btn btn-primary</small></div>
+                        <div class="tailwind-badge">Tailwind<br><small>bg-blue-500 p-2</small></div>
+                    </div>
+                </div>
+                <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>
+                <a href="https://tailwindcss.com/" target="_blank">Tailwind</a>
+            </div>
+            <!-- Animasi & Transisi -->
+            <div class="materi-card">
+                <h3>Animasi & Transisi</h3>
+                <p><strong>Transisi:</strong> perubahan halus antara dua keadaan (misal hover). Properti: <code>transition: all 0.3s</code>.<br>
+                <strong>Animasi @keyframes:</strong> animasi kompleks dengan banyak tahap.</p>
+                <div class="diagram">
+                    <div style="text-align:center;">
+                        <div class="animation-demo"></div>
+                        <p style="font-size:0.8rem;">Animasi pulse dengan keyframes</p>
+                    </div>
+                </div>
+                <a href="https://www.w3schools.com/css/css3_transitions.asp" target="_blank">Transisi</a>
+                <a href="https://www.w3schools.com/css/css3_animations.asp" target="_blank">Animasi</a>
+            </div>
+            <!-- Preprocessor SASS -->
+            <div class="materi-card">
+                <h3>Preprocessor (SASS)</h3>
+                <p>SASS memperluas CSS dengan variabel, nesting, mixin, dan fungsi. Ditulis dalam file .scss, dikompilasi menjadi CSS biasa.</p>
+                <div class="diagram">
+                    <div class="sass-demo">
+                        <pre>$primary: #2F8F9D;<br>.btn {<br>  background: $primary;<br>  &:hover {<br>    opacity: 0.8;<br>  }<br>}</pre>
+                        <span style="align-self:center;">➔</span>
+                        <pre>.btn { background: #2F8F9D; }<br>.btn:hover { opacity: 0.8; }</pre>
+                    </div>
+                </div>
+                <a href="https://sass-lang.com/guide" target="_blank">SASS Guide</a>
+            </div>
+            <!-- SEO Dasar -->
+            <div class="materi-card">
+                <h3>SEO Dasar</h3>
+                <p>Search Engine Optimization: praktik agar situs mudah ditemukan mesin pencari. Elemen penting: meta tags (title, description), heading hierarchy, alt text pada gambar, semantic HTML, kecepatan halaman.</p>
+                <div class="diagram">
+                    <div class="seo-demo">
+                        <span class="meta-tag">&lt;title&gt;...</span>
+                        <span class="meta-tag">&lt;meta name="description"&gt;</span>
+                        <span class="meta-tag">alt="gambar"</span>
+                    </div>
+                </div>
+                <a href="https://developers.google.com/search/docs" target="_blank">Google SEO Guide</a>
+            </div>
+        </div>
+
+        <!-- Demo Proyek: Landing page sederhana dengan Tailwind style, animasi, SASS-like, dan SEO -->
+        <div class="demo-section">
+            <div class="demo-header">
+                <i class="fas fa-rocket" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Demo: Landing Page dengan Framework, Animasi, SASS, SEO</h3>
+            </div>
+            <div class="demo-area">
+                <div class="demo-code">
+                    &lt;!-- Menggunakan utility classes (seperti Tailwind) --&gt;<br>
+                    &lt;style&gt;<br>
+                    /* SASS syntax (dikompilasi) */<br>
+                    $primary: #2F8F9D;<br>
+                    .btn { background: $primary; transition: transform 0.3s; }<br>
+                    .btn:hover { transform: scale(1.05); }<br>
+                    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }<br>
+                    .hero { animation: fadeIn 2s; }<br>
+                    &lt;/style&gt;<br>
+                    &lt;title&gt;My Landing Page - Belajar SEO&lt;/title&gt;<br>
+                    &lt;meta name="description" content="Halaman contoh untuk belajar SEO"&gt;<br>
+                    &lt;div class="hero"&gt;...&lt;/div&gt;
+                </div>
+                <div class="demo-preview">
+                    <div class="preview-frame">
+                        <!-- Hasil visual -->
+                        <div style="animation: fadeIn 2s; text-align:center;">
+                            <h1 style="color:#1E2F4F;">Selamat Datang di Demo</h1>
+                            <p style="margin:20px 0;">Halaman ini menggunakan utility CSS, animasi, dan meta tags SEO.</p>
+                            <div style="display:flex; gap:15px; justify-content:center; margin:20px 0;">
+                                <button class="btn-tailwind">Tombol Tailwind</button>
+                                <button class="btn-bootstrap">Tombol Bootstrap</button>
+                            </div>
+                            <div class="animated-box" style="margin:20px auto;"></div>
+                            <div style="background:#f0f3fa; padding:10px; border-radius:30px; font-size:0.8rem;">
+                                <strong>Meta description:</strong> "Halaman contoh untuk belajar SEO"
+                            </div>
+                            <img src="https://via.placeholder.com/300x150/2F8F9D/ffffff?text=Gambar+Contoh" alt="Contoh gambar untuk SEO" style="margin-top:15px; border-radius:20px; max-width:100%;">
+                        </div>
+                        <style>
+                            @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+                        </style>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Rekomendasi -->
+        <div class="video-section">
+            <h3><i class="fab fa-youtube" style="color:#c4302b;"></i> Rekomendasi Video YouTube (Indonesia)</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/QCg0L6BiII0" title="Tailwind CSS" frameborder="0" allowfullscreen></iframe>
+                    <h4>Tailwind (Dea Afrizal)</h4>
+                </div>
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/6a5WKnFkJcU" title="SASS Dasar" frameborder="0" allowfullscreen></iframe>
+                    <h4>SASS (UNPAS)</h4>
+                </div>
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/7KNlP0GjNnM" title="SEO Dasar" frameborder="0" allowfullscreen></iframe>
+                    <h4>SEO Dasar (IdStack)</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kursus Relevan -->
+        <div class="course-section">
+            <h3><i class="fas fa-graduation-cap"></i> Kursus yang Relevan</h3>
+            <div class="course-grid">
+                <div class="course-item">
+                    <p><strong>Dicoding</strong> Belajar Bootstrap</p>
+                    <a href="https://www.dicoding.com/academies/413" target="_blank">Lihat Kursus</a>
+                </div>
+                <div class="course-item">
+                    <p><strong>Tailwind Labs</strong> Official Course</p>
+                    <a href="https://tailwindcss.com/course" target="_blank">Kunjungi</a>
+                </div>
+                <div class="course-item">
+                    <p><strong>W3Schools</strong> SASS Tutorial</p>
+                    <a href="https://www.w3schools.com/sass/" target="_blank">Kunjungi</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigasi antar level -->
+        <div class="nav-buttons">
+            <a href="webdesign-menengah.html" class="nav-btn"><i class="fas fa-arrow-left"></i>ke Menengah</a>
+            <a href="webdesign-mahir.html" class="nav-btn">ke Mahir <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="footer-note"><i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias</div>
+    </div>
+</body>
+</html>

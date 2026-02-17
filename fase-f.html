@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase F · Informatika SMA · Retno Ariyanti</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f3fa 0%, #e6ecf7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .fase-card {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 3.5rem 3.5rem 2.5rem 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,20,40,0.3), 0 0 0 1px rgba(156, 180, 215, 0.3) inset;
+            padding: 2.2rem 2.5rem 3rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .header-fase {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px dashed #2F8F9D;
+            padding-bottom: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1E2F4F;
+            text-shadow: 2px 2px 0 rgba(47,143,157,0.2);
+        }
+
+        .back-home a {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            border: 1px solid white;
+        }
+        .back-home a:hover {
+            background: #2F8F9D;
+            transform: scale(1.02);
+        }
+
+        .judul-fase {
+            font-size: 2.5rem;
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+        }
+        .judul-fase small {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #2F8F9D;
+            display: block;
+        }
+
+        .pengertian {
+            background: rgba(47,143,157,0.1);
+            border-radius: 40px;
+            padding: 1.8rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #2F8F9D;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .modul-section {
+            margin: 3rem 0 2rem;
+        }
+        .modul-title {
+            font-size: 2rem;
+            color: #1E2F4F;
+            border-bottom: 3px solid #2F8F9D;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tp-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .tp-item {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 10px rgba(30,47,79,0.05);
+            border: 1px solid rgba(47,143,157,0.3);
+            display: flex;
+            gap: 1rem;
+        }
+        .tp-icon {
+            background: #2F8F9D;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .tp-text {
+            font-size: 1rem;
+            color: #1a2b41;
+        }
+
+        .kelengkapan {
+            background: #ffffffb0;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .kelengkapan h4 {
+            font-size: 1.5rem;
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+        }
+        .kelengkapan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+        .kelengkapan-item {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #2F8F9D;
+        }
+        .kelengkapan-item i {
+            font-size: 2.5rem;
+            color: #2F8F9D;
+            margin-bottom: 0.8rem;
+        }
+        .kelengkapan-item h5 {
+            color: #1E2F4F;
+            margin-bottom: 0.5rem;
+        }
+        .btn-download {
+            background: #f7d44b;
+            color: #1E2F4F;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 0.5rem;
+            border: 1px solid white;
+            box-shadow: 0 3px 0 #b58f2b;
+            transition: 0.1s;
+        }
+        .btn-download:active {
+            transform: translateY(3px);
+            box-shadow: none;
+        }
+
+        .proyek {
+            background: linear-gradient(145deg, #d4e2f0, #c2d6e8);
+            border-radius: 50px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .proyek h4 {
+            font-size: 1.8rem;
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+        }
+        .proyek-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        .proyek-text {
+            flex: 2;
+            font-size: 1.1rem;
+        }
+        .proyek-text i {
+            color: #f7d44b;
+            background: #1E2F4F;
+            padding: 0.5rem;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        .proyek-cta {
+            flex: 1;
+            background: #1E2F4F;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 40px;
+            text-align: center;
+        }
+        .proyek-cta a {
+            color: #f7d44b;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .interaktif {
+            background: #1E2F4F;
+            border-radius: 50px;
+            padding: 2rem;
+            margin-top: 2.5rem;
+            color: white;
+        }
+        .interaktif h3 {
+            font-size: 2rem;
+            color: #f7d44b;
+            margin-bottom: 1.5rem;
+        }
+
+        /* UML Simulator */
+        .uml-sim {
+            background: #2a3f5a;
+            border-radius: 40px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .uml-canvas {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            min-height: 200px;
+            color: #1E2F4F;
+            font-family: monospace;
+            margin: 1rem 0;
+        }
+        .uml-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .uml-btn {
+            background: #f7d44b;
+            color: #1E2F4F;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #b58f2b;
+        }
+
+        /* AI Ethics Quiz */
+        .quiz-sim {
+            background: #2a3f5a;
+            border-radius: 40px;
+            padding: 2rem;
+        }
+        .quiz-question {
+            background: white;
+            color: #1E2F4F;
+            border-radius: 30px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-size: 1.2rem;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quiz-option {
+            background: #f0f3fa;
+            color: #1E2F4F;
+            border-radius: 40px;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 2px solid transparent;
+        }
+        .quiz-option:hover {
+            background: #e0e6f2;
+        }
+        .quiz-option.correct {
+            background: #51cf66;
+            border-color: white;
+        }
+        .quiz-option.wrong {
+            background: #ff6b6b;
+            border-color: white;
+        }
+        .quiz-feedback {
+            text-align: center;
+            font-size: 1.3rem;
+            margin: 1rem 0;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            color: #1E2F4F;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="fase-card">
+        <div class="header-fase">
+            <div class="logo">
+                <h1>RETNO</h1>
+            </div>
+            <div class="back-home">
+                <a href="kelas.html"><i class="fas fa-arrow-left"></i> Kembali ke Kelas</a>
+            </div>
+        </div>
+
+        <h1 class="judul-fase">Fase F <small>Kelas 11–12 SMA/SMK · Rekayasa Perangkat Lunak & Sistem Cerdas</small></h1>
+
+        <!-- Pengertian singkat -->
+        <div class="pengertian">
+            <i class="fas fa-rocket" style="color:#2F8F9D; margin-right:10px;"></i> 
+            Di fase puncak ini, siswa siap menjadi <strong>pencipta solusi digital</strong>. Mereka mempelajari metodologi pengembangan perangkat lunak (SDLC) untuk membangun aplikasi yang nyata, serta mendalami <strong>sistem cerdas (AI) dan IoT</strong> untuk menciptakan prototipe inovatif seperti smart home atau tempat sampah pintar. Fase F membekali siswa dengan keterampilan yang relevan dengan industri 4.0 dan masyarakat 5.0.
+        </div>
+
+        <!-- ===== MODUL 1: REKAYASA PERANGKAT LUNAK (RPL) ===== -->
+        <div class="modul-section">
+            <div class="modul-title"><i class="fas fa-code"></i> Modul 1: Rekayasa Perangkat Lunak – Membangun Aplikasi</div>
+
+            <!-- Tujuan Pembelajaran -->
+            <h3 style="color:#1E2F4F; margin-bottom:1rem;">🎯 Tujuan Pembelajaran</h3>
+            <div class="tp-list">
+                <div class="tp-item">
+                    <div class="tp-icon">📋</div>
+                    <div class="tp-text">Memahami siklus hidup pengembangan perangkat lunak (SDLC): waterfall, agile, prototyping.</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">📐</div>
+                    <div class="tp-text">Merancang antarmuka pengguna (UI/UX) sederhana dan membuat diagram UML (use case, activity).</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">⚙️</div>
+                    <div class="tp-text">Mengimplementasikan fitur aplikasi berbasis web atau dekstop menggunakan bahasa pemrograman (PHP, Python, JavaScript).</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">🧪</div>
+                    <div class="tp-text">Melakukan pengujian sederhana (black-box) dan menyusun dokumentasi proyek.</div>
+                </div>
+            </div>
+
+            <!-- Kelengkapan Modul -->
+            <div class="kelengkapan">
+                <h4><i class="fas fa-box-open"></i> Kelengkapan Modul RPL</h4>
+                <div class="kelengkapan-grid">
+                    <div class="kelengkapan-item">
+                        <i class="fas fa-book"></i>
+                        <h5>Modul SDLC</h5>
+                        <p>PDF 30 halaman: waterfall, agile, studi kasus</p>
+                        <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh</a>
+                    </div>
+                    <div class="kelengkapan-item">
+                        <i class="fas fa-project-diagram"></i>
+                        <h5>Template UML</h5>
+                        <p>File draw.io untuk use case, activity diagram</p>
+                        <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh</a>
+                    </div>
+                    <div class="kelengkapan-item">
+                        <i class="fas fa-laptop-code"></i>
+                        <h5>Starter Code</h5>
+                        <p>Project web sederhana (HTML, CSS, JS)</p>
+                        <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh</a>
+                    </div>
+                    <div class="kelengkapan-item">
+                        <i class="fas fa-video"></i>
+                        <h5>Video Tutorial</h5>
+                        <p>Playlist: dari desain hingga deployment</p>
+                        <a href="#" class="btn-download"><i class="fas fa-play"></i> Tonton</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ide Proyek 1 -->
+            <div class="proyek">
+                <h4><i class="fas fa-lightbulb"></i> Proyek 1: Aplikasi Pencatatan Kegiatan Ekstrakurikuler</h4>
+                <div class="proyek-content">
+                    <div class="proyek-text">
+                        <p><i class="fas fa-futbol"></i> Siswa secara berkelompok membuat aplikasi web sederhana untuk mencatat kehadiran dan kegiatan ekstrakurikuler di sekolah. Mulai dari perencanaan (use case), desain UI, implementasi dengan HTML/CSS/JS dan penyimpanan data (localStorage atau Google Sheets), hingga pengujian.</p>
+                        <p style="margin-top: 1rem;"><strong>Bahan:</strong> Teks editor (VS Code), browser, akun Google (untuk Sheets).</p>
+                    </div>
+                    <div class="proyek-cta">
+                        <i class="fas fa-download" style="font-size: 2rem;"></i>
+                        <p style="margin: 1rem 0;">Panduan proyek + template kode</p>
+                        <a href="#" class="btn-download" style="background: #f7d44b;">Ambil Panduan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== MODUL 2: SISTEM CERDAS & IoT ===== -->
+        <div class="modul-section">
+            <div class="modul-title"><i class="fas fa-microchip"></i> Modul 2: Sistem Cerdas dan Internet of Things (IoT)</div>
+
+            <!-- Tujuan Pembelajaran -->
+            <h3 style="color:#1E2F4F; margin-bottom:1rem;">🎯 Tujuan Pembelajaran</h3>
+            <div class="tp-list">
+                <div class="tp-item">
+                    <div class="tp-icon">🤖</div>
+                    <div class="tp-text">Memahami konsep AI (machine learning, neural network) dan penerapannya di kehidupan nyata.</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">📡</div>
+                    <div class="tp-text">Merancang prototipe sistem IoT dengan sensor dan aktuator (suhu, gerak, LED).</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">⚡</div>
+                    <div class="tp-text">Memproses data sensor untuk pengambilan keputusan sederhana (logika fuzzy atau threshold).</div>
+                </div>
+                <div class="tp-item">
+                    <div class="tp-icon">🔗</div>
+                    <div class="tp-text">Mengintegrasikan IoT dengan platform cloud (ThingSpeak, Blynk) untuk monitoring.</div>
+                </div>
+            </div>
+
+            <!-- Kelengkapan Modul -->
+            <div class="kelengkapan">
+                <h4><i class="fas fa-box-open"></i> Kelengkapan Modul Sistem Cerdas & IoT</h4>
+                <div class="kelengkapan-grid">
+                    <div class="kelengkapan-item">
+                        <i class="fas fa-robot"></i>
+                        <h5>Modul AI</h5>
+                        <p>Pengenalan ML, studi kasus, etika AI</p>
+                        <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh</a>
+                    </div>
+                    <div class="kelengkapan-item">
+                        <i class="fas fa-microchip"></i>
+                        <h5>Simulasi Wokwi</h5>
+                        <p>Proyek IoT online (ESP32, sensor)</p>
+                        <a href="#" class="btn-download"><i class="fas fa-external-link-alt"></i> Buka</a>
+                    </div>
+                    <div class="kelengkapan-item">
+                        <i class="fas fa-cloud"></i>
+                        <h5>ThingSpeak</h5>
+                        <p>Panduan koneksi dan dashboard</p>
+                        <a href="#" class="btn-download"><i class="fas fa-download"></i> Unduh</a>
+                    </div>
+                    <div class="kelengkapan-item">
+                        <i class="fas fa-video"></i>
+                        <h5>Video IoT</h5>
+                        <p>Eksperimen sederhana dengan Arduino</p>
+                        <a href="#" class="btn-download"><i class="fas fa-play"></i> Tonton</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ide Proyek 2 -->
+            <div class="proyek">
+                <h4><i class="fas fa-lightbulb"></i> Proyek 2: Tempat Sampah Pintar (Smart Trash Bin)</h4>
+                <div class="proyek-content">
+                    <div class="proyek-text">
+                        <p><i class="fas fa-trash-alt"></i> Siswa membuat prototipe tempat sampah yang dapat membuka tutup otomatis dengan sensor proximity (simulasi di Wokwi atau hardware sungguhan). Ditambah notifikasi ke Telegram ketika sampah penuh menggunakan sensor ultrasonik. Bisa juga ditambahkan klasifikasi sampah organik/anorganik sederhana.</p>
+                        <p style="margin-top: 1rem;"><strong>Bahan:</strong> Simulator Wokwi (gratis, online) atau kit Arduino, sensor ultrasonik, servo, kabel.</p>
+                    </div>
+                    <div class="proyek-cta">
+                        <i class="fas fa-download" style="font-size: 2rem;"></i>
+                        <p style="margin: 1rem 0;">Kode program + skema rangkaian</p>
+                        <a href="#" class="btn-download" style="background: #f7d44b;">Ambil Panduan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== AKTIVITAS INTERAKTIF ===== -->
+        <div class="interaktif">
+            <h3><i class="fas fa-gamepad"></i> Aktivitas Interaktif</h3>
+            <p style="margin-bottom: 2rem;">Coba simulasi berikut untuk memahami perancangan perangkat lunak dan etika AI.</p>
+
+            <!-- Simulasi UML: Use Case Diagram -->
+            <div class="uml-sim">
+                <h4 style="color:#f7d44b; margin-bottom:1rem;">📐 Susun Use Case Diagram</h4>
+                <p>Untuk aplikasi peminjaman buku, seret elemen ke area kanvas untuk membentuk diagram use case.</p>
+                <div class="uml-canvas" id="umlCanvas">
+                    <!-- Akan diisi oleh JS -->
+                </div>
+                <div class="uml-controls">
+                    <button class="uml-btn" data-element="Actor">+ Aktor</button>
+                    <button class="uml-btn" data-element="UseCase">+ Use Case</button>
+                    <button class="uml-btn" data-element="Association">➕ Asosiasi</button>
+                    <button class="uml-btn" id="resetUml">Reset</button>
+                </div>
+                <p style="margin-top:1rem; color:#ccc;">Klik tombol, lalu klik di kanvas untuk menempatkan elemen.</p>
+            </div>
+
+            <!-- Kuis Etika AI -->
+            <div class="quiz-sim">
+                <h4 style="color:#f7d44b; margin-bottom:1rem;">🧠 Etika AI: Apa yang Akan Kamu Lakukan?</h4>
+                <div class="quiz-question" id="quizQuestion"></div>
+                <div class="quiz-options" id="quizOptions"></div>
+                <div class="quiz-feedback" id="quizFeedback"></div>
+                <button class="uml-btn" id="nextQuiz">Pertanyaan Berikutnya</button>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-heart" style="color:#2F8F9D;"></i> Rancangan sesuai Kurikulum Merdeka Fase F – Retno Ariyanti
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ========== UML SIMULATOR (sangat sederhana) ==========
+            const umlCanvas = document.getElementById('umlCanvas');
+            const umlButtons = document.querySelectorAll('.uml-btn[data-element]');
+            const resetUml = document.getElementById('resetUml');
+            let selectedElement = null;
+
+            // Inisialisasi kanvas dengan instruksi
+            umlCanvas.innerHTML = '<p style="text-align:center; color:#888;">Klik tombol, lalu klik di sini untuk menambah elemen.</p>';
+
+            umlButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    selectedElement = btn.dataset.element;
+                });
+            });
+
+            umlCanvas.addEventListener('click', (e) => {
+                if (!selectedElement) return;
+                const rect = umlCanvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const el = document.createElement('div');
+                el.style.position = 'absolute';
+                el.style.left = x + 'px';
+                el.style.top = y + 'px';
+                el.style.background = '#f7d44b';
+                el.style.color = '#1E2F4F';
+                el.style.padding = '5px 10px';
+                el.style.borderRadius = '20px';
+                el.style.fontWeight = 'bold';
+                el.style.boxShadow = '0 2px 0 #b58f2b';
+                el.style.cursor = 'move';
+                el.innerText = selectedElement === 'Actor' ? '👤 Aktor' : (selectedElement === 'UseCase' ? '📌 Use Case' : '🔗 Asosiasi');
+                el.setAttribute('draggable', 'true');
+                
+                // Drag functionality sederhana
+                el.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('text/plain', null);
+                });
+                el.addEventListener('dragend', (e) => {
+                    const rectCanvas = umlCanvas.getBoundingClientRect();
+                    let newX = e.clientX - rectCanvas.left;
+                    let newY = e.clientY - rectCanvas.top;
+                    newX = Math.min(rectCanvas.width - 100, Math.max(0, newX));
+                    newY = Math.min(rectCanvas.height - 50, Math.max(0, newY));
+                    el.style.left = newX + 'px';
+                    el.style.top = newY + 'px';
+                });
+
+                umlCanvas.style.position = 'relative';
+                umlCanvas.appendChild(el);
+                selectedElement = null;
+            });
+
+            resetUml.addEventListener('click', () => {
+                umlCanvas.innerHTML = '<p style="text-align:center; color:#888;">Klik tombol, lalu klik di sini untuk menambah elemen.</p>';
+            });
+
+            // ========== KUIS ETIKA AI ==========
+            const quizData = [
+                {
+                    question: "Sebuah perusahaan menggunakan AI untuk menyaring pelamar kerja. Ternyata AI tersebut lebih banyak menolak pelamar perempuan. Apa yang sebaiknya dilakukan?",
+                    options: [
+                        "Mengabaikan karena AI pasti objektif",
+                        "Melakukan audit data dan algoritma untuk menghilangkan bias",
+                        "Berhenti menggunakan AI sama sekali",
+                        "Menambahkan lebih banyak data pelamar laki-laki"
+                    ],
+                    correct: 1,
+                    explanation: "AI dapat memiliki bias jika dilatih dengan data historis yang bias. Audit dan perbaikan data adalah langkah tepat."
+                },
+                {
+                    question: "Kamera pengenal wajah (face recognition) akan dipasang di sekolah untuk absensi. Kekhawatiran apa yang perlu dipertimbangkan?",
+                    options: [
+                        "Tidak ada masalah, selama untuk kebaikan",
+                        "Privasi siswa dan penyimpanan data biometrik",
+                        "Akurasi kamera kurang baik",
+                        "Biaya pemasangan mahal"
+                    ],
+                    correct: 1,
+                    explanation: "Data biometrik sangat sensitif. Sekolah harus memastikan keamanan data dan persetujuan orang tua."
+                }
+            ];
+
+            let quizIndex = 0;
+            const quizQuestion = document.getElementById('quizQuestion');
+            const quizOptions = document.getElementById('quizOptions');
+            const quizFeedback = document.getElementById('quizFeedback');
+            const nextQuiz = document.getElementById('nextQuiz');
+            let answered = false;
+
+            function loadQuiz(index) {
+                const q = quizData[index];
+                quizQuestion.innerText = q.question;
+                quizOptions.innerHTML = '';
+                q.options.forEach((opt, i) => {
+                    const optDiv = document.createElement('div');
+                    optDiv.className = 'quiz-option';
+                    optDiv.innerText = opt;
+                    optDiv.dataset.optIndex = i;
+                    optDiv.addEventListener('click', (e) => {
+                        if (answered) return;
+                        const chosen = parseInt(e.currentTarget.dataset.optIndex);
+                        const isCorrect = (chosen === q.correct);
+                        e.currentTarget.classList.add(isCorrect ? 'correct' : 'wrong');
+                        if (isCorrect) {
+                            quizFeedback.innerHTML = '✅ Benar! ' + q.explanation;
+                        } else {
+                            quizFeedback.innerHTML = '❌ Kurang tepat. ' + q.explanation;
+                        }
+                        // Tandai opsi yang benar
+                        document.querySelectorAll('.quiz-option').forEach((optEl, idx) => {
+                            if (idx === q.correct) optEl.classList.add('correct');
+                        });
+                        answered = true;
+                    });
+                    quizOptions.appendChild(optDiv);
+                });
+                quizFeedback.innerHTML = '';
+                answered = false;
+            }
+
+            loadQuiz(0);
+
+            nextQuiz.addEventListener('click', () => {
+                quizIndex = (quizIndex + 1) % quizData.length;
+                loadQuiz(quizIndex);
+            });
+        })();
+    </script>
+</body>
+</html>

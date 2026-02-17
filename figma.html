@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar UI/UX · Retno Ariyanti</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f3fa 0%, #e6ecf7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .uiux-card {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 3.5rem 3.5rem 2.5rem 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,20,40,0.3);
+            overflow: hidden;
+            padding: 2.2rem 2.5rem 3rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px dashed #2F8F9D;
+            padding-bottom: 1.5rem;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1E2F4F;
+        }
+
+        .back-link a {
+            background: #1E2F4F;
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 5px 0 #0f1e2f;
+            transition: 0.1s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .back-link a:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #0f1e2f;
+        }
+
+        .page-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1E2F4F;
+            margin: 1rem 0 0.5rem;
+            background: rgba(47,143,157,0.1);
+            display: inline-block;
+            padding: 0.2rem 2rem;
+            border-radius: 60px;
+        }
+
+        .subtitle {
+            color: #2F8F9D;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* penjelasan */
+        .explanation {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+            border: 1px solid #2F8F9D;
+        }
+        .explanation h2 {
+            color: #1E2F4F;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        .explanation p {
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+        .highlight {
+            background: #f7d44b30;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #1E2F4F;
+        }
+
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+        .feature-card {
+            background: #e3eef5;
+            border-radius: 30px;
+            padding: 1rem 1.5rem;
+            flex: 1 1 150px;
+            border: 1px solid #2F8F9D;
+            transition: 0.2s;
+        }
+        .feature-card:hover {
+            background: #d0e2ed;
+            transform: scale(1.02);
+        }
+        .feature-card i {
+            font-size: 2rem;
+            color: #1E2F4F;
+            margin-bottom: 0.5rem;
+        }
+        .feature-card h4 {
+            color: #1E2F4F;
+            margin-bottom: 0.3rem;
+        }
+        .feature-card p {
+            font-size: 0.85rem;
+            color: #1a2b41;
+        }
+
+        /* Simulasi Figma */
+        .simulation {
+            background: #1E2F4F10;
+            border-radius: 50px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 2px solid #2F8F9D;
+        }
+        .sim-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: #f7d44b20;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+        }
+        .sim-header h3 {
+            color: #1E2F4F;
+            font-size: 1.6rem;
+        }
+
+        .figma-workspace {
+            background: #2e3b4e;
+            border-radius: 30px;
+            padding: 1.5rem;
+            color: white;
+            border: 3px solid #2F8F9D;
+        }
+        .toolbar {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            background: #1E2F4F;
+            padding: 0.8rem 1.5rem;
+            border-radius: 60px;
+        }
+        .tool-btn {
+            background: #2F8F9D;
+            border: none;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.1s;
+            box-shadow: 0 4px 0 #195e68;
+        }
+        .tool-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #195e68;
+        }
+        .tool-btn i {
+            font-size: 1rem;
+        }
+
+        .canvas-container {
+            background: #4a5a72;
+            border-radius: 30px;
+            padding: 1rem;
+            min-height: 400px;
+            position: relative;
+            overflow: auto;
+            border: 2px dashed #f7d44b;
+        }
+        #figmaCanvas {
+            width: 100%;
+            min-height: 400px;
+            background: #5f6f88;
+            border-radius: 20px;
+            position: relative;
+            background-image: radial-gradient(circle at 1px 1px, #ffffff40 1px, transparent 0);
+            background-size: 25px 25px;
+        }
+
+        .ui-element {
+            position: absolute;
+            cursor: move;
+            user-select: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: box-shadow 0.1s;
+            border: 2px solid transparent;
+        }
+        .ui-element.selected {
+            border: 2px solid #f7d44b;
+            box-shadow: 0 0 0 3px #f7d44b80;
+        }
+        .frame-element {
+            background: #ffffff20;
+            backdrop-filter: blur(5px);
+            border: 2px dashed white;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .rectangle-element {
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 600;
+        }
+        .circle-element {
+            background: #2F8F9D;
+            color: white;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+        .text-element {
+            background: transparent;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            text-shadow: 2px 2px 0 #1E2F4F;
+            box-shadow: none;
+            cursor: move;
+        }
+
+        .inspector {
+            background: #1E2F4F;
+            border-radius: 30px;
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
+            color: white;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .inspector label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .inspector input {
+            background: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            width: 70px;
+            color: #1E2F4F;
+            font-weight: 600;
+        }
+
+        .figma-link {
+            background: #2F8F9D;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            display: inline-block;
+            margin-top: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 2px solid white;
+            box-shadow: 0 5px 0 #195e68;
+        }
+        .figma-link i {
+            margin-right: 8px;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            color: #1E2F4F;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="uiux-card">
+        <div class="header">
+            <div class="logo">
+                <h1>RETNO</h1>
+            </div>
+            <div class="back-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a>
+            </div>
+        </div>
+
+        <div class="page-title">
+            <i class="fas fa-paint-brush"></i> BELAJAR UI/UX DENGAN FIGMA
+        </div>
+        <div class="subtitle">Desain antarmuka & pengalaman pengguna untuk pemula</div>
+
+        <!-- Penjelasan UI/UX dan Figma -->
+        <div class="explanation">
+            <h2><i class="fas fa-question-circle"></i> Apa itu UI/UX?</h2>
+            <p><span class="highlight">UI (User Interface)</span> adalah tampilan visual produk: warna, tipografi, tombol, layout. <span class="highlight"> </br> UX (User Experience)</span> adalah bagaimana pengguna berinteraksi dan merasakan produk: alur, kemudahan, kepuasan.</p>
+            <p><span class="highlight">Figma</span> adalah alat desain kolaboratif berbasis cloud. Dengan Figma, tim dapat mendesain, membuat prototipe, dan mendapatkan umpan balik secara real-time. Figma sangat populer karena gratis, mudah digunakan, dan berjalan di browser.</p>
+        </div>
+
+        <!-- Fitur dasar Figma -->
+        <h2 style="color:#1E2F4F; margin-top: 2rem;"><i class="fas fa-cubes"></i> Fitur Dasar Figma</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fas fa-square"></i>
+                <h4>Frame</h4>
+                <p>Area desain seperti artboard. Bisa berupa ukuran layar HP, tablet, dll.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shapes"></i>
+                <h4>Shape</h4>
+                <p>Rectangle, circle, line, polygon untuk membuat elemen visual.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-font"></i>
+                <h4>Text</h4>
+                <p>Menambahkan teks dengan berbagai gaya dan font.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-arrows-alt"></i>
+                <h4>Move & Scale</h4>
+                <p>Menggeser, mengubah ukuran, memutar objek.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-paint-brush"></i>
+                <h4>Fill & Stroke</h4>
+                <p>Warna isi dan garis, gradien, bayangan.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-link"></i>
+                <h4>Prototyping</h4>
+                <p>Menghubungkan frame dengan interaksi klik, geser.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-users"></i>
+                <h4>Kolaborasi</h4>
+                <p>Tim dapat bekerja bersama, komentar, dan version history.</p>
+            </div>
+        </div>
+
+        <!-- Simulasi Figma Sederhana -->
+        <div class="simulation">
+            <div class="sim-header">
+                <i class="fas fa-laptop" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Simulasi Workspace Figma (Drag & Drop)</h3>
+            </div>
+            <p style="margin-bottom:1rem; background:#f0f3fa; padding:0.5rem 1.5rem; border-radius:30px;">Coba tambahkan elemen, pindahkan, dan lihat propertinya. Ini simulasi ringan untuk memahami konsep.</p>
+
+            <div class="figma-workspace">
+                <div class="toolbar">
+                    <button class="tool-btn" id="addFrame"><i class="fas fa-square"></i> Frame</button>
+                    <button class="tool-btn" id="addRectangle"><i class="fas fa-square-full"></i> Rectangle</button>
+                    <button class="tool-btn" id="addCircle"><i class="far fa-circle"></i> Circle</button>
+                    <button class="tool-btn" id="addText"><i class="fas fa-font"></i> Text</button>
+                    <button class="tool-btn" id="deleteSelected" style="background:#b83b3b; box-shadow:0 4px 0 #752525;"><i class="fas fa-trash"></i> Hapus</button>
+                </div>
+                <div class="canvas-container">
+                    <div id="figmaCanvas"></div>
+                </div>
+                <div class="inspector" id="inspector">
+                    <span><i class="fas fa-info-circle"></i> Pilih elemen untuk lihat properti</span>
+                </div>
+            </div>
+
+            <!-- Tombol undangan tim -->
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://www.figma.com/team_invite/redeem/oJoJKaTxocNDTBruKfH2z4?t=6I2f2BHv8jrAlbYV-21" target="_blank" class="figma-link">
+                    <i class="fab fa-figma"></i> Gabung ke tim "Retno PPLG24's team" di Figma
+                </a>
+                <p style="margin-top:1rem; color:#1E2F4F;">Klik link di atas untuk bergabung dan mulai berkolaborasi!</p>
+            </div>
+        </div>
+
+        <!-- Langkah dasar menggunakan Figma -->
+        <div class="explanation" style="margin-top:2rem;">
+            <h2><i class="fas fa-graduation-cap"></i> Cara Penggunaan Figma</h2>
+            <ol style="margin-left:1.5rem; line-height:2;">
+                <li><strong>Buat akun</strong> di figma.com (gratis).</li>
+                <li><strong>Buat file baru</strong> (New design file).</li>
+                <li><strong>Buat Frame</strong> dengan alat Frame (F) atau pilih ukuran preset (misal iPhone 14).</li>
+                <li><strong>Tambahkan shape, teks, gambar</strong> dari toolbar.</li>
+                <li><strong>Atur properti</strong> di panel kanan: warna, stroke, bayangan.</li>
+                <li><strong>Buat interaksi</strong> dengan mode Prototype: hubungkan frame, atur trigger.</li>
+                <li><strong>Bagikan</strong> dengan tim via link undangan (seperti di atas).</li>
+            </ol>
+            <p style="margin-top:1rem;">💡 <strong>Tips:</strong> Gunakan shortcut (F untuk frame, R untuk rectangle, T untuk text) untuk mempercepat kerja.</p>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <!-- Script untuk simulasi drag and drop sederhana -->
+    <script>
+        (function() {
+            const canvas = document.getElementById('figmaCanvas');
+            const inspector = document.getElementById('inspector');
+            let selectedElement = null;
+            let elements = [];
+            let nextId = 1;
+
+            // Fungsi untuk memperbarui inspector
+            function updateInspector() {
+                if (selectedElement) {
+                    const el = selectedElement;
+                    const type = el.dataset.type;
+                    const x = parseInt(el.style.left) || 0;
+                    const y = parseInt(el.style.top) || 0;
+                    const width = el.offsetWidth;
+                    const height = el.offsetHeight;
+                    inspector.innerHTML = `
+                        <span><i class="fas fa-cube"></i> Tipe: ${type}</span>
+                        <label>X: <input type="number" id="posX" value="${x}" step="1" min="0"></label>
+                        <label>Y: <input type="number" id="posY" value="${y}" step="1" min="0"></label>
+                        <label>W: <input type="number" id="width" value="${width}" step="1" min="20"></label>
+                        <label>H: <input type="number" id="height" value="${height}" step="1" min="20"></label>
+                        <button class="tool-btn" id="applyProps" style="padding:0.3rem 1rem;">Terapkan</button>
+                    `;
+                    document.getElementById('applyProps')?.addEventListener('click', function() {
+                        const newX = parseInt(document.getElementById('posX').value);
+                        const newY = parseInt(document.getElementById('posY').value);
+                        const newW = parseInt(document.getElementById('width').value);
+                        const newH = parseInt(document.getElementById('height').value);
+                        if (!isNaN(newX)) selectedElement.style.left = newX + 'px';
+                        if (!isNaN(newY)) selectedElement.style.top = newY + 'px';
+                        if (!isNaN(newW)) selectedElement.style.width = newW + 'px';
+                        if (!isNaN(newH)) selectedElement.style.height = newH + 'px';
+                        if (selectedElement.dataset.type === 'text') {
+                            // Untuk teks, height dan width menyesuaikan konten, biarkan
+                        }
+                    });
+                } else {
+                    inspector.innerHTML = '<span><i class="fas fa-info-circle"></i> Pilih elemen untuk lihat properti</span>';
+                }
+            }
+
+            // Fungsi untuk membuat elemen baru
+            function createElement(type, x, y) {
+                const div = document.createElement('div');
+                div.className = 'ui-element ' + type + '-element';
+                div.dataset.id = nextId++;
+                div.dataset.type = type;
+                div.style.left = x + 'px';
+                div.style.top = y + 'px';
+                div.style.position = 'absolute';
+                div.setAttribute('draggable', 'false'); // kita pakai manual drag
+
+                switch (type) {
+                    case 'frame':
+                        div.innerHTML = 'Frame';
+                        div.style.width = '200px';
+                        div.style.height = '300px';
+                        break;
+                    case 'rectangle':
+                        div.innerHTML = 'Rectangle';
+                        div.style.width = '120px';
+                        div.style.height = '80px';
+                        div.style.background = '#f7d44b';
+                        break;
+                    case 'circle':
+                        div.innerHTML = '○';
+                        div.style.width = '80px';
+                        div.style.height = '80px';
+                        div.style.borderRadius = '50%';
+                        div.style.background = '#2F8F9D';
+                        div.style.display = 'flex';
+                        div.style.alignItems = 'center';
+                        div.style.justifyContent = 'center';
+                        break;
+                    case 'text':
+                        div.innerHTML = 'Teks baru';
+                        div.style.background = 'transparent';
+                        div.style.fontSize = '20px';
+                        div.style.color = 'white';
+                        div.style.textShadow = '2px 2px 0 #1E2F4F';
+                        div.style.width = 'auto';
+                        div.style.height = 'auto';
+                        div.style.padding = '4px 8px';
+                        break;
+                }
+                canvas.appendChild(div);
+                elements.push(div);
+
+                // Event untuk memilih
+                div.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (selectedElement) {
+                        selectedElement.classList.remove('selected');
+                    }
+                    selectedElement = div;
+                    div.classList.add('selected');
+                    updateInspector();
+                });
+
+                // Drag logic sederhana
+                let isDragging = false;
+                let startX, startY, startLeft, startTop;
+
+                div.addEventListener('mousedown', (e) => {
+                    if (e.button !== 0) return;
+                    e.preventDefault();
+                    isDragging = true;
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    startLeft = parseInt(div.style.left) || 0;
+                    startTop = parseInt(div.style.top) || 0;
+                    div.style.cursor = 'grabbing';
+                });
+
+                window.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    const dx = e.clientX - startX;
+                    const dy = e.clientY - startY;
+                    let newLeft = startLeft + dx;
+                    let newTop = startTop + dy;
+                    // batasi agar tidak keluar canvas
+                    const canvasRect = canvas.getBoundingClientRect();
+                    const elemRect = div.getBoundingClientRect();
+                    newLeft = Math.max(0, Math.min(newLeft, canvasRect.width - elemRect.width));
+                    newTop = Math.max(0, Math.min(newTop, canvasRect.height - elemRect.height));
+                    div.style.left = newLeft + 'px';
+                    div.style.top = newTop + 'px';
+                    if (selectedElement === div) updateInspector();
+                });
+
+                window.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        div.style.cursor = 'move';
+                    }
+                });
+
+                return div;
+            }
+
+            // Menambahkan elemen default (frame contoh)
+            window.onload = function() {
+                createElement('frame', 30, 30);
+                createElement('rectangle', 260, 50);
+                createElement('circle', 400, 150);
+                createElement('text', 500, 80);
+            };
+
+            // Tombol tambah
+            document.getElementById('addFrame').addEventListener('click', () => {
+                createElement('frame', 50, 50);
+            });
+            document.getElementById('addRectangle').addEventListener('click', () => {
+                createElement('rectangle', 150, 150);
+            });
+            document.getElementById('addCircle').addEventListener('click', () => {
+                createElement('circle', 200, 200);
+            });
+            document.getElementById('addText').addEventListener('click', () => {
+                createElement('text', 250, 250);
+            });
+
+            // Hapus elemen terpilih
+            document.getElementById('deleteSelected').addEventListener('click', () => {
+                if (selectedElement) {
+                    selectedElement.remove();
+                    elements = elements.filter(el => el !== selectedElement);
+                    selectedElement = null;
+                    updateInspector();
+                } else {
+                    alert('Pilih elemen terlebih dahulu.');
+                }
+            });
+
+            // Klik di canvas kosong untuk deselect
+            canvas.addEventListener('click', (e) => {
+                if (e.target === canvas) {
+                    if (selectedElement) {
+                        selectedElement.classList.remove('selected');
+                        selectedElement = null;
+                        updateInspector();
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

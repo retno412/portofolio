@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Operasi & Jaringan Dasar · Retno Ariyanti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:linear-gradient(145deg,#f0f3fa 0%,#e6ecf7 100%); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+        .card { max-width:1300px; width:100%; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); border-radius:3.5rem; padding:2.2rem 2.5rem; border:1px solid rgba(255,255,255,0.6); }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:2px dashed #2F8F9D; padding-bottom:1.5rem; }
+        .logo h1 { font-size:2.5rem; color:#1E2F4F; }
+        .back-link a { background:#1E2F4F; color:white; padding:0.6rem 1.8rem; border-radius:40px; text-decoration:none; font-weight:500; box-shadow:0 5px 0 #0f1e2f; transition:0.1s; display:inline-flex; align-items:center; gap:10px; }
+        .back-link a:active { transform:translateY(3px); box-shadow:0 2px 0 #0f1e2f; }
+        .page-title { font-size:2.2rem; font-weight:700; color:#1E2F4F; margin:1rem 0 0.5rem; background:rgba(47,143,157,0.1); display:inline-block; padding:0.2rem 2rem; border-radius:60px; }
+        .subtitle { color:#2F8F9D; font-size:1.3rem; margin-bottom:2rem; font-style:italic; }
+
+        .section-title {
+            color: #1E2F4F;
+            margin: 2.5rem 0 1rem;
+            font-size: 1.8rem;
+            border-left: 8px solid #2F8F9D;
+            padding-left: 1.2rem;
+        }
+
+        .concept-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .concept-card {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            flex: 1 1 250px;
+            border: 1px solid #2F8F9D;
+            box-shadow: 0 10px 20px -10px #1E2F4F40;
+            transition: 0.2s;
+        }
+        .concept-card:hover {
+            transform: translateY(-5px);
+            border-color: #f7d44b;
+        }
+        .concept-card h3 {
+            color: #1E2F4F;
+            margin-bottom: 0.8rem;
+            border-left: 6px solid #2F8F9D;
+            padding-left: 0.8rem;
+        }
+        .concept-card p {
+            color: #2d3e5c;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+        }
+
+        .diagram {
+            background: #e3eef5;
+            border-radius: 30px;
+            padding: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+        .proc-demo {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .proc-box {
+            background: #2F8F9D;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        .thread-demo {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        .thread-item {
+            background: #f7d44b;
+            color: #1E2F4F;
+            padding: 5px 10px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+        }
+        .mem-demo {
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(to right, #2F8F9D 30%, #f7d44b 30% 70%, #1E2F4F 70%);
+            border-radius: 30px;
+            position: relative;
+        }
+        .mem-label {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 0.7rem;
+        }
+        .socket-demo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .socket-client, .socket-server {
+            background: #1E2F4F;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 30px;
+        }
+        .protocol-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .protocol-badge {
+            background: #2F8F9D;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+        }
+
+        .app-example {
+            background: white;
+            border-radius: 40px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid #2F8F9D;
+        }
+
+        .demo-area {
+            background: #e3eef5;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #2F8F9D;
+        }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .demo-header h3 {
+            color: #1E2F4F;
+            font-size: 1.6rem;
+        }
+        .demo-panel {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: inset 0 0 10px #cbd6e8;
+        }
+        .socket-sim {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .client, .server {
+            background: #1E2F4F;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 40px;
+            text-align: center;
+        }
+        .arrow {
+            font-size: 2rem;
+            color: #2F8F9D;
+        }
+        .log {
+            background: #0f1a24;
+            color: #a3f7b5;
+            padding: 1rem;
+            border-radius: 20px;
+            font-family: 'Fira Code', monospace;
+            margin-top: 1.5rem;
+            min-height: 100px;
+        }
+        .btn {
+            background: #f7d44b;
+            color: #1E2F4F;
+            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #b58f2b;
+            transition: 0.1s;
+            margin: 0.5rem 0.5rem 0 0;
+        }
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b58f2b;
+        }
+
+        .footer-note { margin-top:2rem; text-align:center; color:#1E2F4F; opacity:0.8; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo"><h1>RETNO</h1></div>
+            <div class="back-link"><a href="index.html"><i class="fas fa-arrow-left"></i> Kembali ke Portofolio</a></div>
+        </div>
+        <div class="page-title"><i class="fas fa-desktop"></i> Sistem Operasi & Jaringan Dasar</div>
+        <div class="subtitle">Proses, thread, memori, socket programming, protokol jaringan</div>
+
+        <!-- 5 konsep utama -->
+        <div class="concept-grid">
+            <!-- Proses -->
+            <div class="concept-card">
+                <h3>⚙️ Proses</h3>
+                <p>Program yang sedang dieksekusi. Memiliki ruang alamat sendiri, status (running, waiting, dll), dan PCB (Process Control Block).</p>
+                <div class="diagram">
+                    <div class="proc-demo">
+                        <span class="proc-box">Proses A</span>
+                        <span class="proc-box">Proses B</span>
+                        <span class="proc-box">Proses C</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Thread -->
+            <div class="concept-card">
+                <h3>🧵 Thread</h3>
+                <p>Unit eksekusi dalam satu proses. Thread dalam satu proses berbagi memori, lebih ringan daripada proses.</p>
+                <div class="diagram">
+                    <div class="thread-demo">
+                        <span class="thread-item">Thread 1</span>
+                        <span class="thread-item">Thread 2</span>
+                        <span class="thread-item">Thread 3</span>
+                    </div>
+                    <p style="margin-top:5px;">⬆️ Dalam satu proses</p>
+                </div>
+            </div>
+            <!-- Memori -->
+            <div class="concept-card">
+                <h3>💾 Memori</h3>
+                <p>Manajemen memori: pembagian memori untuk proses (stack, heap, data, text). Alokasi dan dealokasi.</p>
+                <div class="diagram">
+                    <div class="mem-demo"></div>
+                    <div class="mem-label">
+                        <span>Stack</span>
+                        <span>Heap</span>
+                        <span>Data/Text</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Socket Programming -->
+            <div class="concept-card">
+                <h3>🔌 Socket Programming</h3>
+                <p>Mekanisme komunikasi antar proses melalui jaringan. Socket sebagai endpoint. Client-server model.</p>
+                <div class="diagram">
+                    <div class="socket-demo">
+                        <span class="socket-client">Client</span>
+                        <i class="fas fa-arrow-right" style="color:#1E2F4F;"></i>
+                        <span class="socket-server">Server</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Protokol Jaringan -->
+            <div class="concept-card">
+                <h3>📡 Protokol Jaringan</h3>
+                <p>Aturan komunikasi data: TCP (connection-oriented), UDP (connectionless), HTTP, IP, dll.</p>
+                <div class="diagram">
+                    <div class="protocol-list">
+                        <span class="protocol-badge">TCP</span>
+                        <span class="protocol-badge">UDP</span>
+                        <span class="protocol-badge">HTTP</span>
+                        <span class="protocol-badge">IP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rute Komunikasi Data -->
+        <h2 class="section-title"><i class="fas fa-route"></i> Rute Komunikasi Data</h2>
+        <div style="background:white; border-radius:40px; padding:1.5rem; margin:2rem 0; border:1px solid #2F8F9D;">
+            <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:1rem;">
+                <span class="proc-box">Client</span>
+                <i class="fas fa-arrow-right"></i>
+                <span class="protocol-badge">HTTP Request</span>
+                <i class="fas fa-arrow-right"></i>
+                <span class="proc-box">Server</span>
+                <i class="fas fa-arrow-right"></i>
+                <span class="protocol-badge">Database</span>
+                <i class="fas fa-arrow-left"></i>
+                <span class="proc-box">Response</span>
+            </div>
+            <p style="text-align:center; margin-top:1rem;">Alur umum aplikasi web: client mengirim request melalui protokol HTTP/TCP, server memproses, mungkin mengambil data dari database, lalu mengembalikan response.</p>
+        </div>
+
+        <!-- Contoh Aplikasi -->
+        <div class="app-example">
+            <h3 style="color:#1E2F4F; margin-bottom:1rem;">📱 Contoh Aplikasi dengan Komunikasi Data</h3>
+            <ul style="margin-left:1.5rem; color:#2d3e5c; line-height:1.8;">
+                <li><strong>Chatting (WhatsApp, Telegram):</strong> Menggunakan socket (TCP) untuk pengiriman pesan real-time, protokol XMPP atau custom.</li>
+                <li><strong>Game Online (Mobile Legends, PUBG):</strong> Menggunakan UDP untuk update posisi pemain agar cepat, TCP untuk transaksi.</li>
+                <li><strong>Web Browser:</strong> Mengirim HTTP/HTTPS request ke server, menerima HTML, CSS, JS.</li>
+                <li><strong>IoT (Internet of Things):</strong> Perangkat sensor mengirim data ke server via MQTT atau HTTP.</li>
+            </ul>
+        </div>
+
+        <!-- Simulasi Socket Sederhana -->
+        <div class="demo-area">
+            <div class="demo-header">
+                <i class="fas fa-flask" style="font-size:2rem; color:#1E2F4F;"></i>
+                <h3>Simulasi Koneksi Client-Server (Socket)</h3>
+            </div>
+            <div class="demo-panel">
+                <div class="socket-sim">
+                    <div class="client">
+                        <i class="fas fa-user"></i> Client
+                        <p style="font-size:0.8rem;">Port: 34567</p>
+                    </div>
+                    <div class="arrow"><i class="fas fa-exchange-alt"></i></div>
+                    <div class="server">
+                        <i class="fas fa-server"></i> Server
+                        <p style="font-size:0.8rem;">Port: 8080</p>
+                    </div>
+                </div>
+                <div style="text-align:center; margin:1rem 0;">
+                    <button class="btn" id="connectBtn">🔌 Connect</button>
+                    <button class="btn" id="sendBtn" disabled>📨 Kirim Pesan</button>
+                    <button class="btn" id="disconnectBtn" disabled>🔒 Disconnect</button>
+                </div>
+                <div class="log" id="socketLog">
+                    [System] Simulasi socket. Klik Connect.
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note">
+            <i class="fas fa-crown" style="color:#2F8F9D;"></i> Retno Ariyanti Nurningtias – S1 PSTI UPI, PPG Prajabatan
+        </div>
+    </div>
+
+    <script>
+        const connectBtn = document.getElementById('connectBtn');
+        const sendBtn = document.getElementById('sendBtn');
+        const disconnectBtn = document.getElementById('disconnectBtn');
+        const log = document.getElementById('socketLog');
+
+        let connected = false;
+
+        function addLog(msg) {
+            log.innerHTML += '\n' + msg;
+            log.scrollTop = log.scrollHeight;
+        }
+
+        connectBtn.addEventListener('click', () => {
+            if (!connected) {
+                connected = true;
+                addLog('[System] 🔌 Connecting to server 192.168.1.10:8080...');
+                setTimeout(() => {
+                    addLog('[System] ✅ Connected! (handshake completed)');
+                    connectBtn.disabled = true;
+                    sendBtn.disabled = false;
+                    disconnectBtn.disabled = false;
+                }, 500);
+            }
+        });
+
+        sendBtn.addEventListener('click', () => {
+            if (connected) {
+                addLog('[Client] 📤 Sending: "Hello Server!"');
+                setTimeout(() => {
+                    addLog('[Server] 📥 Received: "Hello Server!"');
+                    setTimeout(() => {
+                        addLog('[Server] 📤 Sending reply: "Hello Client!"');
+                        addLog('[Client] 📥 Received: "Hello Client!"');
+                    }, 400);
+                }, 400);
+            }
+        });
+
+        disconnectBtn.addEventListener('click', () => {
+            if (connected) {
+                connected = false;
+                addLog('[System] 🔒 Disconnecting...');
+                setTimeout(() => {
+                    addLog('[System] 🔌 Connection closed.');
+                    connectBtn.disabled = false;
+                    sendBtn.disabled = true;
+                    disconnectBtn.disabled = true;
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>
