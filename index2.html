@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peta Jalan Freelance Web Developer</title>
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+        body {
+            background: #f8fafc;
+            color: #0f172a;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e3c5c, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #334155;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 1rem;
+        }
+        .daftar-isi {
+            background: white;
+            border-radius: 2rem;
+            padding: 1.8rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+        .daftar-isi h2 {
+            font-size: 1.8rem;
+            color: #1e3c5c;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .daftar-isi ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.8rem;
+            list-style: none;
+        }
+        .daftar-isi li a {
+            background: #f1f5f9;
+            display: block;
+            padding: 0.8rem 1rem;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #1e3c5c;
+            font-weight: 600;
+            transition: 0.2s;
+            border: 1px solid transparent;
+            text-align: center;
+        }
+        .daftar-isi li a:hover {
+            background: #2563eb;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -8px #2563eb80;
+        }
+        .bab {
+            background: white;
+            border-radius: 2.5rem;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 30, 60, 0.15);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            scroll-margin-top: 1rem;
+        }
+        .bab h2 {
+            font-size: 2rem;
+            color: #0f2b40;
+            border-left: 8px solid #2563eb;
+            padding-left: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+        .bab h3 {
+            font-size: 1.4rem;
+            color: #1e3c5c;
+            margin: 1.2rem 0 0.5rem;
+        }
+        .bab ul, .bab ol {
+            margin-left: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .bab li {
+            margin-bottom: 0.4rem;
+        }
+        .video-wrapper {
+            margin: 1.8rem 0 1rem;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 12px 20px -8px #1e3c5c40;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .tip {
+            background: #e6f7f0;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 6px solid #059669;
+        }
+        .template {
+            background: #fef9e6;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 6px solid #d97706;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .footer {
+            background: #1e3c5c;
+            color: white;
+            border-radius: 3rem 3rem 0 0;
+            padding: 2rem 2rem 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        .footer a {
+            color: #fbbf24;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .btn-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #2563eb;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 16px #2563eb80;
+            cursor: pointer;
+            border: none;
+            transition: 0.2s;
+            z-index: 99;
+        }
+        .btn-top:hover {
+            background: #1e3c5c;
+            transform: scale(1.1);
+        }
+
+        /* Grid untuk analogi rumah */
+        .analogi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        .analogi-card {
+            background: #f0f9ff;
+            border-radius: 1.2rem;
+            padding: 1.2rem 0.8rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,30,60,0.05);
+            border: 1px solid #c7ddef;
+            transition: transform 0.2s;
+        }
+        .analogi-card:hover {
+            transform: scale(1.02);
+            background: #e6f4ff;
+        }
+        .analogi-card i {
+            font-size: 2.2rem;
+            color: #1e3c5c;
+            margin-bottom: 0.5rem;
+        }
+        .analogi-card h4 {
+            margin: 0.2rem 0;
+            color: #0f2b40;
+            font-weight: 700;
+        }
+        .analogi-card p {
+            font-size: 0.95rem;
+            color: #2b5a8c;
+        }
+        .analogi-card small {
+            font-size: 0.8rem;
+            color: #4b6f8c;
+        }
+
+        /* Daftar jenis website */
+        .website-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .type-item {
+            background: #ffffff;
+            border-radius: 2rem;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+        }
+        .type-item i {
+            font-size: 1.4rem;
+            color: #2563eb;
+            width: 1.8rem;
+            text-align: center;
+        }
+        .type-item strong {
+            color: #1e3c5c;
+            font-weight: 700;
+            margin-right: 0.3rem;
+        }
+
+        /* Sub bab styling */
+        .sub-bab {
+            background: #f9fcff;
+            border-radius: 2rem;
+            padding: 1.8rem;
+            margin: 2rem 0;
+            border: 1px solid #c7ddef;
+        }
+        .sub-bab h3 {
+            color: #1e3c5c;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .materi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .materi-card {
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0;
+        }
+        .materi-card h4 {
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+        .simulasi {
+            background: #f1f5f9;
+            border-radius: 1rem;
+            padding: 0.8rem;
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            overflow-x: auto;
+        }
+        .simulasi pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: monospace;
+        }
+        .proyek {
+            background: #dbeafe;
+            border-radius: 1.2rem;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            font-size: 1.1rem;
+        }
+        .sumber-belajar {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        .backend-pilihan {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .pilihan {
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            border: 2px solid #e2e8f0;
+        }
+        .pilihan h4 {
+            color: #1e3c5c;
+            margin-bottom: 1rem;
+        }
+        .pilihan ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        @media (max-width: 600px) {
+            .backend-pilihan {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Simulasi Notion */
+        .notion-simulasi {
+            background: #f9f9f9;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid #e2e8f0;
+        }
+        .notion-step {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-bottom: 1.2rem;
+        }
+        .notion-step .step-number {
+            background: #2563eb;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .notion-step p {
+            margin: 0;
+        }
+        .notion-img-placeholder {
+            background: #e2e8f0;
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #4a5568;
+        }
+        .komunitas-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .btn-komunitas {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #1e3c5c;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .btn-komunitas:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+        .btn-komunitas i {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Peta Jalan Freelance Web Developer</h1>
+        <div class="subtitle">Dari pemula hingga profesional — panduan lengkap + video pendukung</div>
+
+        <!-- Daftar Isi -->
+        <div class="daftar-isi">
+            <h2><i class="fas fa-list-ul"></i> Daftar Isi</h2>
+            <ul>
+                <li><a href="#bab1">Bab 1: Persiapan Mental</a></li>
+                <li><a href="#bab2">Bab 2: Belajar Teknis</a></li>
+                <li><a href="#bab3">Bab 3: Strukturisasi Jadwal</a></li>
+                <li><a href="#bab4">Bab 4: Portofolio</a></li>
+                <li><a href="#bab5">Bab 5: Dunia Freelance</a></li>
+                <li><a href="#bab6">Bab 6: Komunikasi Klien</a></li>
+                <li><a href="#bab7">Bab 7: Menentukan Harga</a></li>
+                <li><a href="#bab8">Bab 8: Manajemen Proyek</a></li>
+                <li><a href="#bab9">Bab 9: Studi Kasus</a></li>
+                <li><a href="#bab10">Bab 10: Skalabilitas</a></li>
+            </ul>
+        </div>
+
+        <!-- BAB 1: Persiapan Mental & Fondasi Awal (Versi Lengkap + Visual Analogi) -->
+<section id="bab1" class="bab">
+    <h2>📘 Bab 1: Persiapan Mental & Fondasi Awal</h2>
+    
+    <!-- 1.1 Analogi Rumah (Visual) -->
+        <h3>🏠 1.1 Apa itu Website? (Analogi Rumah)</h3>
+        <div class="analogi-grid">
+            <div class="analogi-card">
+                <i class="fas fa-map-pin"></i>
+                <h4>Domain</h4>
+                <p>Alamat rumah</p>
+                <small>Contoh: www.namamu.com</small>
+            </div>
+            <div class="analogi-card">
+                <i class="fas fa-globe"></i>
+                <h4>Hosting</h4>
+                <p>Tanah / lahan</p>
+                <small>Tempat menyimpan file</small>
+            </div>
+            <div class="analogi-card">
+                <i class="fas fa-cubes"></i>
+                <h4>HTML</h4>
+                <p>Struktur bangunan</p>
+                <small>Kerangka (dinding, atap)</small>
+            </div>
+            <div class="analogi-card">
+                <i class="fas fa-paint-brush"></i>
+                <h4>CSS</h4>
+                <p>Cat & dekorasi</p>
+                <small>Warna, tata letak, estetika</small>
+            </div>
+            <div class="analogi-card">
+                <i class="fas fa-bolt"></i>
+                <h4>JavaScript</h4>
+                <p>Listrik & interaksi</p>
+                <small>Tombol, animasi, kalkulasi</small>
+            </div>
+        </div>
+
+        <!-- Penjelasan tambahan bentuk-bentuk website -->
+        <h3 style="margin-top: 2rem;">🌐 Bentuk-Bentuk Website yang Banyak Dibutuhkan</h3>
+        <div class="website-types">
+            <div class="type-item">
+                <i class="fas fa-store"></i>
+                <strong>E-commerce</strong> – Toko online (contoh: Bukalapak, Shopee)
+            </div>
+            <div class="type-item">
+                <i class="fas fa-briefcase"></i>
+                <strong>Company Profile</strong> – Profil perusahaan, jasa, portofolio
+            </div>
+            <div class="type-item">
+                <i class="fas fa-blog"></i>
+                <strong>Blog / Berita</strong> – Artikel, berita, konten berkala
+            </div>
+            <div class="type-item">
+                <i class="fas fa-laptop-code"></i>
+                <strong>Landing Page</strong> – Halaman tunggal promosi produk/jasa
+            </div>
+            <div class="type-item">
+                <i class="fas fa-cogs"></i>
+                <strong>Web Application</strong> – Aplikasi dalam browser (contoh: Google Docs, Trello)
+            </div>
+            <div class="type-item">
+                <i class="fas fa-user-tie"></i>
+                <strong>Portfolio / Personal Branding</strong> – Menampilkan karya individu
+            </div>
+            <div class="type-item">
+                <i class="fas fa-graduation-cap"></i>
+                <strong>E-learning</strong> – Platform kursus online (contoh: Ruangguru)
+            </div>
+            <div class="type-item">
+                <i class="fas fa-calendar-alt"></i>
+                <strong>Booking / Reservasi</strong> – Pemesanan tiket, hotel, jasa
+            </div>
+        </div>
+
+        <!-- Video tetap dipertahankan -->
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/7XeO0y6cLmU" title="Mindset Menjadi Programmer" allowfullscreen></iframe>
+        </div>
+        <p class="tip">🎯 <strong>Video:</strong> "Mindset Menjadi Programmer" oleh Dea Afrizal – pahami cara berpikir developer.</p>
+    </section>
+
+        <!-- BAB 2: Belajar Teknis – Urutan Efektif (Detail) -->
+        <section id="bab2" class="bab">
+            <h2>💻 Bab 2: Belajar Teknis – Urutan Efektif</h2>
+            <p class="bab-intro">Ikuti urutan ini agar tidak bingung. Setiap bulan fokus pada satu area, lengkap dengan materi, simulasi, dan proyek nyata.</p>
+
+            <!-- 2.1 HTML & CSS -->
+            <div class="sub-bab">
+                <h3>📘 2.1 Bulan 1: HTML & CSS (Dasar Web)</h3>
+                <div class="materi-grid">
+                    <div class="materi-card">
+                        <h4>HTML Semantik</h4>
+                        <p><code>&lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;article&gt;, &lt;section&gt;, &lt;footer&gt;</code> — membuat struktur yang bermakna.</p>
+                        <div class="simulasi">
+                            <strong>Simulasi:</strong>
+                            <pre>&lt;header&gt;
+            &lt;h1&gt;Website Saya&lt;/h1&gt;
+        &lt;/header&gt;
+        &lt;nav&gt;
+            &lt;a href="#"&gt;Beranda&lt;/a&gt;
+        &lt;/nav&gt;
+        &lt;main&gt;
+            &lt;article&gt;...&lt;/article&gt;
+        &lt;/main&gt;</pre>
+                        </div>
+                    </div>
+                    <div class="materi-card">
+                        <h4>Form & Tabel</h4>
+                        <p><code>&lt;form&gt;, &lt;input&gt;, &lt;select&gt;, &lt;table&gt;</code> — untuk input data dan menampilkan data tabular.</p>
+                        <div class="simulasi">
+                            <strong>Simulasi form:</strong>
+                            <pre>&lt;form&gt;
+            &lt;label&gt;Nama:&lt;/label&gt;
+            &lt;input type="text"&gt;
+            &lt;button&gt;Kirim&lt;/button&gt;
+        &lt;/form&gt;</pre>
+                        </div>
+                    </div>
+                    <div class="materi-card">
+                        <h4>CSS Dasar</h4>
+                        <p>Warna (<code>color, background</code>), font (<code>font-family, font-size</code>), margin, padding, border.</p>
+                        <div class="simulasi">
+                            <strong>Simulasi:</strong>
+                            <pre>body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: blue;
+            margin-top: 20px;
+        }</pre>
+                        </div>
+                    </div>
+                    <div class="materi-card">
+                        <h4>Flexbox & Grid</h4>
+                        <p>Layout modern: <code>display: flex</code> dan <code>display: grid</code> untuk mengatur posisi elemen.</p>
+                        <div class="simulasi">
+                            <strong>Flexbox contoh:</strong>
+                            <pre>.container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyek">
+                    <strong>✅ Proyek Bulan 1:</strong> Buat halaman profil pribadi (tentang kamu, hobi, foto) dan clone halaman login sederhana (seperti punya Google). Gunakan HTML & CSS saja.
+                </div>
+                <div class="sumber-belajar">
+                    <i class="fas fa-book-open"></i> Sumber gratis: <a href="https://www.w3schools.com" target="_blank">W3Schools</a>, <a href="https://www.freecodecamp.org" target="_blank">freeCodeCamp</a>, YouTube: <a href="https://www.youtube.com/watch?v=NBZ9Ro6UKV8" target="_blank">Web Programming UNPAS</a>.
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/NBZ9Ro6UKV8" title="HTML & CSS Dasar" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- 2.2 JavaScript -->
+            <div class="sub-bab">
+                <h3>⚡ 2.2 Bulan 2: JavaScript (Dasar & DOM)</h3>
+                <div class="materi-grid">
+                    <div class="materi-card">
+                        <h4>Variabel & Tipe Data</h4>
+                        <p><code>let, const</code>, string, number, boolean, array, object.</p>
+                        <div class="simulasi">
+                            <pre>let nama = "Budi";
+        const umur = 20;
+        let isStudent = true;
+        let hobi = ["membaca", "coding"];</pre>
+                        </div>
+                    </div>
+                    <div class="materi-card">
+                        <h4>Fungsi & Conditional</h4>
+                        <p><code>function</code>, <code>if/else</code>, <code>switch</code>.</p>
+                        <div class="simulasi">
+                            <pre>function sapa(nama) {
+            if (nama) {
+                return "Halo, " + nama;
+            } else {
+                return "Halo!";
+            }
+        }</pre>
+                        </div>
+                    </div>
+                    <div class="materi-card">
+                        <h4>Loop</h4>
+                        <p><code>for, while, forEach</code> untuk perulangan.</p>
+                        <div class="simulasi">
+                            <pre>for (let i = 0; i < 5; i++) {
+            console.log("Iterasi " + i);
+        }</pre>
+                        </div>
+                    </div>
+                    <div class="materi-card">
+                        <h4>DOM Manipulation & Event</h4>
+                        <p>Mengubah elemen HTML, menangani klik, input, dll.</p>
+                        <div class="simulasi">
+                            <pre>document.getElementById("tombol")
+            .addEventListener("click", function() {
+                alert("Tombol diklik!");
+            });</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyek">
+                    <strong>✅ Proyek Bulan 2:</strong> To-do list interaktif (tambah, hapus tugas) dan kalkulator sederhana (penjumlahan, pengurangan, dll).
+                </div>
+                <div class="sumber-belajar">
+                    <i class="fas fa-book-open"></i> Sumber: <a href="https://www.w3schools.com/js/" target="_blank">W3Schools JavaScript</a>, <a href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/" target="_blank">freeCodeCamp</a>, YouTube: <a href="https://www.youtube.com/watch?v=Rw4guJ9L2Os" target="_blank">Web Programming UNPAS</a>.
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/Rw4guJ9L2Os" title="JavaScript Dasar" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- 2.3 Git, GitHub & Responsive Design -->
+            <div class="sub-bab">
+                <h3>🔧 2.3 Bulan 3: Git & GitHub + Responsive Design</h3>
+                <div class="materi-grid">
+                    <div class="materi-card">
+                        <h4>Git Dasar</h4>
+                        <p><code>git init, add, commit, branch, merge</code>. Version control untuk melacak perubahan kode.</p>
+                        <div class="simulasi">
+                            <pre>git init
+        git add .
+        git commit -m "first commit"
+        git branch -M main
+        git remote add origin https://...
+        git push -u origin main</pre>
+                        </div>
+                    </div>
+                    <div class="materi-card">
+                        <h4>GitHub</h4>
+                        <p>Hosting repository, kolaborasi, membaca kode orang lain.</p>
+                        <div class="simulasi">
+                            <p>Buat repo di GitHub, clone, push, pull.</p>
+                        </div>
+                    </div>
+                    <div class="materi-card">
+                        <h4>Responsive Design</h4>
+                        <p>Media queries, viewport, unit relatif (%, vw, vh).</p>
+                        <div class="simulasi">
+                            <pre>@media (max-width: 600px) {
+            body { font-size: 14px; }
+        }</pre>
+                        </div>
+                    </div>
+                    <div class="materi-card">
+                        <h4>Hosting Gratis</h4>
+                        <p>Netlify / Vercel: deploy dari GitHub dengan mudah.</p>
+                        <div class="simulasi">
+                            <p>1. Push project ke GitHub. <br>2. Hubungkan ke Netlify. <br>3. Deploy otomatis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyek">
+                    <strong>✅ Proyek Bulan 3:</strong> Portfolio website responsive dengan 3-4 halaman (beranda, tentang, proyek, kontak). Gunakan HTML, CSS, dan JavaScript minimal. Push ke GitHub dan deploy ke Netlify.
+                </div>
+                <div class="sumber-belajar">
+                    <i class="fas fa-book-open"></i> Sumber: <a href="https://learngitbranching.js.org/" target="_blank">Learn Git Branching</a>, YouTube: <a href="https://www.youtube.com/watch?v=lTMZxWMj8QU" target="_blank">Dea Afrizal (Git & GitHub)</a>.
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/lTMZxWMj8QU" title="Git & GitHub" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- 2.4 Backend (PHP atau Node.js) -->
+            <div class="sub-bab">
+                <h3>🗄️ 2.4 Bulan 4-5: Backend (Pilih PHP atau Node.js)</h3>
+                <div class="backend-pilihan">
+                    <div class="pilihan">
+                        <h4><i class="fab fa-php"></i> PHP (laris di pasar lokal)</h4>
+                        <ul>
+                            <li><strong>Server:</strong> XAMPP / Laragon (Apache + MySQL).</li>
+                            <li><strong>Database:</strong> MySQL, phpMyAdmin.</li>
+                            <li><strong>CRUD:</strong> Create, Read, Update, Delete data.</li>
+                            <li><strong>Autentikasi:</strong> Login, register, session.</li>
+                        </ul>
+                        <div class="simulasi">
+                            <strong>Contoh koneksi database (PHP):</strong>
+                            <pre>$conn = new mysqli("localhost", "root", "", "db");
+        $sql = "SELECT * FROM users";
+        $result = $conn->query($sql);</pre>
+                        </div>
+                    </div>
+                    <div class="pilihan">
+                        <h4><i class="fab fa-node-js"></i> Node.js (modern, startup)</h4>
+                        <ul>
+                            <li><strong>Server:</strong> Node.js + Express.</li>
+                            <li><strong>Database:</strong> MongoDB (NoSQL) atau MySQL.</li>
+                            <li><strong>CRUD:</strong> REST API dengan Express.</li>
+                            <li><strong>Autentikasi:</strong> JWT, bcrypt.</li>
+                        </ul>
+                        <div class="simulasi">
+                            <strong>Contoh route Express:</strong>
+                            <pre>app.get('/users', (req, res) => {
+            User.find({}, (err, users) => {
+                res.json(users);
+            });
+        });</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyek">
+                    <strong>✅ Proyek Bulan 4-5:</strong> Aplikasi catatan sederhana dengan login (misal: catatan pribadi). Pengguna bisa registrasi, login, tambah, edit, hapus catatan. Gunakan PHP+MySQL atau Node.js+MongoDB.
+                </div>
+                <div class="sumber-belajar">
+                    <i class="fas fa-book-open"></i> PHP: <a href="https://www.youtube.com/watch?v=5T6WJjyhE0U" target="_blank">Web Programming UNPAS</a>; Node.js: <a href="https://www.youtube.com/watch?v=Oe421EPjeBE" target="_blank">Dea Afrizal</a>.
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/5T6WJjyhE0U" title="PHP Dasar" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- 2.5 Framework & CMS -->
+            <div class="sub-bab">
+                <h3>⚛️ 2.5 Bulan 6: Framework & CMS</h3>
+                <div class="materi-grid">
+                    <div class="materi-card">
+                        <h4>React (Frontend)</h4>
+                        <p>Komponen, state, props, hooks (useState, useEffect). Membangun UI interaktif.</p>
+                        <div class="simulasi">
+                            <pre>function Counter() {
+                const [count, setCount] = useState(0);
+                return &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+                    {count}
+                &lt;/button&gt;;
+            }</pre>
+                        </div>
+                    </div>
+                    <div class="materi-card">
+                        <h4>Vue (Frontend)</h4>
+                        <p>Alternatif React, lebih ringan. Directive, component, Vuex.</p>
+                        <div class="simulasi">
+                            <pre>&lt;template&gt;
+                &lt;button @click="count++"&gt;{{ count }}&lt;/button&gt;
+            &lt;/template&gt;
+            &lt;script&gt;
+            export default { data() { return { count: 0 } } }
+            &lt;/script&gt;</pre>
+                        </div>
+                    </div>
+                    <div class="materi-card">
+                        <h4>WordPress (CMS)</h4>
+                        <p>Membuat website tanpa coding banyak, cocok untuk klien yang ingin mudah dikelola. Pelajari pembuatan tema anak (child theme) dan plugin dasar.</p>
+                        <div class="simulasi">
+                            <p>Instal WordPress, pilih tema, gunakan page builder (Elementor).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyek">
+                    <strong>✅ Proyek Bulan 6 (pilih salah satu):</strong> 
+                    <ul>
+                        <li>Blog sederhana dengan React + API (misal dari JSONPlaceholder).</li>
+                        <li>Company profile dengan WordPress (tema kustom sederhana).</li>
+                    </ul>
+                </div>
+                <div class="sumber-belajar">
+                    <i class="fas fa-book-open"></i> React: <a href="https://www.youtube.com/watch?v=6Jfk8ic3KVk" target="_blank">Dea Afrizal</a>; Vue: <a href="https://www.youtube.com/watch?v=6OhMbfx8HpY" target="_blank">Programmer Zaman Now</a>; WordPress: <a href="https://www.youtube.com/watch?v=zPc49I0QV40" target="_blank">Web Programming UNPAS</a>.
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/6Jfk8ic3KVk" title="React Dasar" allowfullscreen></iframe>
+                </div>
+            </div>
+
+        <!-- BAB 3: Strukturisasi & Jadwal Belajar (diperkaya) -->
+<section id="bab3" class="bab">
+    <h2>⏳ Bab 3: Strukturisasi & Jadwal Belajar</h2>
+    
+    <h3>3.1 Membuat Jadwal Realistis (Contoh)</h3>
+    <ul>
+        <li>Senin-Jumat: 1 jam malam (20.00-21.00)</li>
+        <li>Sabtu: 3 jam eksplorasi proyek</li>
+        <li>Minggu: istirahat/review materi</li>
+    </ul>
+
+    <h3>3.2 Metode Belajar Aktif</h3>
+    <p>Jangan hanya nonton tutorial, <strong>coding bareng</strong>. Buat catatan digital agar mudah diingat.</p>
+    
+    <!-- Simulasi Notion -->
+    <div class="notion-simulasi">
+        <h4>📝 Simulasi Membuat Catatan di Notion</h4>
+        <div class="notion-step">
+            <span class="step-number">1</span>
+            <p>Kunjungi <a href="https://www.notion.so" target="_blank">notion.so</a> dan buat akun gratis.</p>
+        </div>
+        <div class="notion-step">
+            <span class="step-number">2</span>
+            <p>Buat halaman baru dengan klik <strong>+ Add a page</strong>.</p>
+        </div>
+        <div class="notion-step">
+            <span class="step-number">3</span>
+            <p>Buat database untuk mencatat materi: gunakan template <strong>Table</strong> atau <strong>List</strong>.</p>
+        </div>
+        <div class="notion-step">
+            <span class="step-number">4</span>
+            <p>Tambahkan kolom: <em>Materi, Sumber, Status (belum/selesai), Catatan</em>.</p>
+        </div>
+        <div class="notion-step">
+            <span class="step-number">5</span>
+            <p>Setiap selesai nonton video atau baca artikel, catat poin penting dan kode yang dicoba.</p>
+        </div>
+        <div class="notion-img-placeholder">
+            <i class="fas fa-image" style="font-size: 2rem; opacity: 0.5;"></i>
+            <p>Contoh tampilan Notion (ilustrasi)</p>
+            <!-- Bisa diganti dengan gambar sebenarnya jika ada -->
+        </div>
+        <p>💡 <strong>Tips:</strong> Gunakan template "Learning Roadmap" yang tersedia di Notion atau buat sendiri sesuai gaya belajarmu.</p>
+    </div>
+
+    <h3>3.3 Mengatasi Rasa Stuck</h3>
+    <p>Teknik <strong>"rubber duck debugging"</strong>: jelaskan kode kamu pada bebek karet (atau teman) – dengan menjelaskan, seringkali kamu menemukan solusinya sendiri.</p>
+    <p>Jangan malu bertanya! Bergabunglah dengan komunitas developer Indonesia yang aktif:</p>
+    
+    <!-- Tombol komunitas interaktif (ganti link dengan yang valid) -->
+    <div class="komunitas-buttons">
+        <a href="https://discord.gg/santrikoding" target="_blank" class="btn-komunitas"><i class="fab fa-discord"></i> SantriKoding Discord</a>
+        <a href="https://t.me/belajarwebdev" target="_blank" class="btn-komunitas"><i class="fab fa-telegram"></i> Telegram Belajar Web Dev</a>
+        <a href="https://t.me/programmerhandal" target="_blank" class="btn-komunitas"><i class="fab fa-telegram"></i> Programmer Handal</a>
+        <a href="https://discord.gg/indodev" target="_blank" class="btn-komunitas"><i class="fab fa-discord"></i> Indo Dev Community</a>
+    </div>
+    <p class="tip">🎯 Tips: Saat bertanya, jelaskan apa yang sudah dicoba, sertakan screenshot atau potongan kode agar lebih mudah dibantu.</p>
+
+    <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/7B6m0E3p6oY" title="Cara Belajar Coding yang Efektif" allowfullscreen></iframe>
+    </div>
+</section>
+
+        <!-- BAB 4 -->
+        <section id="bab4" class="bab">
+            <h2>📁 Bab 4: Membangun Portofolio</h2>
+            <h3>4.1 Portofolio Minimal Berkualitas</h3>
+            <ul>
+                <li>Landing page (HTML/CSS/JS)</li>
+                <li>Aplikasi interaktif (JS/React)</li>
+                <li>Website dinamis dengan backend (CRUD, login)</li>
+            </ul>
+            <h3>4.2 Menulis Studi Kasus</h3>
+            <p>Template: Latar belakang, tantangan, solusi teknis, screenshot, link demo & GitHub.</p>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/yyYv_sGZNiY" title="Membuat Portofolio Web Developer" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- BAB 5 -->
+        <section id="bab5" class="bab">
+            <h2>🌍 Bab 5: Memahami Dunia Freelance</h2>
+            <h3>5.1 Pasar Indonesia</h3>
+            <p>Platform: Sribulancer, Projects.co.id, Fastwork, grup Facebook. Harga awal Rp300k - Rp1jt.</p>
+            <h3>5.2 Pasar Luar Negeri</h3>
+            <p>Upwork, Fiverr, Freelancer.com. Tantangan: bahasa Inggris, pembayaran PayPal/Payoneer. Buat proposal spesifik.</p>
+            <h3>5.3 Perbedaan Ekspektasi</h3>
+            <p>Klien luar: formal, tepat waktu, harga tinggi. Lokal: lebih santai, sering bertemu langsung.</p>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/2-9T1Fw9OaQ" title="Tips Freelance untuk Programmer Indonesia" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- BAB 6 -->
+        <section id="bab6" class="bab">
+            <h2>💬 Bab 6: Komunikasi dengan Klien</h2>
+            <h3>6.1 Frasa Inggris Penting</h3>
+            <div class="template">
+                ✉️ Perkenalan: "Hi [Client], I'm [Nama], a web developer with experience in [skill]. I saw your project about [judul] and I believe I can help."<br>
+                📝 Menanyakan detail: "Could you provide more details about the design you have in mind?"<br>
+                📊 Progress: "I've completed the homepage layout. Here's the preview link. Please let me know if there are any revisions."<br>
+                💰 Menagih: "I've finished the project as agreed. I'll send the invoice via [platform]."
+            </div>
+            <h3>6.2 Template Negosiasi</h3>
+            <p>"I understand your budget. For that price, I can offer [fitur terbatas]. Alternatively, for the full scope, my rate is [harga]."</p>
+            <h3>6.3 Etika Profesional</h3>
+            <p>Konfirmasi spesifikasi, buat kontrak sederhana, jangan ghosting.</p>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/6Z9h7K_4lNk" title="Cara Komunikasi dengan Klien Freelance" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- BAB 7 -->
+        <section id="bab7" class="bab">
+            <h2>💰 Bab 7: Menentukan Harga & Mengelola Keuangan</h2>
+            <h3>7.1 Metode Penentuan Harga</h3>
+            <p>Hitung biaya hidup + target tabungan. Tarif per jam: Rp50k-150k (lokal) / $15-$30 (luar). Fixed price = estimasi jam × tarif + buffer 20%.</p>
+            <h3>7.2 Mengelola Uang</h3>
+            <p>Pisahkan rekening bisnis, sisihkan 20-30% untuk pajak & dana darurat. Gunakan BukuWarung atau Money Lover.</p>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/qMxJjyYuv_0" title="Cara Menentukan Harga Jasa Freelance" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- BAB 8 -->
+        <section id="bab8" class="bab">
+            <h2>📋 Bab 8: Manajemen Proyek & Tools</h2>
+            <h3>8.1 Alat Bantu Kerja</h3>
+            <p>Trello/Notion untuk tugas, WhatsApp/Slack untuk komunikasi, Figma untuk desain.</p>
+            <h3>8.2 Menghindari Scope Creep</h3>
+            <p>Buat Statement of Work (lingkup pekerjaan). Jika klien minta fitur baru: "Itu bisa ditambahkan dengan biaya tambahan sebesar [harga]."</p>
+            <h3>8.3 Backup Kode</h3>
+            <p>Gunakan GitHub private, backup database rutin.</p>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/5tLzQaDgT3E" title="Tools Manajemen Proyek untuk Freelancer" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- BAB 9 -->
+        <section id="bab9" class="bab">
+            <h2>📌 Bab 9: Studi Kasus & Contoh Proyek Nyata</h2>
+            <h3>9.1 Landing Page UMKM Makanan</h3>
+            <p>Teknologi: HTML, CSS, JS. Harga Rp500.000. Satu halaman, galeri produk, kontak WA.</p>
+            <h3>9.2 Sistem Manajemen Antrian Klinik</h3>
+            <p>PHP Native + MySQL. Multi-user, cetak nomor antrian. Harga Rp2.500.000.</p>
+            <h3>9.3 E-commerce Sederhana (React + Firebase)</h3>
+            <p>Katalog, keranjang, login Google. Harga $300 (luar negeri).</p>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/G8L0z7yX4j0" title="Studi Kasus Project Web" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- BAB 10 -->
+        <section id="bab10" class="bab">
+            <h2>🚀 Bab 10: Skalabilitas Karir</h2>
+            <h3>10.1 Spesialisasi atau Generalis?</h3>
+            <p>Suka desain → frontend + UI/UX. Suka logika → backend/fullstack.</p>
+            <h3>10.2 Belajar Lanjutan</h3>
+            <p>DevOps (CI/CD), SEO dasar.</p>
+            <h3>10.3 Personal Brand</h3>
+            <p>LinkedIn, Twitter, tulis artikel di Medium/Dev.to.</p>
+            <h3>10.4 Menjadi Mentor / Membuat Tim</h3>
+            <p>Setelah pengalaman cukup, bisa mentoring atau merekrut developer lain.</p>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/Zx2O4lE1G1k" title="Lanjut Karir Developer" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>🌟 Ingat: Perjalanan ini maraton, bukan sprint. Setiap proyek adalah pembelajaran.</p>
+            <p>Dibuat oleh <a href="#">Retno Ariyanti Nurningtias</a> — Guru Pengembangan Perangkat Lunak dan Gim</p>
+            <p>📧 rartnur@gmail.com | 📱 <a href="https://wa.me/6287879182277">wa.me/6287879182277</a></p>
+            <p style="margin-top:1rem; font-size:0.9rem;">© 2025 Peta Jalan Freelance Web Developer</p>
+        </div>
+    </div>
+
+    <!-- Tombol scroll to top -->
+    <button class="btn-top" id="scrollTopBtn" title="Ke atas"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        // Smooth scroll untuk link daftar isi
+        document.querySelectorAll('.daftar-isi a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Tombol scroll to top
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Munculkan tombol setelah scroll 300px
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollBtn.style.display = 'flex';
+            } else {
+                scrollBtn.style.display = 'none';
+            }
+        });
+        // Inisialisasi tombol (hidden saat di atas)
+        scrollBtn.style.display = 'none';
+    </script>
+</body>
+</html>
